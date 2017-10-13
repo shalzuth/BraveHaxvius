@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraveHaxvius", "BraveHaxvius\BraveHaxvius.csproj", "{BDCF492D-5BAD-43F0-9056-A24647CBE948}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IDAScripts", "IDAScripts", "{8F77CCB5-DF0D-485C-B2E5-88E726F9F094}"
+	ProjectSection(SolutionItems) = preProject
+		IDAScripts\GetDataKeys.py = IDAScripts\GetDataKeys.py
+		IDAScripts\GetNetworkKeys.py = IDAScripts\GetNetworkKeys.py
+		IDAScripts\GetResponseKeys.py = IDAScripts\GetResponseKeys.py
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataExtractor", "DataExtractor\DataExtractor.csproj", "{CF7334F3-B59B-4DCA-8C80-883C23A653C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketDecoder", "PacketDecoder\PacketDecoder.csproj", "{9B176963-698E-451F-821D-908620E17702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDCF492D-5BAD-43F0-9056-A24647CBE948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDCF492D-5BAD-43F0-9056-A24647CBE948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDCF492D-5BAD-43F0-9056-A24647CBE948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDCF492D-5BAD-43F0-9056-A24647CBE948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF7334F3-B59B-4DCA-8C80-883C23A653C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF7334F3-B59B-4DCA-8C80-883C23A653C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF7334F3-B59B-4DCA-8C80-883C23A653C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF7334F3-B59B-4DCA-8C80-883C23A653C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B176963-698E-451F-821D-908620E17702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B176963-698E-451F-821D-908620E17702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B176963-698E-451F-821D-908620E17702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B176963-698E-451F-821D-908620E17702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64360A0E-085E-440A-A028-8BC1892332BF}
+	EndGlobalSection
+EndGlobal

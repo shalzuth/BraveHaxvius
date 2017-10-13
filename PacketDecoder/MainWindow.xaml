@@ -1,0 +1,52 @@
+﻿<Controls:MetroWindow x:Class="PacketDecoder.MainWindow"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+        Title="FFBE Packet Decoder" Height="600" Width="1200" Closing="MetroWindow_Closing">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button ToolTip="Uninstall certificate" Click="Button_Click">
+                <iconPacks:PackIconModern Kind="DoorLeave" Width="24" Height="24"/>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <DataGrid Name="packetGrid" Grid.Column="0" ItemsSource="{Binding}" AutoGenerateColumns="False" SelectionChanged="PacketGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}"/>
+                <DataGridTextColumn Header="#" Binding="{Binding Num}"/>
+                <DataGridTextColumn Header="Direction" Binding="{Binding Direction}"/>
+                <DataGridTextColumn Header="Url" Binding="{Binding Url}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl Grid.Column="1">
+            <TabItem Header="Tree">
+                <Grid Background="#FFE5E5E5">
+                    <TreeView x:Name="gameObjectView"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Game Objects">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="gameObjectJsonText"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Decrypted">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="decryptedJsonText"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Raw">
+                <Grid Background="#FFE5E5E5">
+                    <RichTextBox x:Name="encryptedJsonText"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Controls:MetroWindow>
