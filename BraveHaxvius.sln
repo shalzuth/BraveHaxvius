@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraveHaxvius", "BraveHaxvius\BraveHaxvius.csproj", "{BDCF492D-5BAD-43F0-9056-A24647CBE948}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketDecoder", "PacketDecoder\PacketDecoder.csproj", "{9B176963-698E-451F-821D-908620E17702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{512497B1-E79C-4DED-9B30-A9525F047B9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,10 @@ Global
 		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{512497B1-E79C-4DED-9B30-A9525F047B9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{512497B1-E79C-4DED-9B30-A9525F047B9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{512497B1-E79C-4DED-9B30-A9525F047B9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{512497B1-E79C-4DED-9B30-A9525F047B9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

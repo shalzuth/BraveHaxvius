@@ -237,7 +237,7 @@ namespace BraveHaxvius
                     sellCost = 1500;
                 totalSell += sellCost;
                 unitSellList.Add(unit.UniqueUnitId);
-                Console.WriteLine("selling : " + unit.Name);
+                Logger.Out("selling : " + unit.Name);
                 if (totalSell > 90000)
                 {
                     var partialsell = Network.SendPacket(Request.UnitSell,
@@ -328,7 +328,7 @@ namespace BraveHaxvius
                     sellCost = 3000;
                 totalSell += sellCost;
                 unitSellList.Add(unit.UniqueUnitId);
-                Console.WriteLine("selling : " + unit.Name);
+                Logger.Out("selling : " + unit.Name);
                 if (totalSell > 90000)
                 {
                     var partialsell = Network.SendPacket(Request.UnitSell,
@@ -352,19 +352,20 @@ namespace BraveHaxvius
         }
         public void UnitHunter(Unit unit, Func<int, int> status = null)
         {
+            var Gachas = GetUserInfo[GameObject.GachaScheduleMst];
+            var Gacha10_1 = Gachas.First(g => g[Variable.Description].ToString().Contains("10+1"));
             var sell3Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("3");
             var sell4Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("4");
             var newUnits = new List<Unit>();
             int iteration = 0;
-            while (true)
+            while (newUnits.Count(u => u.UnitId == unit.BaseUnitId) == 0)
             {
-                if (newUnits.Count(u => u.UnitId == unit.BaseUnitId) > 0)
-                    break;
                 newUnits.Clear();
                 DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket.ItemId + ":9");
                 for (int j = 0; j < 9; j++)
                 {
-                    newUnits.AddRange(Summon("50002", "500021", "1", "0"));
+                    status?.Invoke(iteration++);
+                    newUnits.AddRange(Summon(Gacha10_1[Variable.GachaId].ToString(), Gacha10_1[Variable.Options].ToString(), "1", "0"));
                     Thread.Sleep(5000);
                     if (newUnits.Count(u => u.UnitId == unit.BaseUnitId) > 0)
                         break;
@@ -393,7 +394,6 @@ namespace BraveHaxvius
                             new JObject(
                                 new JProperty(Variable.UnitSellPrice, totalSell),
                                 new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
-                status?.Invoke(++iteration);
                 Thread.Sleep(3000);
             }
         }
@@ -424,7 +424,7 @@ namespace BraveHaxvius
                 var unitShortList = unitsToFuse.Take(remainingUnits).ToList();
                 unitsToFuse = unitsToFuse.Skip(remainingUnits).ToList();
                 if (unitShortList.Count() > 0)
-                    Console.WriteLine("fusing : " + unit.Name + " x" + unitShortList.Count);
+                    Logger.Out("fusing : " + unit.Name + " x" + unitShortList.Count);
                 while (unitShortList.Count() == 5)
                 {
                     var fuseList = new List<String>();
@@ -528,12 +528,12 @@ namespace BraveHaxvius
                 var parts = unitToken.Split(new char[1] { ':' });
                 if (parts[0] == "23")
                 {
-                    Console.WriteLine(unitToken);
+                    Logger.Out(unitToken);
                     continue;
                 }
                 if (parts[0] == "20")
                 {
-                    Console.WriteLine(Item.Items.First(i => i.ItemId == parts[1]).Name);
+                    Logger.Out(Item.Items.First(i => i.ItemId == parts[1]).Name);
                     continue;
                 }
                 var unitId = parts[1];
@@ -552,7 +552,7 @@ namespace BraveHaxvius
             newUnits = newUnits.OrderByDescending(u => u.Rarity).ToList();
             var distinct = newUnits.Select(a => a.Name).Distinct();
             foreach (var d in distinct)
-                Console.WriteLine(d + " : " + newUnits.Count(a => a.Name == d));
+                Logger.Out(d + " : " + newUnits.Count(a => a.Name == d));
             return newUnits;
         }
         public void GetMail()
@@ -704,7 +704,7 @@ namespace BraveHaxvius
                     else if (item.StartsWith("60"))
                         recipeTreasure.Add(item);
                     else
-                        Console.WriteLine("need to add important item treasure");
+                        Logger.Out("need to add important item treasure");
                 }
             }
             var ItemsTreasure = String.Join(",", itemsTreasure);
@@ -723,23 +723,23 @@ namespace BraveHaxvius
             if (mission.MissionType == "1")
                 EncounterId = "";
 
-            Console.WriteLine("XP : " + Experience);
-            Console.WriteLine("Gil : " + Gil);
+            Logger.Out("XP : " + Experience);
+            Logger.Out("Gil : " + Gil);
             foreach (var item in itemCount)
-                Console.WriteLine("Enemy dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
+                Logger.Out("Enemy dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
             foreach (var item in itemStolenCount)
-                Console.WriteLine("Enemy stolen item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
+                Logger.Out("Enemy stolen item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
             foreach (var item in itemsTreasure)
-                Console.WriteLine("Treasure item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
+                Logger.Out("Treasure item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
             var ih = ItemsFound.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var item in ih)
-                Console.WriteLine("Stage dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
+                Logger.Out("Stage dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
             foreach (var unit in unitDrops)
-                Console.WriteLine("Enemy dropped unit : " + Unit.Units.FindAll(i => i.UnitId != null).First(i => unit.Contains(i.UnitId)).Name);
+                Logger.Out("Enemy dropped unit : " + Unit.Units.FindAll(i => i.UnitId != null).First(i => unit.Contains(i.UnitId)).Name);
             foreach (var eq in equipmentTreasure)
-                Console.WriteLine("Treasure equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => eq.Contains(i.EquipId)).Name);
+                Logger.Out("Treasure equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => eq.Contains(i.EquipId)).Name);
             foreach (var r in recipeTreasure)
-                Console.WriteLine("Treasure equipment : " + Recipe.Recipes.FindAll(i => i.RecipeBookId != null).First(i => r.Contains(i.RecipeBookId)).Name);
+                Logger.Out("Treasure equipment : " + Recipe.Recipes.FindAll(i => i.RecipeBookId != null).First(i => r.Contains(i.RecipeBookId)).Name);
 
             var MissionComplete = new JObject(new JProperty(Variable.MissionId, mission.MissionId));
             if (newSwitches.Count > 0)
@@ -1280,17 +1280,17 @@ namespace BraveHaxvius
         {
             UpdateUnits();
             var query2 = Units.Select(x => x.Name).GroupBy(x => x, (y, z) => new { Name = y, Count = z.Count() });
-            foreach (var item in query2)
-                Console.WriteLine("{0} - {1}", item.Name, item.Count);
-            Console.WriteLine("");
+            //foreach (var item in query2)
+            //    Logger.Out("{0} - {1}", item.Name, item.Count);
+            Logger.Out("");
             var equipment = GetUserInfo[GameObject.UserEquipItemInfo_w83oV9uP][0][Variable.ItemList].ToString().Split(new char[1] { ',' });
             foreach (var equip in equipment)
             {
                 var eqId = equip.Split(new char[1] { ':' })[0];
                 var count = equip.Split(new char[1] { ':' })[1];
-                Console.WriteLine("{0} - {1}", Equipment.Equipments.First(e => e.EquipId == eqId).Name, count);
+            //    Logger.Out("{0} - {1}", Equipment.Equipments.First(e => e.EquipId == eqId).Name, count);
             }
-            Console.WriteLine("");
+            Logger.Out("");
             var materia = GetUserInfo[GameObject.UserMateriaInfo_aS39Eshy][0][Variable.ItemList].ToString().Split(new char[1] { ',' });
             foreach (var ability in materia)
             {
@@ -1298,7 +1298,7 @@ namespace BraveHaxvius
                     continue;
                 var matIt = ability.Split(new char[1] { ':' })[0];
                 var count = ability.Split(new char[1] { ':' })[1];
-                Console.WriteLine("{0} - {1}", Materia.Materias.First(m => m.MateriaId == matIt).Name, count);
+             //   Logger.Out("{0} - {1}", Materia.Materias.First(m => m.MateriaId == matIt).Name, count);
             }
         }
     }

@@ -151,7 +151,7 @@ namespace BraveHaxvius.Data
                         var decryptedEntries = decryptedMst.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                         entireFile.AddRange(decryptedEntries);
                     }
-                    Console.WriteLine(name);
+                    Logger.Out(name);
                     File.WriteAllLines("..\\mst\\" + name + "_" + version, entireFile);
                     if (loc == "mst")
                     {

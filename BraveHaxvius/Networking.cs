@@ -72,7 +72,7 @@ namespace BraveHaxvius
         }
         public JObject SendPacket(Request request, List<JProperty> inputs)
         {
-            Console.Write("Sending : " + request.Name + "...");
+            Logger.Out("Sending : " + request.Name + "...");
             var decryptedData = DataObject(inputs);
             var decryptedDataString = JsonConvert.SerializeObject(decryptedData, Formatting.None);
             var encryptedData = Crypto.Encrypt(decryptedDataString, request.EncodeKey);
@@ -143,7 +143,7 @@ namespace BraveHaxvius
             var signalResponse = decryptedResponseData[GameObject.SignalKey];
             if (signalResponse != null)
                 client.LastSignalKey = signalResponse.First()[Variable.Data].ToString();
-            Console.WriteLine(" Request done");
+            Logger.Out("\tRequest done");
             return decryptedResponseData;
         }
         public String DecodePacket(JObject obj)
