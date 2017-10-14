@@ -41,11 +41,15 @@
             this.unitDataGrid = new System.Windows.Forms.DataGridView();
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.levelButton = new System.Windows.Forms.Button();
+            this.levelStatus = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // fbidInput
@@ -68,6 +72,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -183,11 +188,40 @@
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.levelStatus);
+            this.tabPage3.Controls.Add(this.levelButton);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(383, 205);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Level Party";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // levelButton
+            // 
+            this.levelButton.Location = new System.Drawing.Point(304, 179);
+            this.levelButton.Name = "levelButton";
+            this.levelButton.Size = new System.Drawing.Size(75, 23);
+            this.levelButton.TabIndex = 0;
+            this.levelButton.Text = "level";
+            this.levelButton.UseVisualStyleBackColor = true;
+            this.levelButton.Click += new System.EventHandler(this.levelButton_Click);
+            // 
+            // levelStatus
+            // 
+            this.levelStatus.Location = new System.Drawing.Point(4, 4);
+            this.levelStatus.Name = "levelStatus";
+            this.levelStatus.Size = new System.Drawing.Size(237, 124);
+            this.levelStatus.TabIndex = 1;
+            this.levelStatus.Text = "";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(408, 279);
+            this.ClientSize = new System.Drawing.Size(414, 534);
             this.Controls.Add(this.consoleLog);
             this.Controls.Add(this.donateButton);
             this.Controls.Add(this.tabControl1);
@@ -202,6 +236,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,6 +257,9 @@
         private System.Windows.Forms.Button summonButton;
         private System.Windows.Forms.TextBox unitSearchInput;
         private System.Windows.Forms.RichTextBox consoleLog;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button levelButton;
+        private System.Windows.Forms.RichTextBox levelStatus;
     }
 }
 

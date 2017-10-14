@@ -497,6 +497,9 @@ namespace BraveHaxvius
         public void UpdateMail()
         {
             Mail.Clear();
+            var MailList = Network.SendPacket(Request.MailList);
+            if (MailList == null || MailList[GameObject.UserMailInfo] != null)
+                return;
             var mailList = Network.SendPacket(Request.MailList)[GameObject.UserMailInfo].Select(m => new Mail
             {
                 Id = m[Variable.MailId].ToString(),
@@ -981,7 +984,7 @@ namespace BraveHaxvius
             var oldMateria = oldUnit?[Variable.Materia].ToString();
             SetEquipment(unit.UniqueUnitId, oldEquipment, oldMateria);
         }
-        public void LevelParty()
+        public void LevelParty(Func<string, int> update)
         {
             var growtheggs = "21:" + Equipment.GrowthEgg.EquipId + ":10";
             var actions = "22:" + Materia.Action.MateriaId + ":20";
@@ -991,7 +994,7 @@ namespace BraveHaxvius
             var partyUnits = party[Variable.PartyUnits].ToString().Split(new char[1] { ',' });
             var units = partyUnits.Select(u => Units.FirstOrDefault(unit => unit.UniqueUnitId == u.Split(new char[1] { ':' }).Last())).ToList();
             var growthEggEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":1-0@2-0@3-0@4-0@5-" + Equipment.GrowthEgg.EquipId + "@6-" + Equipment.GrowthEgg.EquipId));
-            var actionEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":" +  String.Join("@", Enumerable.Range(1, int.Parse(Unit.Units.First(u2 => u2.UnitId == u.UnitId).MateriaSlots) + 1).Select(m => m + "-" + Materia.Action.MateriaId))));
+            var actionEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":" +  String.Join("@", Enumerable.Range(1, int.Parse(Unit.Units.First(u2 => u2.UnitId == u.UnitId).MateriaSlots)).Select(m => m + "-" + Materia.Action.MateriaId))));
             Network.SendPacket(Request.UnitEquip,
                 new JProperty(GameObject.UnitEquip_Er92Kdhm, new JArray(new JObject(
                     new JProperty(Variable.Equipment, growthEggEquip),
@@ -1016,6 +1019,7 @@ namespace BraveHaxvius
             var needsLeveling = !units.All(u => u.Level == u.UnitMaxLevel && u.Rarity == Unit.Units.FindAll(u2 => u.BaseUnitId == u2.BaseUnitId).Max(u2 => int.Parse(u2.Rarity)).ToString());
             while (needsLeveling)
             {
+                update(String.Join("\r\n", units.Select(u => u.Name + " " + u.Rarity + "*" + " level " + u.Level)));
                 var itemHax = String.Join(",", awakenItems.Select(i => "20:" + i.Key.ItemId + ":" + i.Value));
                 var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, 3000);
                 awakenItems.Clear();
@@ -1063,7 +1067,7 @@ namespace BraveHaxvius
                 Thread.Sleep(3000);
             }
             growthEggEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":1-0@2-0@3-0@4-0@5-0@6-0"));
-            actionEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":" + String.Join("@", Enumerable.Range(1, int.Parse(Unit.Units.First(u2 => u2.UnitId == u.UnitId).MateriaSlots) + 1).Select(m => m + "-0"))));
+            actionEquip = String.Join(",", units.Select(u => u.UniqueUnitId + ":" + String.Join("@", Enumerable.Range(1, int.Parse(Unit.Units.First(u2 => u2.UnitId == u.UnitId).MateriaSlots)).Select(m => m + "-0"))));
             Network.SendPacket(Request.UnitEquip,
                 new JProperty(GameObject.UnitEquip_Er92Kdhm, new JArray(new JObject(
                     new JProperty(Variable.Equipment, growthEggEquip),

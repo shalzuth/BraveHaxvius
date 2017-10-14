@@ -27,7 +27,8 @@ namespace Client
         }
         public void Hook(String s)
         {
-            consoleLog.Text += s + "\r\n";
+            consoleLog.Focus();
+            consoleLog.AppendText(s+ "\r\n");
         }
         private void InitDatagrid()
         {
@@ -76,6 +77,11 @@ namespace Client
         {
             var t = new Thread(() =>
             {
+                Func<int, int> iteration = i =>
+                {
+                    summonButton.Text = (i + 1).ToString() + "...";
+                    return 1;
+                };
                 summonButton.Enabled = false;
                 var unit = Unit.Units.First(u => u.Name == unitDataGrid.Rows[unitDataGrid.CurrentRow.Index].Cells[0].Value.ToString() && u.UnitId == u.BaseUnitId);
                 var b = new BraveExvius
@@ -84,7 +90,8 @@ namespace Client
                     FacebookToken = fbtokenInput.Text.Replace(" ", "")
                 };
                 b.Login();
-                b.UnitHunter(unit);
+                b.UnitHunter(unit, iteration);
+                summonButton.Text = "summon highlighted";
                 summonButton.Enabled = true;
             });
             t.IsBackground = true;
@@ -94,6 +101,29 @@ namespace Client
         private void DonateButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=shal.zuth@gmail.com&lc=US&currency_code=USD&bn=PP%2dDonationsBF");
+        }
+
+        private void levelButton_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                Func<string, int> update = i =>
+                {
+                    levelStatus.Text = i;
+                    return 1;
+                };
+                levelButton.Enabled = false;
+                var b = new BraveExvius
+                {
+                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
+                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                };
+                b.Login();
+                b.LevelParty(update);
+                levelButton.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
         }
     }
 }
