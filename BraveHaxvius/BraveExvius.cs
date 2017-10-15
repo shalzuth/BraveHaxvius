@@ -108,19 +108,34 @@ namespace BraveHaxvius
         public JObject GetUserInfo;
         public void Login()
         {
+            if (FacebookUserId.Contains("@"))
+            {
+                var fb = new Facebook();
+                if (FacebookToken.Contains(" : "))
+                {
+                    var twoFactor = FacebookToken.Substring(FacebookToken.IndexOf(" : ") + 3);
+                    FacebookToken = FacebookToken.Substring(0, FacebookToken.IndexOf(" : "));
+                    fb.Login(FacebookUserId, FacebookToken);
+                    fb.FinishTwoFactorAuth(twoFactor);
+                }
+                else
+                    fb.Login(FacebookUserId, FacebookToken);
+                fb.AllowFFBE();
+
+                FacebookUserId = fb.Id;
+                FacebookToken = fb.AccessToken;
+            }
             //DeviceId = Guid.NewGuid().ToString().ToUpper();
             //b.ContactId = Crypto.Encrypt(b.DeviceId, "Zy3MDURw");
             //AdvertisingId = Guid.NewGuid().ToString().ToUpper();
             Initialize();
             UpdateGetUserInfo();
-
             if (Locale != "JP")
             {
                 UpdateUnits();
                 UpdateNews();
                 UpdateExpeditions();
             }
-            
             UpdateMail();
             UpdateGachaList();
         }
