@@ -14,9 +14,9 @@ namespace BraveHaxvius.Data
         public static readonly Ticket Rare3 = new Ticket { Id = "1", SubId = "10001", Count = "1", Other = "50", Name = "3*" };
         public static readonly Ticket Rare4 = new Ticket { Id = "2", SubId = "10001", Count = "1", Other = "70", Name = "4*" };
         public static readonly Ticket Rare30 = new Ticket { Id = "3", SubId = "10001", Count = "1", Other = "80", Name = "30%" };
-        public static readonly Ticket EX3 = new Ticket { Id = "1", SubId = "10010", Count = "1", Other = "160", Name = "3* EX" };
-        public static readonly Ticket EX4 = new Ticket { Id = "1", SubId = "10010", Count = "1", Other = "170", Name = "4* EX" };
-        public static readonly Ticket EX5 = new Ticket { Id = "1", SubId = "10010", Count = "1", Other = "180", Name = "5* EX" };
+        public static readonly Ticket EX3 = new Ticket { Id = "10", SubId = "10010", Count = "1", Other = "160", Name = "3* EX" };
+        public static readonly Ticket EX4 = new Ticket { Id = "11", SubId = "10010", Count = "1", Other = "170", Name = "4* EX" };
+        public static readonly Ticket EX5 = new Ticket { Id = "12", SubId = "10010", Count = "1", Other = "180", Name = "5* EX" };
 
         public static readonly List<Ticket> Tickets = new List<Ticket>
         {
