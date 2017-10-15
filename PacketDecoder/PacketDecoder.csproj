@@ -119,14 +119,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="lib\BasicFormatsForCore.gz" />
-    <EmbeddedResource Include="lib\BCMakeCert.gz" />
-    <EmbeddedResource Include="lib\CertMaker.gz" />
-    <EmbeddedResource Include="lib\FiddlerCore4.gz" />
-    <EmbeddedResource Include="lib\MahApps.Metro.gz" />
-    <EmbeddedResource Include="lib\MahApps.Metro.IconPacks.Modern.gz" />
-    <EmbeddedResource Include="lib\Newtonsoft.Json.gz" />
-    <EmbeddedResource Include="lib\System.Windows.Interactivity.gz" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -137,21 +129,14 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\BasicFormatsForCore.dll" />
-    <Content Include="lib\BCMakeCert.dll" />
-    <Content Include="lib\CertMaker.dll" />
-    <Content Include="lib\FiddlerCore4.dll" />
-    <Content Include="lib\MahApps.Metro.dll" />
-    <Content Include="lib\MahApps.Metro.IconPacks.Modern.dll" />
-    <Content Include="lib\Newtonsoft.Json.dll" />
-    <Content Include="lib\System.Windows.Interactivity.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BraveHaxvius\BraveHaxvius.csproj">
       <Project>{bdcf492d-5bad-43f0-9056-a24647cbe948}</Project>
       <Name>BraveHaxvius</Name>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
