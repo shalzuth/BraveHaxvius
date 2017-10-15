@@ -46,7 +46,7 @@ namespace PacketDecoder
         Boolean installCertificateMessage = false;
         private void CurrentDomain_FirstChanceException(object sender, System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs e)
         {
-            Logger.Out(e);
+            BraveHaxvius.Logger.Out(e.ToString());
             if (e.Exception.Message == "A call to SSPI failed, see inner exception.")
             {
                 if (installCertificateMessage)

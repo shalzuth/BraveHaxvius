@@ -113,11 +113,16 @@ namespace BraveHaxvius
             //AdvertisingId = Guid.NewGuid().ToString().ToUpper();
             Initialize();
             UpdateGetUserInfo();
-            UpdateUnits();
-            UpdateNews();
+
+            if (Locale != "JP")
+            {
+                UpdateUnits();
+                UpdateNews();
+                UpdateExpeditions();
+            }
+            
             UpdateMail();
             UpdateGachaList();
-            UpdateExpeditions();
         }
         public void LoginFacebook(String fbId, String fbToken)
         {
@@ -526,36 +531,41 @@ namespace BraveHaxvius
                             new JProperty(Variable.GachaCost_zJ1A6HXm, TicketType)))));
             var unitList = GachaSummon[GameObject.GachaExe][0][Variable.GachaUnitList].ToString().Split(new char[1] { ',' });
             var newUnits = new List<Unit>();
-            foreach (var unitToken in unitList)
+
+            if (Locale != "JP")
             {
-                var parts = unitToken.Split(new char[1] { ':' });
-                if (parts[0] == "23")
+                foreach (var unitToken in unitList)
                 {
-                    Logger.Out(unitToken);
-                    continue;
+                    var parts = unitToken.Split(new char[1] { ':' });
+                    if (parts[0] == "23")
+                    {
+                        Logger.Out(unitToken);
+                        continue;
+                    }
+                    if (parts[0] == "20")
+                    {
+                        Logger.Out(Item.Items.First(i => i.ItemId == parts[1]).Name);
+                        continue;
+                    }
+                    var unitId = parts[1];
+                    var unit = new Unit
+                    {
+                        Name = Unit.Units.First(u => u.UnitId == unitId).Name,
+                        UniqueUnitId = parts[2],
+                        UnitId = unitId,
+                        Rarity = UInt16.Parse(unitId.Substring(unitId.Length - 1)).ToString(),
+                        Tmr = "0",
+                        Level = "1"
+                    };
+                    newUnits.Add(unit);
+                    Units.Add(unit);
                 }
-                if (parts[0] == "20")
-                {
-                    Logger.Out(Item.Items.First(i => i.ItemId == parts[1]).Name);
-                    continue;
-                }
-                var unitId = parts[1];
-                var unit = new Unit
-                {
-                    Name = Unit.Units.First(u => u.UnitId == unitId).Name,
-                    UniqueUnitId = parts[2],
-                    UnitId = unitId,
-                    Rarity = UInt16.Parse(unitId.Substring(unitId.Length - 1)).ToString(),
-                    Tmr = "0",
-                    Level = "1"
-                };
-                newUnits.Add(unit);
-                Units.Add(unit);
+                newUnits = newUnits.OrderByDescending(u => u.Rarity).ToList();
+                var distinct = newUnits.Select(a => a.Name).Distinct();
+                foreach (var d in distinct)
+                    Logger.Out(d + " : " + newUnits.Count(a => a.Name == d));
             }
-            newUnits = newUnits.OrderByDescending(u => u.Rarity).ToList();
-            var distinct = newUnits.Select(a => a.Name).Distinct();
-            foreach (var d in distinct)
-                Logger.Out(d + " : " + newUnits.Count(a => a.Name == d));
+            
             return newUnits;
         }
         public void GetMail()

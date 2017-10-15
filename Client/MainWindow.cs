@@ -17,6 +17,8 @@ namespace Client
     {
         DataTable injectDataTable = new DataTable();
         DataTable unitDataTable = new DataTable();
+        Newtonsoft.Json.Linq.JToken Gachas;
+        BraveExvius JP = new BraveExvius();
 
         public MainWindow()
         {
@@ -44,6 +46,20 @@ namespace Client
             unitDataTable.Columns.Add("Name");
             Unit.Units.FindAll(u => u.Description != null && u.IsSummonable == "1" && u.UnitId == u.BaseUnitId).ForEach(u => unitDataTable.Rows.Add(u.Name));
             unitDataGrid.DataSource = unitDataTable;
+        }
+        private void InitGacha(BraveExvius b)
+        {
+            Gachas = b.GetUserInfo[GameObject.GachaScheduleMst];
+
+            foreach (var gacha in b.GachaId)
+                JPGacha.Items.Add(gacha);
+
+            JPGacha.SelectedIndex = 0;
+
+            foreach (var ticket in Ticket.Tickets)
+                JPGachaTicket.Items.Add(ticket.Name);
+
+            JPGachaTicket.SelectedIndex = 0;
         }
         private void InjectSearchInput_TextChanged(object sender, EventArgs e)
         {
@@ -121,6 +137,43 @@ namespace Client
                 b.Login();
                 b.LevelParty(update);
                 levelButton.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void JPLogin_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                JPLogin.Enabled = false;
+                JP = new BraveExvius
+                {
+                    TransferCode = JPCode.Text.Replace(" ", ""),
+                    TransferPin = JPPin.Text.Replace(" ", "")
+                };
+                JP.LoginJapan(JP.TransferCode, JP.TransferPin);
+                InitGacha(JP);
+                JPLogin.Enabled = true;
+                GachaSummon.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void GachaSummon_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                GachaSummon.Enabled = false;
+                
+                var GachaId = JPGacha.Text.Split(':').Select(p => p.Trim()).ToList().First();
+                var Gacha = Gachas.First(g => g[Variable.GachaId].ToString() == GachaId);
+                var GachaTicket = Ticket.Tickets.First(x => x.Name == JPGachaTicket.Text).Id;
+                var GachaSubId = Gacha[Variable.Options].ToString().Split(',').Last();
+                JP.Summon(Gacha[Variable.GachaId].ToString(), GachaSubId, "1", GachaTicket);
+
+                GachaSummon.Enabled = true;
             });
             t.IsBackground = true;
             t.Start();
