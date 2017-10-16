@@ -40,9 +40,11 @@
             this.unitSearchInput = new System.Windows.Forms.TextBox();
             this.unitDataGrid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.rankUpButton = new System.Windows.Forms.Button();
             this.levelStatus = new System.Windows.Forms.RichTextBox();
-            this.levelButton = new System.Windows.Forms.Button();
+            this.levelPartyButton = new System.Windows.Forms.Button();
             this.JPSummon = new System.Windows.Forms.TabPage();
+            this.JPGachaTicket = new System.Windows.Forms.ComboBox();
             this.JPLogin = new System.Windows.Forms.Button();
             this.JPPin = new System.Windows.Forms.TextBox();
             this.JPCode = new System.Windows.Forms.TextBox();
@@ -50,7 +52,6 @@
             this.JPGacha = new System.Windows.Forms.ComboBox();
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
-            this.JPGachaTicket = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
@@ -66,7 +67,7 @@
             this.fbidInput.Name = "fbidInput";
             this.fbidInput.Size = new System.Drawing.Size(178, 20);
             this.fbidInput.TabIndex = 0;
-            this.fbidInput.Text = "fb id";
+            this.fbidInput.Text = "fb id or email";
             // 
             // fbtokenInput
             // 
@@ -74,7 +75,7 @@
             this.fbtokenInput.Name = "fbtokenInput";
             this.fbtokenInput.Size = new System.Drawing.Size(203, 20);
             this.fbtokenInput.TabIndex = 1;
-            this.fbtokenInput.Text = "fb token";
+            this.fbtokenInput.Text = "fb token or pw";
             // 
             // tabControl1
             // 
@@ -180,32 +181,44 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.rankUpButton);
             this.tabPage3.Controls.Add(this.levelStatus);
-            this.tabPage3.Controls.Add(this.levelButton);
+            this.tabPage3.Controls.Add(this.levelPartyButton);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(781, 205);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Level Party";
+            this.tabPage3.Text = "Leveling";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // rankUpButton
+            // 
+            this.rankUpButton.Location = new System.Drawing.Point(432, 154);
+            this.rankUpButton.Name = "rankUpButton";
+            this.rankUpButton.Size = new System.Drawing.Size(75, 23);
+            this.rankUpButton.TabIndex = 2;
+            this.rankUpButton.Text = "rank up";
+            this.rankUpButton.UseVisualStyleBackColor = true;
+            this.rankUpButton.Click += new System.EventHandler(this.RankUpButton_Click);
             // 
             // levelStatus
             // 
             this.levelStatus.Location = new System.Drawing.Point(4, 4);
             this.levelStatus.Name = "levelStatus";
+            this.levelStatus.ReadOnly = true;
             this.levelStatus.Size = new System.Drawing.Size(774, 124);
             this.levelStatus.TabIndex = 1;
-            this.levelStatus.Text = "";
+            this.levelStatus.Text = "status...";
             // 
-            // levelButton
+            // levelPartyButton
             // 
-            this.levelButton.Location = new System.Drawing.Point(342, 155);
-            this.levelButton.Name = "levelButton";
-            this.levelButton.Size = new System.Drawing.Size(75, 23);
-            this.levelButton.TabIndex = 0;
-            this.levelButton.Text = "level";
-            this.levelButton.UseVisualStyleBackColor = true;
-            this.levelButton.Click += new System.EventHandler(this.levelButton_Click);
+            this.levelPartyButton.Location = new System.Drawing.Point(238, 155);
+            this.levelPartyButton.Name = "levelPartyButton";
+            this.levelPartyButton.Size = new System.Drawing.Size(75, 23);
+            this.levelPartyButton.TabIndex = 0;
+            this.levelPartyButton.Text = "level party";
+            this.levelPartyButton.UseVisualStyleBackColor = true;
+            this.levelPartyButton.Click += new System.EventHandler(this.LevelPartyButton_Click);
             // 
             // JPSummon
             // 
@@ -221,6 +234,14 @@
             this.JPSummon.TabIndex = 3;
             this.JPSummon.Text = "JP Summon";
             this.JPSummon.UseVisualStyleBackColor = true;
+            // 
+            // JPGachaTicket
+            // 
+            this.JPGachaTicket.FormattingEnabled = true;
+            this.JPGachaTicket.Location = new System.Drawing.Point(389, 35);
+            this.JPGachaTicket.Name = "JPGachaTicket";
+            this.JPGachaTicket.Size = new System.Drawing.Size(88, 21);
+            this.JPGachaTicket.TabIndex = 5;
             // 
             // JPLogin
             // 
@@ -286,14 +307,6 @@
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
             // 
-            // JPGachaTicket
-            // 
-            this.JPGachaTicket.FormattingEnabled = true;
-            this.JPGachaTicket.Location = new System.Drawing.Point(389, 35);
-            this.JPGachaTicket.Name = "JPGachaTicket";
-            this.JPGachaTicket.Size = new System.Drawing.Size(88, 21);
-            this.JPGachaTicket.TabIndex = 5;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,7 +350,7 @@
         private System.Windows.Forms.TextBox unitSearchInput;
         private System.Windows.Forms.RichTextBox consoleLog;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button levelButton;
+        private System.Windows.Forms.Button levelPartyButton;
         private System.Windows.Forms.RichTextBox levelStatus;
         private System.Windows.Forms.TabPage JPSummon;
         private System.Windows.Forms.TextBox JPPin;
@@ -346,6 +359,7 @@
         private System.Windows.Forms.ComboBox JPGacha;
         private System.Windows.Forms.Button JPLogin;
         private System.Windows.Forms.ComboBox JPGachaTicket;
+        private System.Windows.Forms.Button rankUpButton;
     }
 }
 

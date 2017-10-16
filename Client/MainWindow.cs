@@ -119,7 +119,7 @@ namespace Client
             System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=shal.zuth@gmail.com&lc=US&currency_code=USD&bn=PP%2dDonationsBF");
         }
 
-        private void levelButton_Click(object sender, EventArgs e)
+        private void LevelPartyButton_Click(object sender, EventArgs e)
         {
             var t = new Thread(() =>
             {
@@ -128,7 +128,7 @@ namespace Client
                     levelStatus.Text = i;
                     return 1;
                 };
-                levelButton.Enabled = false;
+                levelPartyButton.Enabled = false;
                 var b = new BraveExvius
                 {
                     FacebookUserId = fbidInput.Text.Replace(" ", ""),
@@ -136,7 +136,40 @@ namespace Client
                 };
                 b.Login();
                 b.LevelParty(update);
-                levelButton.Enabled = true;
+                levelPartyButton.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+        private void RankUpButton_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                Func<string, int> update = i =>
+                {
+                    levelStatus.Text = i;
+                    return 1;
+                };
+                rankUpButton.Enabled = false;
+                var b = new BraveExvius
+                {
+                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
+                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                };
+                b.Login();
+                fbidInput.Text = b.FacebookUserId;
+                fbtokenInput.Text = b.FacebookUserId;
+                while (true)
+                {
+                    var result = b.DoMission(Mission.PortCityLodin, false, null, null, null, 15000);
+                    var level = result[GameObject.UserTeamInfo].First()[Variable.Level].ToString();
+                    var experience = result[GameObject.UserTeamInfo].First()[Variable.Experience].ToString();
+                    levelStatus.Text = "Rank " + level + " : experience = " + experience;
+                    if (level == "150")
+                        break;
+                    Thread.Sleep(3000);
+                }
+                rankUpButton.Enabled = true;
             });
             t.IsBackground = true;
             t.Start();
