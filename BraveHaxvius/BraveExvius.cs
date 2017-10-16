@@ -108,7 +108,7 @@ namespace BraveHaxvius
         public JObject GetUserInfo;
         public void Login()
         {
-            if (FacebookUserId.Contains("@"))
+            if (Locale != "JP" && FacebookUserId.Contains("@"))
             {
                 var fb = new Facebook();
                 if (FacebookToken.Contains(" : "))
