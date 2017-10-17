@@ -1,0 +1,677 @@
+{
+	"PurchaseSettlement": {
+		"Url": "yt82BRwk",
+		"EncodeKey": "jmh7xID8",
+		"RequestID": "JsFd4b7j"
+	},
+	"RbMatching": {
+		"Url": "mn5cHaJ0",
+		"EncodeKey": "4GSMn0qb",
+		"RequestID": "DgG4Cy0F"
+	},
+	"RmDungeonStart": {
+		"Url": "NC8Ie07P",
+		"EncodeKey": "A7V1zkyc",
+		"RequestID": "R5mWbQ3M"
+	},
+	"RmEnd": {
+		"Url": "I9p3n48A",
+		"EncodeKey": "FX5L3Sfv",
+		"RequestID": "fyp10Rrc"
+	},
+	"FacebookRewardClaim": {
+		"Url": "47R9pLGq",
+		"EncodeKey": "Rja82ZUK",
+		"RequestID": "47R9pLGq"
+	},
+	"FriendDelete": {
+		"Url": "8R4fQbYh",
+		"EncodeKey": "d0VP5ia6",
+		"RequestID": "a2d6omAy"
+	},
+	"UpdateSwitchInfo": {
+		"Url": "SqoB3a1T",
+		"EncodeKey": "4Z5UNaIW",
+		"RequestID": "mRPo5n2j"
+	},
+	"VariableStoreCheck": {
+		"Url": "Nhn93ukW",
+		"EncodeKey": "Hi0FJU3c",
+		"RequestID": "i0woEP4B"
+	},
+	"CraftStart": {
+		"Url": "w71MZ0Gg",
+		"EncodeKey": "K92H8wkY",
+		"RequestID": "Gr9zxXk5"
+	},
+	"SearchGetItemInfo": {
+		"Url": "e4Gjkf0x",
+		"EncodeKey": "vK2V8mZM",
+		"RequestID": "0D9mpGUR"
+	},
+	"SublimationSkill": {
+		"Url": "xG3jBbw5",
+		"EncodeKey": "97Uvrdz3",
+		"RequestID": "s48Qzvhd"
+	},
+	"TownIn": {
+		"Url": "isHfQm09",
+		"EncodeKey": "JI8zU5rC",
+		"RequestID": "8EYGrg76"
+	},
+	"MissionBreak": {
+		"Url": "P4oIeVf0",
+		"EncodeKey": "Z2oPiE6p",
+		"RequestID": "17LFJD0b"
+	},
+	"BeastMix": {
+		"Url": "7vHqNPF0",
+		"EncodeKey": "WfNSmy98",
+		"RequestID": "C8X1KUpV"
+	},
+	"LoginBonus": {
+		"Url": "iP9ogKy6",
+		"EncodeKey": "Vi6vd9zG",
+		"RequestID": "vw9RP3i4"
+	},
+	"Initialize": {
+		"Url": "fSG1eXI9",
+		"EncodeKey": "rVG09Xnt",
+		"RequestID": "75fYdNxq"
+	},
+	"DmgRankEnd": {
+		"Url": "zd5KJ3jn",
+		"EncodeKey": "7pGj8hSW",
+		"RequestID": "s98cw1WA"
+	},
+	"GameSetting": {
+		"Url": "OTX6Fmvu",
+		"EncodeKey": "4foXVwWd",
+		"RequestID": "OTX6Fmvu"
+	},
+	"GetUserInfo": {
+		"Url": "u7sHDCg4",
+		"EncodeKey": "rcsq2eG7",
+		"RequestID": "X07iYtp5"
+	},
+	"NoticeUpdate": {
+		"Url": "TqtzK84R",
+		"EncodeKey": "9t68YyjT",
+		"RequestID": "CQ4jTm2F"
+	},
+	"sgExpdAccelerate": {
+		"Url": "Ik142Ff6",
+		"EncodeKey": "d3D4l8b4",
+		"RequestID": "Ik142Ff6"
+	},
+	"TownOut": {
+		"Url": "0EF3JPjL",
+		"EncodeKey": "Kc2PXd9D",
+		"RequestID": "sJcMPy04"
+	},
+	"BeastBoardPieceOpen": {
+		"Url": "Y2Zvnad9",
+		"EncodeKey": "7uxYTm3k",
+		"RequestID": "0gk3Tfbz"
+	},
+	"NoticeReadUpdate": {
+		"Url": "j6kSWR3q",
+		"EncodeKey": "iLdaq6j2",
+		"RequestID": "pC3a2JWU"
+	},
+	"MissionWaveStart": {
+		"Url": "Mn15zmDZ",
+		"EncodeKey": "d2mqJ6pT",
+		"RequestID": "BSq28mwY"
+	},
+	"MissionContinue": {
+		"Url": "ZzCXI6E7",
+		"EncodeKey": "34n2iv7z",
+		"RequestID": "LuCN4tU5"
+	},
+	"RoutineGachaUpdate": {
+		"Url": "qS0YW57G",
+		"EncodeKey": "Q6ZGJj0h",
+		"RequestID": "t60dQP49"
+	},
+	"ExchangeShop": {
+		"Url": "1bf0HF4w",
+		"EncodeKey": "qoRP87Fw",
+		"RequestID": "I7fmVX3R"
+	},
+	"GiftUpdate": {
+		"Url": "noN8I0UK",
+		"EncodeKey": "xLEtf78b",
+		"RequestID": "9KN5rcwj"
+	},
+	"FriendSuggest": {
+		"Url": "6TCn0BFh",
+		"EncodeKey": "j2P3uqRC",
+		"RequestID": "iAs67PhJ"
+	},
+	"RoutineWorldUpdate": {
+		"Url": "oR1psQ5B",
+		"EncodeKey": "XDIL4E7j",
+		"RequestID": "6H1R9WID"
+	},
+	"UnitSell": {
+		"Url": "0qmzs2gA",
+		"EncodeKey": "DJ43wmds",
+		"RequestID": "9itzg1jc"
+	},
+	"StrongBoxOpen": {
+		"Url": "48ktHf13",
+		"EncodeKey": "sgc30nRh",
+		"RequestID": "PIv7u8jU"
+	},
+	"RbStart": {
+		"Url": "dR20sWwE",
+		"EncodeKey": "P1w8BKLI",
+		"RequestID": "eHY7X8Nn"
+	},
+	"ClsmStart": {
+		"Url": "rncR9js8",
+		"EncodeKey": "wdSs23yW",
+		"RequestID": "4uCSA3ko"
+	},
+	"GachaExe": {
+		"Url": "oC30VTFp",
+		"EncodeKey": "oaEJ9y1Z",
+		"RequestID": "9fVIioy1"
+	},
+	"sgExpdQuestStart": {
+		"Url": "I8uq68c3",
+		"EncodeKey": "60Os29Mg",
+		"RequestID": "I8uq68c3"
+	},
+	"MissionReStart": {
+		"Url": "r5vfM1Y3",
+		"EncodeKey": "Vw6bP0rN",
+		"RequestID": "GfI4LaU3"
+	},
+	"CraftExe": {
+		"Url": "UyHLjV60",
+		"EncodeKey": "ZbHEB15J",
+		"RequestID": "PKDhIN34"
+	},
+	"OptionUpdate": {
+		"Url": "0Xh2ri5E",
+		"EncodeKey": "B9mAa7rp",
+		"RequestID": "otgXV79T"
+	},
+	"RoutineRaidMenuUpdate": {
+		"Url": "Sv85kcPQ",
+		"EncodeKey": "z80swWd9",
+		"RequestID": "g0BjrU5D"
+	},
+	"Friend": {
+		"Url": "8drhF2mG",
+		"EncodeKey": "6WAkj0IH",
+		"RequestID": "j0A5vQd8"
+	},
+	"MedalExchange": {
+		"Url": "0X8Fpjhb",
+		"EncodeKey": "dCja1E54",
+		"RequestID": "LiM9Had2"
+	},
+	"RbBoardPieceOpen": {
+		"Url": "iXKfI4v1",
+		"EncodeKey": "g68FW4k1",
+		"RequestID": "hqzU9Qc5"
+	},
+	"RmRetire": {
+		"Url": "fBn58ApV",
+		"EncodeKey": "T4Undsr6",
+		"RequestID": "e0R3iDm1"
+	},
+	"FriendList": {
+		"Url": "p3hwqW5U",
+		"EncodeKey": "1iV2oN9r",
+		"RequestID": "u7Id4bMg"
+	},
+	"MailList": {
+		"Url": "u3E8hpad",
+		"EncodeKey": "7kgsrGQ1",
+		"RequestID": "KQHpi0D7"
+	},
+	"FriendRefuse": {
+		"Url": "Vw0a4I3i",
+		"EncodeKey": "RYdX9h2A",
+		"RequestID": "1nbWRV9w"
+	},
+	"RmRestart": {
+		"Url": "NC8Ie07P",
+		"EncodeKey": "R1VjnNx0",
+		"RequestID": "yh21MTaG"
+	},
+	"MissionEnd": {
+		"Url": "0ydjM5sU",
+		"EncodeKey": "1tg0Lsqj",
+		"RequestID": "x5Unqg2d"
+	},
+	"UpdateUserInfo": {
+		"Url": "v3RD1CUB",
+		"EncodeKey": "6v5ykfpr",
+		"RequestID": "ey8mupb4"
+	},
+	"RmStart": {
+		"Url": "8BJSL7g0",
+		"EncodeKey": "iu67waph",
+		"RequestID": "7FyJS3Zn"
+	},
+	"FacebookRewardList": {
+		"Url": "8YZsGLED",
+		"EncodeKey": "85YBRzZg",
+		"RequestID": "8YZsGLED"
+	},
+	"MissionUpdate": {
+		"Url": "fRDUy3E2",
+		"EncodeKey": "Nq9uKGP7",
+		"RequestID": "j5JHKq6S"
+	},
+	"sgExpdQuestRefresh": {
+		"Url": "vTgYyHM6",
+		"EncodeKey": "vceNlSf3gn",
+		"RequestID": "vTgYyHM6lC"
+	},
+	"CreateUser": {
+		"Url": "0FK8NJRX",
+		"EncodeKey": "73BUnZEr",
+		"RequestID": "P6pTz4WA"
+	},
+	"ClsmEnd": {
+		"Url": "7vHqNPF0",
+		"EncodeKey": "6aBHXGv4",
+		"RequestID": "3zgbapQ7"
+	},
+	"sgMissionUnlock": {
+		"Url": "LJhqu0x6",
+		"EncodeKey": "ZcBV06K4",
+		"RequestID": "LJhqu0x6"
+	},
+	"DailyQuestUpdate": {
+		"Url": "QWDn5epF",
+		"EncodeKey": "9QtGVCWg",
+		"RequestID": "6QYd5Hym"
+	},
+	"FacebookLogout": {
+		"Url": "xHTo4BZp",
+		"EncodeKey": "wwHxtAy6",
+		"RequestID": "xHTo4BZp"
+	},
+	"DailyQuestClaimReward": {
+		"Url": "Br9PwJ6A",
+		"EncodeKey": "jwYGF3sY",
+		"RequestID": "Zy8fYJ5e"
+	},
+	"RmEntry": {
+		"Url": "fBn58ApV",
+		"EncodeKey": "p2tqP7Ng",
+		"RequestID": "wx5sg9ye"
+	},
+	"TransferCodeCheck": {
+		"Url": "C9LoeYJ8",
+		"EncodeKey": "c5aNjK9J",
+		"RequestID": "CY89mIdz"
+	},
+	"CraftEnd": {
+		"Url": "9G7Vc8Ny",
+		"EncodeKey": "yD97t8kB",
+		"RequestID": "WIuvh09n"
+	},
+	"RoutineEventUpdate": {
+		"Url": "WCK5tvr0",
+		"EncodeKey": "V0TGwId5",
+		"RequestID": "4kA1Ne05"
+	},
+	"RmBreak": {
+		"Url": "8BJSL7g0",
+		"EncodeKey": "W3YTRI8e",
+		"RequestID": "kWrXKC35"
+	},
+	"MissionRetire": {
+		"Url": "gbZ64SQ2",
+		"EncodeKey": "oUh1grm8",
+		"RequestID": "v51PM7wj"
+	},
+	"FriendAgree": {
+		"Url": "1DYp5Nqm",
+		"EncodeKey": "9FjK0zM3",
+		"RequestID": "kx13SLUY"
+	},
+	"BundlePurchase": {
+		"Url": "tPc64qmn",
+		"EncodeKey": "NE3Pp4K8",
+		"RequestID": "w6Z9a6tD"
+	},
+	"ClsmEntry": {
+		"Url": "UmLwv56W",
+		"EncodeKey": "8bmHF3Cz",
+		"RequestID": "5g0vWZFq"
+	},
+	"GetBackgroundDownloadInfo": {
+		"Url": "action",
+		"EncodeKey": "Z1krd75o",
+		"RequestID": "lEHBdOEf"
+	},
+	"TransferCodeIssue": {
+		"Url": "hF0yCKc1",
+		"EncodeKey": "T0y6ij47",
+		"RequestID": "crzI2bA5"
+	},
+	"RoutineHomeUpdate": {
+		"Url": "1YWTzU9h",
+		"EncodeKey": "aw0syG7H",
+		"RequestID": "Daud71Hn"
+	},
+	"ItemCarryEdit": {
+		"Url": "8BE6tJbf",
+		"EncodeKey": "04opy1kf",
+		"RequestID": "UM7hA0Zd"
+	},
+	"ClsmLottery": {
+		"Url": "4uj3NhUQ",
+		"EncodeKey": "pU62SkhJ",
+		"RequestID": "Un16HuNI"
+	},
+	"MissionStart": {
+		"Url": "63VqtzbQ",
+		"EncodeKey": "i48eAVL6",
+		"RequestID": "29JRaDbd"
+	},
+	"ItemBuy": {
+		"Url": "oQrAys71",
+		"EncodeKey": "InN5PUR0",
+		"RequestID": "sxK2HG6T"
+	},
+	"sgExpdQuestInfo": {
+		"Url": "hW0804Q9",
+		"EncodeKey": "4Bn7d973",
+		"RequestID": "hW0804Q9"
+	},
+	"FacebookAddFriend": {
+		"Url": "NAW9vJnm",
+		"EncodeKey": "532vAYUy",
+		"RequestID": "NAW9vJnm"
+	},
+	"CraftAdd": {
+		"Url": "iQ7R4CFB",
+		"EncodeKey": "qz0SG1Ay",
+		"RequestID": "QkN1Sp64"
+	},
+	"PurchaseCurrentState": {
+		"Url": "bAR4k7Qd",
+		"EncodeKey": "X9k5vFdu",
+		"RequestID": "9mM3eXgi"
+	},
+	"UnitFavorite": {
+		"Url": "sqeRg12M",
+		"EncodeKey": "w9mWkGX0",
+		"RequestID": "tBDi10Ay"
+	},
+	"BundleStatus": {
+		"Url": "tPc64qmn",
+		"EncodeKey": "PrSPuc8c",
+		"RequestID": "uLXAMvCT"
+	},
+	"FriendFavorite": {
+		"Url": "8IYSJ5H1",
+		"EncodeKey": "3EBXbj1d",
+		"RequestID": "1oE3Fwn4"
+	},
+	"RbRanking": {
+		"Url": "3fd8y7W1",
+		"EncodeKey": "SR6PoLM3",
+		"RequestID": "kcW85SfU"
+	},
+	"DailyDungeonSelect": {
+		"Url": "9LgmdR0v",
+		"EncodeKey": "ioC6zqG1",
+		"RequestID": "JyfxY2e0"
+	},
+	"PurchaseList": {
+		"Url": "YqZ6Qc1z",
+		"EncodeKey": "X3Csghu0",
+		"RequestID": "BT28S96F"
+	},
+	"DailyQuestClaimAllReward": {
+		"Url": "Br9PwJ6A",
+		"EncodeKey": "KHx6JdrT",
+		"RequestID": "DCmya9WD"
+	},
+	"RbReStart": {
+		"Url": "DQ49vsGL",
+		"EncodeKey": "PRzAL3V2",
+		"RequestID": "6ZNY3zAm"
+	},
+	"ArchiveUpdate": {
+		"Url": "2bCcKx0D",
+		"EncodeKey": "IFLW9H4M",
+		"RequestID": "cVTxW0K3"
+	},
+	"PurchaseSetting": {
+		"Url": "9hUtW0F8",
+		"EncodeKey": "ePFcMX53",
+		"RequestID": "QkwU4aD9"
+	},
+	"RbEntry": {
+		"Url": "30inL7I6",
+		"EncodeKey": "EA5amS29",
+		"RequestID": "f8kXGWy0"
+	},
+	"DungeonLiberation": {
+		"Url": "0vc6irBY",
+		"EncodeKey": "0xDA4Cr9",
+		"RequestID": "nQMb2L4h"
+	},
+	"UnitMix": {
+		"Url": "6aLHwhJ8",
+		"EncodeKey": "4zCuj2hK",
+		"RequestID": "UiSC9y8R"
+	},
+	"sgExpdMileStoneClaim": {
+		"Url": "r4A791RF",
+		"EncodeKey": "t04N07LQ",
+		"RequestID": "r4A791RF"
+	},
+	"sgExpdRecall": {
+		"Url": "0Fb87D0F",
+		"EncodeKey": "9J02K0lX",
+		"RequestID": "0Fb87D0F"
+	},
+	"Transfer": {
+		"Url": "v6Jba7pX",
+		"EncodeKey": "C6eHo3wU",
+		"RequestID": "oE5fmZN9"
+	},
+	"PurchaseGiveUp": {
+		"Url": "C2w0f3go",
+		"EncodeKey": "xoZ62QWy",
+		"RequestID": "BFf1nwh6"
+	},
+	"GachaInfo": {
+		"Url": "3nhWq25K",
+		"EncodeKey": "VA8QR57X",
+		"RequestID": "UNP1GR5n"
+	},
+	"PurchaseStart": {
+		"Url": "tPc64qmn",
+		"EncodeKey": "9Kf4gYvm",
+		"RequestID": "qAUzP3R6"
+	},
+	"RmDungeonEnd": {
+		"Url": "CH9fWn8K",
+		"EncodeKey": "dEnsQ75t",
+		"RequestID": "WaPC2T6i"
+	},
+	"sgHomeMarqueeInfo": {
+		"Url": "PBSP9qn5",
+		"EncodeKey": "d3GDS9X8",
+		"RequestID": "PBSP9qn5"
+	},
+	"TownUpdate": {
+		"Url": "0ZJzH2qY",
+		"EncodeKey": "37nH21zE",
+		"RequestID": "G1hQM8Dr"
+	},
+	"GetTitleInfo": {
+		"Url": "BbIeq31M",
+		"EncodeKey": "Mw56RNZ2",
+		"RequestID": "ocP3A1FI"
+	},
+	"RateAppReward": {
+		"Url": "L0OsxMaT",
+		"EncodeKey": "m1pPBwC3",
+		"RequestID": "L0OsxMaT"
+	},
+	"PurchaseFailed": {
+		"Url": "2TCis0R6",
+		"EncodeKey": "sW0vf3ZM",
+		"RequestID": "jSe80Gx7"
+	},
+	"CampaignAccept": {
+		"Url": "n7Hitfg4",
+		"EncodeKey": "Xb0G1wcB",
+		"RequestID": "G6ye0D1t"
+	},
+	"PurchaseCancel": {
+		"Url": "y71uBCER",
+		"EncodeKey": "Z1mojg9a",
+		"RequestID": "L7K0ezU2"
+	},
+	"DmgRankRetire": {
+		"Url": "8wdmR9yG",
+		"EncodeKey": "5fkWyeE6",
+		"RequestID": "W3Z4VF1X"
+	},
+	"ItemSell": {
+		"Url": "hQRf8D6r",
+		"EncodeKey": "E8H3UerF",
+		"RequestID": "d9Si7TYm"
+	},
+	"PurchaseHold": {
+		"Url": "dCxtMZ27",
+		"EncodeKey": "5Mwfq90Z",
+		"RequestID": "79EVRjeM"
+	},
+	"MailReceipt": {
+		"Url": "M2fHBe9d",
+		"EncodeKey": "P2YFr7N9",
+		"RequestID": "XK7efER9"
+	},
+	"UnitClassUp": {
+		"Url": "8z4Z0DUY",
+		"EncodeKey": "L2sTK0GM",
+		"RequestID": "zf49XKg8"
+	},
+	"PartyDeckEdit": {
+		"Url": "6xkK4eDG",
+		"EncodeKey": "34qFNPf7",
+		"RequestID": "TS5Dx9aZ"
+	},
+	"FriendSearch": {
+		"Url": "6Y1jM3Wp",
+		"EncodeKey": "VCL5oj6u",
+		"RequestID": "3siZRSU4"
+	},
+  "sgExpdEnd": {
+    "Url": "2pe3Xa8bpG",
+    "EncodeKey": "cjHumZ2Jkt",
+    "RequestID": "2pe3Xa8bpG"
+  },
+	"ShopUse": {
+		"Url": "w76ThDMm",
+		"EncodeKey": "ZT0Ua4wL",
+		"RequestID": "73SD2aMR"
+	},
+	"UnitEquip": {
+		"Url": "nIk9z5pT",
+		"EncodeKey": "45VZgFYv",
+		"RequestID": "pB3st6Tg"
+	},
+	"DmgRankStart": {
+		"Url": "j37Vk5xe",
+		"EncodeKey": "1d5AP9p6",
+		"RequestID": "5P6ULvjg"
+	},
+	"RbEnd": {
+		"Url": "e8AHNiT7",
+		"EncodeKey": "MVA3Te2i",
+		"RequestID": "os4k7C0b"
+	},
+	"TrophyReward": {
+		"Url": "05vJDxg9",
+		"EncodeKey": "2o7kErn1",
+		"RequestID": "wukWY4t2"
+	},
+	"MissionWaveReStart": {
+		"Url": "8m7KNezI",
+		"EncodeKey": "M3bYZoU5",
+		"RequestID": "e9RP8Cto"
+	},
+	"CraftCancel": {
+		"Url": "7WdDLIE4",
+		"EncodeKey": "68zcUF3E",
+		"RequestID": "79xDN1Mw"
+	},
+	"CampaignTieup": {
+		"Url": "2u30vqfY",
+		"EncodeKey": "72d5UTNC",
+		"RequestID": "mI0Q2YhW"
+	},
+	"SpChallengeRewardGet": {
+		"Url": "9inGHyqC",
+		"EncodeKey": "mG25PIUn",
+		"RequestID": "2G7ZVs4A"
+	},
+	"PlaybackMissionWaveStart": {
+		"Url": "scyPYa81",
+		"EncodeKey": "NdkX15vE",
+		"RequestID": "1BpXP3Fs"
+	},
+	"DungeonResourceLoadMstList": {
+		"Url": "Sl8UgmP4",
+		"EncodeKey": "3PVu6ReZ",
+		"RequestID": "jnw49dUq"
+	},
+	"MissionSwitchUpdate": {
+		"Url": "1Xz8kJLr",
+		"EncodeKey": "bZezA63a",
+		"RequestID": "Tvq54dx6"
+	},
+	"AllianceDeckEdit": {
+		"Url": "7gAGFC4I",
+		"EncodeKey": "2E3UinsJ",
+		"RequestID": "P76LYXow"
+	},
+	"IsNeedValidate": {
+		"Url": "gk3Wtr8A",
+		"EncodeKey": "djhiU6x8",
+		"RequestID": "er5xMIj6"
+	},
+	"SpChallengeEntry": {
+		"Url": "8DermCsY",
+		"EncodeKey": "Uey5jW2G",
+		"RequestID": "MTf2j9aK"
+	},
+	"ChallengeClear": {
+		"Url": "dEvLKchl",
+		"EncodeKey": "UD5QCa2s",
+		"RequestID": "D9xphQ8X"
+	},
+	"GetReinforcementInfo": {
+		"Url": "hXMoLwgE",
+		"EncodeKey": "87khNMou",
+		"RequestID": "AJhnI37s"
+	},
+	"PlaybackMissionStart": {
+		"Url": "zm2ip59f",
+		"EncodeKey": "YC20v1Uj",
+		"RequestID": "1YnQM4iB"
+	},
+	"AllianceEntry": {
+		"Url": "EzfT0wX6",
+		"EncodeKey": "zS4tPgi7",
+		"RequestID": "HtR8XF4e"
+	},
+}
