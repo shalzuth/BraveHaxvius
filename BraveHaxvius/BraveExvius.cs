@@ -775,6 +775,11 @@ namespace BraveHaxvius
             if (reinforcement != null)
                 MissionComplete.Add(Variable.FriendId, reinforcement?[Variable.FriendId].ToString());
 
+            var limitParty = int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString());
+            var limitParty2 = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][limitParty];
+            var limitPartyUnits = limitParty2[Variable.PartyUnits].ToString().Split(new char[1] { ',' });
+            var limitPartyFinishedUnits = limitPartyUnits.Select(u => Units.FirstOrDefault(unit => unit.UniqueUnitId == u.Split(new char[1] { ':' }).Last())).ToList();
+
             var MissionResult = new JObject(
                 new JProperty(Variable.UnitExperience, Experience.ToString()),
                 new JProperty("ZGSr7T06", "0"),
@@ -807,6 +812,7 @@ namespace BraveHaxvius
             MissionResult.Add("PB3vLE2r", "0");
             MissionResult.Add("aK4k1PvY", "0");
             MissionResult.Add("NCFk6Zv1", "0");
+            MissionResult.Add("A90DrNfp", limitPartyFinishedUnits[0].UniqueUnitId + ":71400," + limitPartyFinishedUnits[1].UniqueUnitId + ":71400," + limitPartyFinishedUnits[2].UniqueUnitId + ":71400," + limitPartyFinishedUnits[3].UniqueUnitId + ":71400," + limitPartyFinishedUnits[4].UniqueUnitId + ":71400");
             if (EncounterId != "")
                 MissionResult.Add(Variable.EncounterId, EncounterId);
             MissionResult.Add(Variable.EncounteredMonsters, EncounteredMonsters);
@@ -834,7 +840,7 @@ namespace BraveHaxvius
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MISSION_BATTLE_WIN"),
                                              new JProperty(Variable.ArchiveValue, EncounterIds.Split(new char[1] { ',' }).Count().ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_LB_USE"),
-                                             new JProperty(Variable.ArchiveValue, "1")),
+                                             new JProperty(Variable.ArchiveValue, "357000")),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_STEPS"),
                                              new JProperty(Variable.ArchiveValue, "530")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_LB_CRISTAL"),
