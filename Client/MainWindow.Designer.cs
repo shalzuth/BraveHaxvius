@@ -52,6 +52,8 @@
             this.JPGacha = new System.Windows.Forms.ComboBox();
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
+            this.BrowseButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
@@ -300,18 +302,33 @@
             // 
             // consoleLog
             // 
-            this.consoleLog.Location = new System.Drawing.Point(13, 281);
+            this.consoleLog.Location = new System.Drawing.Point(13, 277);
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ReadOnly = true;
-            this.consoleLog.Size = new System.Drawing.Size(785, 245);
+            this.consoleLog.Size = new System.Drawing.Size(785, 249);
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
+            // 
+            // BrowseButton
+            // 
+            this.BrowseButton.Location = new System.Drawing.Point(406, 248);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(75, 23);
+            this.BrowseButton.TabIndex = 4;
+            this.BrowseButton.Text = "browse";
+            this.BrowseButton.UseVisualStyleBackColor = true;
+            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click1);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 534);
+            this.Controls.Add(this.BrowseButton);
             this.Controls.Add(this.consoleLog);
             this.Controls.Add(this.donateButton);
             this.Controls.Add(this.tabControl1);
@@ -360,6 +377,8 @@
         private System.Windows.Forms.Button JPLogin;
         private System.Windows.Forms.ComboBox JPGachaTicket;
         private System.Windows.Forms.Button rankUpButton;
+        private System.Windows.Forms.Button BrowseButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

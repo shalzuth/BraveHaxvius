@@ -211,5 +211,36 @@ namespace Client
             t.IsBackground = true;
             t.Start();
         }
+
+        private void BrowseButton_Click1(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.InitialDirectory = @"C:\";
+            openFileDialog1.Title = "Browse Text Files";
+
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+
+            openFileDialog1.DefaultExt = "txt";
+            openFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            openFileDialog1.ReadOnlyChecked = true;
+            openFileDialog1.ShowReadOnly = true;
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var fbidInputText = File.ReadLines(ofd.FileName).ElementAt(0);
+                fbidInput.Text = fbidInputText;
+
+                var fbtokenInputText = File.ReadLines(ofd.FileName).ElementAt(1); 
+                fbtokenInput.Text = fbtokenInputText;
+            }
+        }
+
+      
     }
 }
