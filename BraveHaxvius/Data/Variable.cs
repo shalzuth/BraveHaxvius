@@ -371,8 +371,9 @@ namespace BraveHaxvius.Data
         public static readonly String ItemIdClone = "0HUPxDf1";
         public static readonly String ItemBuyPrice = "E61qF5Lp";
         public static readonly String ItemSellPrice = "bz6RS3pI";
+        public static readonly String LBExperience = "A90DrNfp";
 
-		public static readonly Dictionary<String, String> Variables = new Dictionary<String, String>
+        public static readonly Dictionary<String, String> Variables = new Dictionary<String, String>
 		{
             {Encrypted, "Encrypted"},
             {UserId, "UserId"},
@@ -740,6 +741,7 @@ namespace BraveHaxvius.Data
             {ItemIdClone, "ItemIdClone"},
             {ItemBuyPrice, "ItemBuyPrice"},
             {ItemSellPrice, "ItemSellPrice"},
+            {LBExperience, "LBExperience" }
 		};
     }
 }
