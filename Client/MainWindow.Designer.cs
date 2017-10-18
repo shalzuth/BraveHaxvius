@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fbidInput = new System.Windows.Forms.TextBox();
-            this.fbtokenInput = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.injectDataGrid = new System.Windows.Forms.DataGridView();
@@ -44,6 +42,8 @@
             this.levelStatus = new System.Windows.Forms.RichTextBox();
             this.levelPartyButton = new System.Windows.Forms.Button();
             this.Missions = new System.Windows.Forms.TabPage();
+            this.RepeatMission = new System.Windows.Forms.TextBox();
+            this.RepeatLabel = new System.Windows.Forms.Label();
             this.RBAmazon = new System.Windows.Forms.RadioButton();
             this.RBAndroid = new System.Windows.Forms.RadioButton();
             this.RBiOS = new System.Windows.Forms.RadioButton();
@@ -66,11 +66,14 @@
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
             this.SereDonate = new System.Windows.Forms.Button();
-            this.ProxyIP = new System.Windows.Forms.TextBox();
             this.ProxyPort = new System.Windows.Forms.TextBox();
-            this.RepeatMission = new System.Windows.Forms.TextBox();
-            this.RepeatLabel = new System.Windows.Forms.Label();
-
+            this.ProxyIP = new System.Windows.Forms.TextBox();
+            this.fbtokenInput = new System.Windows.Forms.TextBox();
+            this.fbidInput = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
@@ -81,31 +84,12 @@
             this.JPSummon.SuspendLayout();
             this.SuspendLayout();
             // 
-            // fbidInput
-            // 
-            this.fbidInput.Location = new System.Drawing.Point(13, 250);
-            this.fbidInput.Name = "fbidInput";
-            this.fbidInput.Size = new System.Drawing.Size(178, 20);
-            this.fbidInput.TabIndex = 0;
-            this.fbidInput.Text = "fb id or email/transfer code";
-
-            // 
-            // fbtokenInput
-            // 
-            this.fbtokenInput.Location = new System.Drawing.Point(197, 250);
-            this.fbtokenInput.Name = "fbtokenInput";
-            this.fbtokenInput.Size = new System.Drawing.Size(203, 20);
-            this.fbtokenInput.TabIndex = 1;
-            this.fbtokenInput.Text = "fb token or pw/transfer pin";
-
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.Missions);
-
             this.tabControl1.Controls.Add(this.JPSummon);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
@@ -268,6 +252,22 @@
             this.Missions.TabIndex = 4;
             this.Missions.Text = "Missions";
             this.Missions.UseVisualStyleBackColor = true;
+            // 
+            // RepeatMission
+            // 
+            this.RepeatMission.Location = new System.Drawing.Point(219, 77);
+            this.RepeatMission.Name = "RepeatMission";
+            this.RepeatMission.Size = new System.Drawing.Size(100, 20);
+            this.RepeatMission.TabIndex = 16;
+            // 
+            // RepeatLabel
+            // 
+            this.RepeatLabel.AutoSize = true;
+            this.RepeatLabel.Location = new System.Drawing.Point(171, 80);
+            this.RepeatLabel.Name = "RepeatLabel";
+            this.RepeatLabel.Size = new System.Drawing.Size(42, 13);
+            this.RepeatLabel.TabIndex = 15;
+            this.RepeatLabel.Text = "Repeat";
             // 
             // RBAmazon
             // 
@@ -473,10 +473,10 @@
             // 
             // consoleLog
             // 
-            this.consoleLog.Location = new System.Drawing.Point(13, 308);
+            this.consoleLog.Location = new System.Drawing.Point(13, 341);
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ReadOnly = true;
-            this.consoleLog.Size = new System.Drawing.Size(785, 245);
+            this.consoleLog.Size = new System.Drawing.Size(785, 212);
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
             // 
@@ -490,43 +490,91 @@
             this.SereDonate.UseVisualStyleBackColor = true;
             this.SereDonate.Click += new System.EventHandler(this.SereDonate_Click);
             // 
-            // ProxyIP
-            // 
-            this.ProxyIP.Location = new System.Drawing.Point(13, 282);
-            this.ProxyIP.Name = "ProxyIP";
-            this.ProxyIP.Size = new System.Drawing.Size(178, 20);
-            this.ProxyIP.TabIndex = 5;
-            this.ProxyIP.Text = "proxy ip";
-            // 
             // ProxyPort
             // 
-            this.ProxyPort.Location = new System.Drawing.Point(197, 282);
+            this.ProxyPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Client.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyPort.Location = new System.Drawing.Point(194, 308);
             this.ProxyPort.Name = "ProxyPort";
             this.ProxyPort.Size = new System.Drawing.Size(203, 20);
             this.ProxyPort.TabIndex = 6;
-            this.ProxyPort.Text = "proxy port";
+            this.ProxyPort.Text = global::Client.Properties.Settings.Default.ProxyPort;
+            this.ProxyPort.TextChanged += new System.EventHandler(this.ProxyPort_TextChanged);
             // 
-            // RepeatMission
+            // ProxyIP
             // 
-            this.RepeatMission.Location = new System.Drawing.Point(219, 77);
-            this.RepeatMission.Name = "RepeatMission";
-            this.RepeatMission.Size = new System.Drawing.Size(100, 20);
-            this.RepeatMission.TabIndex = 16;
+            this.ProxyIP.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Client.Properties.Settings.Default, "ProxyIP", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ProxyIP.Location = new System.Drawing.Point(13, 308);
+            this.ProxyIP.Name = "ProxyIP";
+            this.ProxyIP.Size = new System.Drawing.Size(178, 20);
+            this.ProxyIP.TabIndex = 5;
+            this.ProxyIP.Text = global::Client.Properties.Settings.Default.ProxyIP;
+            this.ProxyIP.TextChanged += new System.EventHandler(this.ProxyIP_TextChanged);
             // 
-            // RepeatLabel
+            // fbtokenInput
             // 
-            this.RepeatLabel.AutoSize = true;
-            this.RepeatLabel.Location = new System.Drawing.Point(171, 80);
-            this.RepeatLabel.Name = "RepeatLabel";
-            this.RepeatLabel.Size = new System.Drawing.Size(42, 13);
-            this.RepeatLabel.TabIndex = 15;
-            this.RepeatLabel.Text = "Repeat";
+            this.fbtokenInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Client.Properties.Settings.Default, "fbtokenInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.fbtokenInput.Location = new System.Drawing.Point(194, 269);
+            this.fbtokenInput.Name = "fbtokenInput";
+            this.fbtokenInput.Size = new System.Drawing.Size(203, 20);
+            this.fbtokenInput.TabIndex = 1;
+            this.fbtokenInput.Text = global::Client.Properties.Settings.Default.fbtokenInput;
+            this.fbtokenInput.TextChanged += new System.EventHandler(this.fbtokenInput_TextChanged);
+            // 
+            // fbidInput
+            // 
+            this.fbidInput.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Client.Properties.Settings.Default, "fbidInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.fbidInput.Location = new System.Drawing.Point(13, 269);
+            this.fbidInput.Name = "fbidInput";
+            this.fbidInput.Size = new System.Drawing.Size(178, 20);
+            this.fbidInput.TabIndex = 0;
+            this.fbidInput.Text = global::Client.Properties.Settings.Default.fbidInput;
+            this.fbidInput.TextChanged += new System.EventHandler(this.FbidInput_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 253);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "fbid:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(194, 253);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "fbtoken:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 292);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "ProxyIP:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(194, 292);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "ProxyPort:";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 565);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ProxyPort);
             this.Controls.Add(this.ProxyIP);
             this.Controls.Add(this.SereDonate);
@@ -597,6 +645,10 @@
         private System.Windows.Forms.TextBox ProxyPort;
         private System.Windows.Forms.TextBox RepeatMission;
         private System.Windows.Forms.Label RepeatLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 
