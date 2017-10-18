@@ -43,21 +43,41 @@
             this.rankUpButton = new System.Windows.Forms.Button();
             this.levelStatus = new System.Windows.Forms.RichTextBox();
             this.levelPartyButton = new System.Windows.Forms.Button();
+            this.Missions = new System.Windows.Forms.TabPage();
+            this.RBAmazon = new System.Windows.Forms.RadioButton();
+            this.RBAndroid = new System.Windows.Forms.RadioButton();
+            this.RBiOS = new System.Windows.Forms.RadioButton();
+            this.LBLevel = new System.Windows.Forms.TextBox();
+            this.LBLabel = new System.Windows.Forms.Label();
+            this.CBExplore = new System.Windows.Forms.CheckBox();
+            this.CBUnits = new System.Windows.Forms.CheckBox();
+            this.CBLoot = new System.Windows.Forms.CheckBox();
+            this.CBChallenge = new System.Windows.Forms.CheckBox();
+            this.CBTrophies = new System.Windows.Forms.CheckBox();
+            this.StartMission = new System.Windows.Forms.Button();
+            this.CBFriends = new System.Windows.Forms.CheckBox();
+            this.MissionIdLabel = new System.Windows.Forms.Label();
+            this.MissionSelect = new System.Windows.Forms.ComboBox();
             this.JPSummon = new System.Windows.Forms.TabPage();
             this.JPGachaTicket = new System.Windows.Forms.ComboBox();
             this.JPLogin = new System.Windows.Forms.Button();
-            this.JPPin = new System.Windows.Forms.TextBox();
-            this.JPCode = new System.Windows.Forms.TextBox();
             this.GachaSummon = new System.Windows.Forms.Button();
             this.JPGacha = new System.Windows.Forms.ComboBox();
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
+            this.SereDonate = new System.Windows.Forms.Button();
+            this.ProxyIP = new System.Windows.Forms.TextBox();
+            this.ProxyPort = new System.Windows.Forms.TextBox();
+            this.RepeatMission = new System.Windows.Forms.TextBox();
+            this.RepeatLabel = new System.Windows.Forms.Label();
+
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.Missions.SuspendLayout();
             this.JPSummon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +87,8 @@
             this.fbidInput.Name = "fbidInput";
             this.fbidInput.Size = new System.Drawing.Size(178, 20);
             this.fbidInput.TabIndex = 0;
-            this.fbidInput.Text = "fb id or email";
+            this.fbidInput.Text = "fb id or email/transfer code";
+
             // 
             // fbtokenInput
             // 
@@ -75,13 +96,16 @@
             this.fbtokenInput.Name = "fbtokenInput";
             this.fbtokenInput.Size = new System.Drawing.Size(203, 20);
             this.fbtokenInput.TabIndex = 1;
-            this.fbtokenInput.Text = "fb token or pw";
+            this.fbtokenInput.Text = "fb token or pw/transfer pin";
+
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.Missions);
+
             this.tabControl1.Controls.Add(this.JPSummon);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
@@ -220,12 +244,177 @@
             this.levelPartyButton.UseVisualStyleBackColor = true;
             this.levelPartyButton.Click += new System.EventHandler(this.LevelPartyButton_Click);
             // 
+            // Missions
+            // 
+            this.Missions.Controls.Add(this.RepeatMission);
+            this.Missions.Controls.Add(this.RepeatLabel);
+            this.Missions.Controls.Add(this.RBAmazon);
+            this.Missions.Controls.Add(this.RBAndroid);
+            this.Missions.Controls.Add(this.RBiOS);
+            this.Missions.Controls.Add(this.LBLevel);
+            this.Missions.Controls.Add(this.LBLabel);
+            this.Missions.Controls.Add(this.CBExplore);
+            this.Missions.Controls.Add(this.CBUnits);
+            this.Missions.Controls.Add(this.CBLoot);
+            this.Missions.Controls.Add(this.CBChallenge);
+            this.Missions.Controls.Add(this.CBTrophies);
+            this.Missions.Controls.Add(this.StartMission);
+            this.Missions.Controls.Add(this.CBFriends);
+            this.Missions.Controls.Add(this.MissionIdLabel);
+            this.Missions.Controls.Add(this.MissionSelect);
+            this.Missions.Location = new System.Drawing.Point(4, 22);
+            this.Missions.Name = "Missions";
+            this.Missions.Size = new System.Drawing.Size(781, 205);
+            this.Missions.TabIndex = 4;
+            this.Missions.Text = "Missions";
+            this.Missions.UseVisualStyleBackColor = true;
+            // 
+            // RBAmazon
+            // 
+            this.RBAmazon.AutoSize = true;
+            this.RBAmazon.Location = new System.Drawing.Point(177, 103);
+            this.RBAmazon.Name = "RBAmazon";
+            this.RBAmazon.Size = new System.Drawing.Size(63, 17);
+            this.RBAmazon.TabIndex = 14;
+            this.RBAmazon.Text = "Amazon";
+            this.RBAmazon.UseVisualStyleBackColor = true;
+            this.RBAmazon.CheckedChanged += new System.EventHandler(this.RBOS_CheckedChanged);
+            // 
+            // RBAndroid
+            // 
+            this.RBAndroid.AutoSize = true;
+            this.RBAndroid.Location = new System.Drawing.Point(114, 103);
+            this.RBAndroid.Name = "RBAndroid";
+            this.RBAndroid.Size = new System.Drawing.Size(61, 17);
+            this.RBAndroid.TabIndex = 13;
+            this.RBAndroid.Text = "Android";
+            this.RBAndroid.UseVisualStyleBackColor = true;
+            this.RBAndroid.CheckedChanged += new System.EventHandler(this.RBOS_CheckedChanged);
+            // 
+            // RBiOS
+            // 
+            this.RBiOS.AutoSize = true;
+            this.RBiOS.Checked = true;
+            this.RBiOS.Location = new System.Drawing.Point(65, 103);
+            this.RBiOS.Name = "RBiOS";
+            this.RBiOS.Size = new System.Drawing.Size(42, 17);
+            this.RBiOS.TabIndex = 12;
+            this.RBiOS.TabStop = true;
+            this.RBiOS.Text = "iOS";
+            this.RBiOS.UseVisualStyleBackColor = true;
+            this.RBiOS.CheckedChanged += new System.EventHandler(this.RBOS_CheckedChanged);
+            // 
+            // LBLevel
+            // 
+            this.LBLevel.Location = new System.Drawing.Point(65, 77);
+            this.LBLevel.Name = "LBLevel";
+            this.LBLevel.Size = new System.Drawing.Size(100, 20);
+            this.LBLevel.TabIndex = 11;
+            // 
+            // LBLabel
+            // 
+            this.LBLabel.AutoSize = true;
+            this.LBLabel.Location = new System.Drawing.Point(39, 80);
+            this.LBLabel.Name = "LBLabel";
+            this.LBLabel.Size = new System.Drawing.Size(20, 13);
+            this.LBLabel.TabIndex = 10;
+            this.LBLabel.Text = "LB";
+            // 
+            // CBExplore
+            // 
+            this.CBExplore.AutoSize = true;
+            this.CBExplore.Location = new System.Drawing.Point(244, 57);
+            this.CBExplore.Name = "CBExplore";
+            this.CBExplore.Size = new System.Drawing.Size(128, 17);
+            this.CBExplore.TabIndex = 9;
+            this.CBExplore.Text = "Exploration Treasures";
+            this.CBExplore.UseVisualStyleBackColor = true;
+            // 
+            // CBUnits
+            // 
+            this.CBUnits.AutoSize = true;
+            this.CBUnits.Location = new System.Drawing.Point(153, 57);
+            this.CBUnits.Name = "CBUnits";
+            this.CBUnits.Size = new System.Drawing.Size(85, 17);
+            this.CBUnits.TabIndex = 8;
+            this.CBUnits.Text = "Collect Units";
+            this.CBUnits.UseVisualStyleBackColor = true;
+            // 
+            // CBLoot
+            // 
+            this.CBLoot.AutoSize = true;
+            this.CBLoot.Location = new System.Drawing.Point(65, 57);
+            this.CBLoot.Name = "CBLoot";
+            this.CBLoot.Size = new System.Drawing.Size(82, 17);
+            this.CBLoot.TabIndex = 7;
+            this.CBLoot.Text = "Collect Loot";
+            this.CBLoot.UseVisualStyleBackColor = true;
+            // 
+            // CBChallenge
+            // 
+            this.CBChallenge.AutoSize = true;
+            this.CBChallenge.Enabled = false;
+            this.CBChallenge.Location = new System.Drawing.Point(273, 34);
+            this.CBChallenge.Name = "CBChallenge";
+            this.CBChallenge.Size = new System.Drawing.Size(125, 17);
+            this.CBChallenge.TabIndex = 6;
+            this.CBChallenge.Text = "Complete Challenges";
+            this.CBChallenge.UseVisualStyleBackColor = true;
+            // 
+            // CBTrophies
+            // 
+            this.CBTrophies.AutoSize = true;
+            this.CBTrophies.Enabled = false;
+            this.CBTrophies.Location = new System.Drawing.Point(153, 34);
+            this.CBTrophies.Name = "CBTrophies";
+            this.CBTrophies.Size = new System.Drawing.Size(114, 17);
+            this.CBTrophies.TabIndex = 5;
+            this.CBTrophies.Text = "Complete Trophies";
+            this.CBTrophies.UseVisualStyleBackColor = true;
+            // 
+            // StartMission
+            // 
+            this.StartMission.Location = new System.Drawing.Point(703, 170);
+            this.StartMission.Name = "StartMission";
+            this.StartMission.Size = new System.Drawing.Size(75, 23);
+            this.StartMission.TabIndex = 4;
+            this.StartMission.Text = "Start";
+            this.StartMission.UseVisualStyleBackColor = true;
+            this.StartMission.Click += new System.EventHandler(this.StartMission_Click);
+            // 
+            // CBFriends
+            // 
+            this.CBFriends.AutoSize = true;
+            this.CBFriends.Location = new System.Drawing.Point(65, 34);
+            this.CBFriends.Name = "CBFriends";
+            this.CBFriends.Size = new System.Drawing.Size(82, 17);
+            this.CBFriends.TabIndex = 3;
+            this.CBFriends.Text = "Use Friends";
+            this.CBFriends.UseVisualStyleBackColor = true;
+            // 
+            // MissionIdLabel
+            // 
+            this.MissionIdLabel.AutoSize = true;
+            this.MissionIdLabel.Location = new System.Drawing.Point(3, 10);
+            this.MissionIdLabel.Name = "MissionIdLabel";
+            this.MissionIdLabel.Size = new System.Drawing.Size(56, 13);
+            this.MissionIdLabel.TabIndex = 2;
+            this.MissionIdLabel.Text = "Mission ID";
+            // 
+            // MissionSelect
+            // 
+            this.MissionSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.MissionSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.MissionSelect.FormattingEnabled = true;
+            this.MissionSelect.Location = new System.Drawing.Point(65, 7);
+            this.MissionSelect.Name = "MissionSelect";
+            this.MissionSelect.Size = new System.Drawing.Size(380, 21);
+            this.MissionSelect.TabIndex = 1;
+            // 
             // JPSummon
             // 
             this.JPSummon.Controls.Add(this.JPGachaTicket);
             this.JPSummon.Controls.Add(this.JPLogin);
-            this.JPSummon.Controls.Add(this.JPPin);
-            this.JPSummon.Controls.Add(this.JPCode);
             this.JPSummon.Controls.Add(this.GachaSummon);
             this.JPSummon.Controls.Add(this.JPGacha);
             this.JPSummon.Location = new System.Drawing.Point(4, 22);
@@ -253,22 +442,6 @@
             this.JPLogin.UseVisualStyleBackColor = true;
             this.JPLogin.Click += new System.EventHandler(this.JPLogin_Click);
             // 
-            // JPPin
-            // 
-            this.JPPin.Location = new System.Drawing.Point(180, 171);
-            this.JPPin.Name = "JPPin";
-            this.JPPin.Size = new System.Drawing.Size(203, 20);
-            this.JPPin.TabIndex = 3;
-            this.JPPin.Text = "Transfer Pin";
-            // 
-            // JPCode
-            // 
-            this.JPCode.Location = new System.Drawing.Point(3, 171);
-            this.JPCode.Name = "JPCode";
-            this.JPCode.Size = new System.Drawing.Size(171, 20);
-            this.JPCode.TabIndex = 2;
-            this.JPCode.Text = "Transfer Code";
-            // 
             // GachaSummon
             // 
             this.GachaSummon.Enabled = false;
@@ -290,28 +463,73 @@
             // 
             // donateButton
             // 
-            this.donateButton.Location = new System.Drawing.Point(720, 248);
+            this.donateButton.Location = new System.Drawing.Point(689, 248);
             this.donateButton.Name = "donateButton";
-            this.donateButton.Size = new System.Drawing.Size(75, 23);
+            this.donateButton.Size = new System.Drawing.Size(106, 23);
             this.donateButton.TabIndex = 3;
-            this.donateButton.Text = "donate";
+            this.donateButton.Text = "Donate to Shalzuth";
             this.donateButton.UseVisualStyleBackColor = true;
             this.donateButton.Click += new System.EventHandler(this.DonateButton_Click);
             // 
             // consoleLog
             // 
-            this.consoleLog.Location = new System.Drawing.Point(13, 281);
+            this.consoleLog.Location = new System.Drawing.Point(13, 308);
             this.consoleLog.Name = "consoleLog";
             this.consoleLog.ReadOnly = true;
             this.consoleLog.Size = new System.Drawing.Size(785, 245);
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
             // 
+            // SereDonate
+            // 
+            this.SereDonate.Location = new System.Drawing.Point(577, 248);
+            this.SereDonate.Name = "SereDonate";
+            this.SereDonate.Size = new System.Drawing.Size(106, 23);
+            this.SereDonate.TabIndex = 4;
+            this.SereDonate.Text = "Donate to Serenity";
+            this.SereDonate.UseVisualStyleBackColor = true;
+            this.SereDonate.Click += new System.EventHandler(this.SereDonate_Click);
+            // 
+            // ProxyIP
+            // 
+            this.ProxyIP.Location = new System.Drawing.Point(13, 282);
+            this.ProxyIP.Name = "ProxyIP";
+            this.ProxyIP.Size = new System.Drawing.Size(178, 20);
+            this.ProxyIP.TabIndex = 5;
+            this.ProxyIP.Text = "proxy ip";
+            // 
+            // ProxyPort
+            // 
+            this.ProxyPort.Location = new System.Drawing.Point(197, 282);
+            this.ProxyPort.Name = "ProxyPort";
+            this.ProxyPort.Size = new System.Drawing.Size(203, 20);
+            this.ProxyPort.TabIndex = 6;
+            this.ProxyPort.Text = "proxy port";
+            // 
+            // RepeatMission
+            // 
+            this.RepeatMission.Location = new System.Drawing.Point(219, 77);
+            this.RepeatMission.Name = "RepeatMission";
+            this.RepeatMission.Size = new System.Drawing.Size(100, 20);
+            this.RepeatMission.TabIndex = 16;
+            // 
+            // RepeatLabel
+            // 
+            this.RepeatLabel.AutoSize = true;
+            this.RepeatLabel.Location = new System.Drawing.Point(171, 80);
+            this.RepeatLabel.Name = "RepeatLabel";
+            this.RepeatLabel.Size = new System.Drawing.Size(42, 13);
+            this.RepeatLabel.TabIndex = 15;
+            this.RepeatLabel.Text = "Repeat";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(814, 534);
+            this.ClientSize = new System.Drawing.Size(814, 565);
+            this.Controls.Add(this.ProxyPort);
+            this.Controls.Add(this.ProxyIP);
+            this.Controls.Add(this.SereDonate);
             this.Controls.Add(this.consoleLog);
             this.Controls.Add(this.donateButton);
             this.Controls.Add(this.tabControl1);
@@ -327,8 +545,9 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.Missions.ResumeLayout(false);
+            this.Missions.PerformLayout();
             this.JPSummon.ResumeLayout(false);
-            this.JPSummon.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,13 +572,31 @@
         private System.Windows.Forms.Button levelPartyButton;
         private System.Windows.Forms.RichTextBox levelStatus;
         private System.Windows.Forms.TabPage JPSummon;
-        private System.Windows.Forms.TextBox JPPin;
-        private System.Windows.Forms.TextBox JPCode;
         private System.Windows.Forms.Button GachaSummon;
         private System.Windows.Forms.ComboBox JPGacha;
         private System.Windows.Forms.Button JPLogin;
         private System.Windows.Forms.ComboBox JPGachaTicket;
         private System.Windows.Forms.Button rankUpButton;
+        private System.Windows.Forms.Button SereDonate;
+        private System.Windows.Forms.TabPage Missions;
+        private System.Windows.Forms.ComboBox MissionSelect;
+        private System.Windows.Forms.CheckBox CBFriends;
+        private System.Windows.Forms.Label MissionIdLabel;
+        private System.Windows.Forms.Button StartMission;
+        private System.Windows.Forms.CheckBox CBTrophies;
+        private System.Windows.Forms.CheckBox CBChallenge;
+        private System.Windows.Forms.CheckBox CBLoot;
+        private System.Windows.Forms.CheckBox CBUnits;
+        private System.Windows.Forms.CheckBox CBExplore;
+        private System.Windows.Forms.TextBox LBLevel;
+        private System.Windows.Forms.Label LBLabel;
+        private System.Windows.Forms.RadioButton RBAndroid;
+        private System.Windows.Forms.RadioButton RBiOS;
+        private System.Windows.Forms.RadioButton RBAmazon;
+        private System.Windows.Forms.TextBox ProxyIP;
+        private System.Windows.Forms.TextBox ProxyPort;
+        private System.Windows.Forms.TextBox RepeatMission;
+        private System.Windows.Forms.Label RepeatLabel;
     }
 }
 

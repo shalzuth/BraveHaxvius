@@ -603,8 +603,9 @@ namespace BraveHaxvius
                         new JObject(
                             new JProperty(Variable.TownId, townId)))));
         }
-        
-        public JObject DoMission(Mission mission, Boolean useFriend = false, String itemHax = null, String equipHax = null, String materiaHax = null, UInt16 SleepTime = 0)
+        public JObject DoMission(Mission mission, Boolean useFriend = false, String itemHax = null,
+            String equipHax = null, String materiaHax = null, Boolean getTrophies = false, Boolean completeChallenges = false, Boolean collectLoot = false,
+            Boolean collectUnits = false, Boolean exploreTreasure = false, String lbIncrease = null, UInt16 SleepTime = 0)
         {
             JToken reinforcement = null;
             if (useFriend)
@@ -705,9 +706,10 @@ namespace BraveHaxvius
                     StolenGil += Int32.Parse(monsterPart[Variable.MonsterStealGil].ToString());
                 }
             }
-            var UnitsDropped = String.Join(",", unitDrops);
-            var ItemsDropped = String.Join(",", itemCount.Select(k => "20:" + k.Key + ":" + k.Value));
-            var ItemsStolen = String.Join(",", itemStolenCount.Select(k => "20:" + k.Key + ":" + k.Value));
+
+            var UnitsDropped = collectUnits ? String.Join(",", unitDrops) : "";
+            var ItemsDropped = collectLoot ? String.Join(",", itemCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
+            var ItemsStolen = collectLoot ? String.Join(",", itemStolenCount.Select(k => "20:" + k.Key + ":" + k.Value)) : "";
             TotalDamage = new Random().Next((int)(TotalDamage * 1.05f), (int)(TotalDamage * 1.45f));
 
             var FieldTreasureMst = MissionInfo[GameObject.FieldTreasureMst];
@@ -735,9 +737,10 @@ namespace BraveHaxvius
                         Logger.Out("need to add important item treasure");
                 }
             }
-            var ItemsTreasure = String.Join(",", itemsTreasure);
-            var EquipmentTreasure = String.Join(",", equipmentTreasure);
-            var RecipeTreasure = String.Join(",", recipeTreasure);
+
+            var ItemsTreasure = exploreTreasure ? String.Join(",", itemsTreasure) : "";
+            var EquipmentTreasure = exploreTreasure ? String.Join(",", equipmentTreasure) : "";
+            var RecipeTreasure = exploreTreasure ? String.Join(",", recipeTreasure) : "";
             var NewSwitches = String.Join(",", newSwitches);
 
             int encounterIdOrder = 1;
@@ -746,28 +749,40 @@ namespace BraveHaxvius
                 EncounterIds = String.Join(",", BattleGroupMst.Select(b => b[Variable.MissionWaveId].ToString()).Distinct().Select(b => encounterIdOrder++ + ":" + b + ":1"));
             var ItemsFound = "";
             if (MissionInfo[GameObject.HarvestDetailInfo] != null)
-                ItemsFound = String.Join(",", MissionInfo[GameObject.HarvestDetailInfo]?.Select(h => h[Variable.HarvestItem].ToString().Substring(0, h[Variable.HarvestItem].ToString().LastIndexOf(":"))));
+                ItemsFound = collectLoot ? String.Join(",", MissionInfo[GameObject.HarvestDetailInfo]?.Select(h => h[Variable.HarvestItem].ToString().Substring(0, h[Variable.HarvestItem].ToString().LastIndexOf(":")))) : "";
             var EncounterId = String.Join(",", BattleGroupMst.Select(b => "0:" + b[Variable.MissionWaveId].ToString() + ":0").Distinct());
             if (mission.MissionType == "1")
                 EncounterId = "";
 
             Logger.Out("XP : " + Experience);
             Logger.Out("Gil : " + Gil);
-            foreach (var item in itemCount)
-                Logger.Out("Enemy dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
-            foreach (var item in itemStolenCount)
-                Logger.Out("Enemy stolen item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
-            foreach (var item in itemsTreasure)
-                Logger.Out("Treasure item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
-            var ih = ItemsFound.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (var item in ih)
-                Logger.Out("Stage dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
-            foreach (var unit in unitDrops)
-                Logger.Out("Enemy dropped unit : " + Unit.Units.FindAll(i => i.UnitId != null).First(i => unit.Contains(i.UnitId)).Name);
-            foreach (var eq in equipmentTreasure)
-                Logger.Out("Treasure equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => eq.Contains(i.EquipId)).Name);
-            foreach (var r in recipeTreasure)
-                Logger.Out("Treasure equipment : " + Recipe.Recipes.FindAll(i => i.RecipeBookId != null).First(i => r.Contains(i.RecipeBookId)).Name);
+
+            if (collectLoot)
+            {
+                foreach (var item in itemCount)
+                    Logger.Out("Enemy dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
+                foreach (var item in itemStolenCount)
+                    Logger.Out("Enemy stolen item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Key.Contains(i.ItemId)).Name + " : " + item.Value);
+                var ih = ItemsFound.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in ih)
+                    Logger.Out("Stage dropped item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
+            }
+            
+            if (exploreTreasure)
+            {
+                foreach (var item in itemsTreasure)
+                    Logger.Out("Treasure item : " + Item.Items.FindAll(i => i.ItemId != null).First(i => item.Contains(i.ItemId)).Name);
+                foreach (var eq in equipmentTreasure)
+                    Logger.Out("Treasure equipment : " + Equipment.Equipments.FindAll(i => i.EquipId != null).First(i => eq.Contains(i.EquipId)).Name);
+                foreach (var r in recipeTreasure)
+                    Logger.Out("Treasure equipment : " + Recipe.Recipes.FindAll(i => i.RecipeBookId != null).First(i => r.Contains(i.RecipeBookId)).Name);
+            }
+
+            if (collectUnits)
+            {
+                foreach (var unit in unitDrops)
+                    Logger.Out("Enemy dropped unit : " + Unit.Units.FindAll(i => i.UnitId != null).First(i => unit.Contains(i.UnitId)).Name);
+            }  
 
             var MissionComplete = new JObject(new JProperty(Variable.MissionId, mission.MissionId));
             if (newSwitches.Count > 0)
@@ -813,6 +828,21 @@ namespace BraveHaxvius
             MissionResult.Add(Variable.MonstersKilledCount, MonstersKilledCount);
             MissionResult.Add(Variable.MonsterParts, MonsterParts);
 
+            var lbTotal = 1;
+
+            if (!String.IsNullOrEmpty(lbIncrease))
+            {
+                var lbVal = Int32.Parse(lbIncrease);
+                var currentParty = int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString());
+                var party = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][currentParty];
+                var partyUnits = party[Variable.PartyUnits].ToString().Split(new char[1] { ',' });
+                var units = partyUnits.Select(u => Units.FirstOrDefault(unit => unit.UniqueUnitId == u.Split(new char[1] { ':' }).Last())).ToList();
+                var unitLimit = String.Join(",", units.Select(u => u.UniqueUnitId + ":" + lbIncrease));
+                lbTotal = 0;
+                units.ForEach(u => lbTotal += lbVal);
+                MissionResult.Add(Variable.LBExperience, unitLimit);
+            }
+
             var MissionStatistics = new JArray
             {
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_DAMAGE_TURN"),
@@ -834,7 +864,15 @@ namespace BraveHaxvius
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MISSION_BATTLE_WIN"),
                                              new JProperty(Variable.ArchiveValue, EncounterIds.Split(new char[1] { ',' }).Count().ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_LB_USE"),
-                                             new JProperty(Variable.ArchiveValue, "1")),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : lbTotal.ToString())),
+                new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MAGIC_USE"),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
+                new JObject(new JProperty(Variable.ArchiveName, "TOTAL_BEAST_USE"),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
+                new JObject(new JProperty(Variable.ArchiveName, "TOTAL_STEAL"),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
+                new JObject(new JProperty(Variable.ArchiveName, "TOTAL_ITEM_USE"),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_STEPS"),
                                              new JProperty(Variable.ArchiveValue, "530")),
                 new JObject(new JProperty(Variable.ArchiveName, "MAX_LB_CRISTAL"),
@@ -945,6 +983,7 @@ namespace BraveHaxvius
                     var atleastTurns = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
                 }
             }
+
             MissionChallenge.Add(Variable.DeadCount, "0");
             MissionChallenge.Add(Variable.BattleClear, EncounterIds);
 
@@ -984,7 +1023,8 @@ namespace BraveHaxvius
                         itemHax = classup?.Items;
                         first = false;
                     }
-                    var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, 3000);
+
+                    var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, false, false, false, false, false, null, 3000);
                     unit.Level = missionResults[GameObject.UserUnitInfo_8gSkPD6b][0][Variable.Level].ToString();
                     Thread.Sleep(3000);
                 } while (unit.Level != unit.UnitMaxLevel);
@@ -1046,7 +1086,7 @@ namespace BraveHaxvius
             {
                 update(String.Join("\r\n", units.Select(u => u.Name + " " + u.Rarity + "*" + " level " + u.Level)));
                 var itemHax = String.Join(",", awakenItems.Select(i => "20:" + i.Key.ItemId + ":" + i.Value));
-                var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, 3000);
+                var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, false, false, false, false, false, null, 3000);
                 awakenItems.Clear();
                 units.ForEach(unit =>
                 {
@@ -1296,7 +1336,7 @@ namespace BraveHaxvius
                 var RoutineRaidMenuUpdate = Network.SendPacket(Request.RoutineRaidMenuUpdate,
                     new JProperty(Variable.RoutineRaidMenuUpdate, new JArray(new JObject(
                             new JProperty(Variable.DungeonId, Mission.TheMoogleKingsCounterattack.MissionId.Substring(0, Mission.TheMoogleKingsCounterattack.MissionId.Length - 2))))));
-                var missionResult = DoMission(Mission.TheMoogleKingsCounterattack, true, null, null, null, 15000);
+                var missionResult = DoMission(Mission.TheMoogleKingsCounterattack, true, null, null, null, false, false, false, false, false, null, 15000);
                 orbs = UInt16.Parse(missionResult[GameObject.UserTeamInfo][0][Variable.RaidOrb].ToString());
                 Thread.Sleep(15000);
             }

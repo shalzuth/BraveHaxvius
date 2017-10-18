@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using BraveHaxvius;
 using BraveHaxvius.Data;
+using System.Windows.Controls;
 
 namespace Client
 {
@@ -24,7 +25,8 @@ namespace Client
         {
             InitializeComponent();
             InitDatagrid();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            InitMissions();
+            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
             Logger.LogHook = Hook;
         }
         public void Hook(String s)
@@ -61,6 +63,15 @@ namespace Client
 
             JPGachaTicket.SelectedIndex = 0;
         }
+        private void InitMissions()
+        {
+            List<Mission> list = new List<Mission>();
+            Mission.Missions.FindAll(i => i.Description != null).ForEach(i => list.Add(i));
+            
+            MissionSelect.DataSource = list;
+            MissionSelect.DisplayMember = "Name";
+            MissionSelect.ValueMember = "MissionId";
+        }
         private void InjectSearchInput_TextChanged(object sender, EventArgs e)
         {
             injectDataTable.DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", injectSearchInput.Text);
@@ -80,7 +91,9 @@ namespace Client
                 var b = new BraveExvius
                 {
                     FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
                 };
                 b.Login();
                 b.DoMission(Mission.AirshipDeck, false, itemHax, equipmentHax, materiaHax);
@@ -103,7 +116,9 @@ namespace Client
                 var b = new BraveExvius
                 {
                     FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
                 };
                 b.Login();
                 b.UnitHunter(unit, iteration);
@@ -132,7 +147,9 @@ namespace Client
                 var b = new BraveExvius
                 {
                     FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
                 };
                 b.Login();
                 b.LevelParty(update);
@@ -154,14 +171,16 @@ namespace Client
                 var b = new BraveExvius
                 {
                     FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", "")
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
                 };
                 b.Login();
                 fbidInput.Text = b.FacebookUserId;
                 fbtokenInput.Text = b.FacebookUserId;
                 while (true)
                 {
-                    var result = b.DoMission(Mission.PortCityLodin, false, null, null, null, 15000);
+                    var result = b.DoMission(Mission.PortCityLodin, false, null, null, null, false, false, false, false, false, null, 15000);
                     var level = result[GameObject.UserTeamInfo].First()[Variable.Level].ToString();
                     var experience = result[GameObject.UserTeamInfo].First()[Variable.Experience].ToString();
                     levelStatus.Text = "Rank " + level + " : experience = " + experience;
@@ -182,8 +201,10 @@ namespace Client
                 JPLogin.Enabled = false;
                 JP = new BraveExvius
                 {
-                    TransferCode = JPCode.Text.Replace(" ", ""),
-                    TransferPin = JPPin.Text.Replace(" ", "")
+                    TransferCode = fbidInput.Text.Replace(" ", ""),
+                    TransferPin = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
                 };
                 JP.LoginJapan(JP.TransferCode, JP.TransferPin);
                 InitGacha(JP);
@@ -210,6 +231,45 @@ namespace Client
             });
             t.IsBackground = true;
             t.Start();
+        }
+
+        private void SereDonate_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=serenitygrant@gmail.com&lc=US&currency_code=USD&bn=PP%2dDonationsBF");
+        }
+
+        private void StartMission_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                StartMission.Enabled = false;
+                var b = new BraveExvius
+                {
+                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    Device = RBiOS.Checked ? "iPhone9,3" : "XT890",
+                    OperatingSystem = RBiOS.Checked ? "ios10.2.1" : RBAndroid.Checked ? "android4.4.2" : "amazon",
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyPort.Text.Replace(" ", "")) ? Int32.Parse(ProxyPort.Text.Replace(" ", "")) : 0
+                };
+                b.Login();
+                var mission = Mission.Missions.First(i => i.MissionId == MissionSelect.SelectedValue.ToString());
+                b.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
+                var count = 1;
+                while (!String.IsNullOrEmpty(RepeatMission.Text.Replace(" ", "")) && count < Int32.Parse(RepeatMission.Text.Replace(" ", "")))
+                {
+                    b.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
+                    count++;
+                    Thread.Sleep(3000);
+                }
+                StartMission.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        private void RBOS_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }
