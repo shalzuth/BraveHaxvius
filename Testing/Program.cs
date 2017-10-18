@@ -25,7 +25,7 @@ namespace Testing
                 FacebookToken = fb.AccessToken,
             };
             b.Login();
-            b.DoMission(Mission.AirshipDeck, false, null, null, null, 0);
+            b.DoMission(Mission.AirshipDeck, false, null, null, null, false, false, false, false, false, null, 0);
             b.DoMission(Mission.AirshipDeck);
         }
     }
