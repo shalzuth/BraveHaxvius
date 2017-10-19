@@ -5857,7 +5857,7 @@ namespace BraveHaxvius.Data
         public static readonly Challenge ClearwithoutanallybeingKO_90018023 = new Challenge { Name = "Clear without an ally being KO"};
         public static readonly Challenge Completethequest_90018030 = new Challenge { Name = "Complete the quest"};
         public static readonly Challenge Dealfireandicedamagetoanenemy_90018031 = new Challenge { Name = "Deal fire and ice damage to an enemy"};
-        public static readonly Challenge NoItem_90018032 = new Challenge { Name = "No Item"};
+        public static readonly Challenge NoItem = new Challenge { Name = "No Item"};
         public static readonly Challenge ClearwithoutanallybeingKO_90018033 = new Challenge { Name = "Clear without an ally being KO"};
         public static readonly Challenge Completethequest_90018040 = new Challenge { Name = "Complete the quest"};
         public static readonly Challenge Usemagicormoretimes_90018041 = new Challenge { Name = "Use magic 3 or more times"};
@@ -5872,21 +5872,57 @@ namespace BraveHaxvius.Data
         public static readonly Challenge Usealimitburst_90019012 = new Challenge { Name = "Use a limit burst"};
         public static readonly Challenge PartoforlessCompanionincluded = new Challenge { Name = "Part of 5 or less (Companion included)"};
         public static readonly Challenge Completethequest_90020010 = new Challenge { Name = "Complete the quest", MissionId = "9002001", ChallengeId = "90020010", Description = "Complete the quest", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "20:1209000836:200"};
-        public static readonly Challenge Completethequestinmins_90020011 = new Challenge { Name = "Complete the quest in 2 mins", MissionId = "9002001", ChallengeId = "90020011", Description = "Finish mission in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "1", ChallengeRequirement = "1000:120", ChallengeReward = "50:1:10"};
-        public static readonly Challenge FindMermaidinmin = new Challenge { Name = "Find Mermaid in 1 min", MissionId = "9002001", ChallengeId = "90020012", Description = "Find Mermaid in 1 min", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "2", ChallengeRequirement = "1001:60:900010619:900010334", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Completethequestwithinmins_90020011 = new Challenge { Name = "Complete the quest within 2 mins", MissionId = "9002001", ChallengeId = "90020011", Description = "Finish mission in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "1", ChallengeRequirement = "1000:120", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Findthemermaidwithinmin = new Challenge { Name = "Find the mermaid within 1 min", MissionId = "9002001", ChallengeId = "90020012", Description = "Find Mermaid in 1 min", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "2", ChallengeRequirement = "1001:60:900010619:900010334", ChallengeReward = "50:1:10"};
         public static readonly Challenge PartyoforlessCompanionincluded_90020013 = new Challenge { Name = "Party of 5 or less (Companion included)", MissionId = "9002001", ChallengeId = "90020013", Description = "Party of 5 or less", DailyQuestName = "Festival of the Autumn Moon 2017 INT", CountId = "3", ChallengeRequirement = "35:5", ChallengeReward = "50:1:10"};
         public static readonly Challenge Completethequest_90020020 = new Challenge { Name = "Complete the quest", MissionId = "9002002", ChallengeId = "90020020", Description = "Complete the quest", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "23:50:1"};
-        public static readonly Challenge DefeatMermaidinmins_90020021 = new Challenge { Name = "Defeat Mermaid in 2 mins", MissionId = "9002002", ChallengeId = "90020021", Description = "Find and Defeat Mermaid in 2 min", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "1", ChallengeRequirement = "1002:120:900010610:900010329", ChallengeReward = "50:1:10"};
-        public static readonly Challenge Collectormoreharvestpointsinmins_90020022 = new Challenge { Name = "Collect 5 or more harvest points in 2 mins", MissionId = "9002002", ChallengeId = "90020022", Description = "Collect 5 or more harvest points in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "2", ChallengeRequirement = "1003:120:5", ChallengeReward = "50:1:10"};
-        public static readonly Challenge NoItem_90020023 = new Challenge { Name = "No Item", MissionId = "9002002", ChallengeId = "90020023", Description = "Item unused", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "3", ChallengeRequirement = "1", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Defeatthemermaidwithinmins_90020021 = new Challenge { Name = "Defeat the mermaid within 2 mins", MissionId = "9002002", ChallengeId = "90020021", Description = "Find and Defeat Mermaid in 2 min", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "1", ChallengeRequirement = "1002:120:900010610:900010329", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Collectfromormoreharvestpointswithinmins_90020022 = new Challenge { Name = "Collect from 5 or more harvest points within 2 mins", MissionId = "9002002", ChallengeId = "90020022", Description = "Collect 5 or more harvest points in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "2", ChallengeRequirement = "1003:120:5", ChallengeReward = "50:1:10"};
+        public static readonly Challenge NoItems = new Challenge { Name = "No Items", MissionId = "9002002", ChallengeId = "90020023", Description = "Item unused", DailyQuestName = "Festival of the Autumn Moon 2017 ADV", CountId = "3", ChallengeRequirement = "1", ChallengeReward = "50:1:10"};
         public static readonly Challenge Completethequest_90020030 = new Challenge { Name = "Complete the quest", MissionId = "9002003", ChallengeId = "90020030", Description = "Complete the quest", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "20:1209000836:600"};
-        public static readonly Challenge DefeatMermaidwithalimitburst = new Challenge { Name = "Defeat Mermaid with a limit burst", MissionId = "9002003", ChallengeId = "90020031", Description = "Finish Boss in LB", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "1", ChallengeRequirement = "18:900010601:900010324:1", ChallengeReward = "50:1:10"};
-        public static readonly Challenge Completethequestinmins_90020032 = new Challenge { Name = "Complete the quest in 2 mins", MissionId = "9002003", ChallengeId = "90020032", Description = "Finish mission in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "2", ChallengeRequirement = "1000:120", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Defeatthemermaidwithalimitburst = new Challenge { Name = "Defeat the mermaid with a limit burst", MissionId = "9002003", ChallengeId = "90020031", Description = "Finish Boss in LB", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "1", ChallengeRequirement = "18:900010601:900010324:1", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Completethequestwithinmins_90020032 = new Challenge { Name = "Complete the quest within 2 mins", MissionId = "9002003", ChallengeId = "90020032", Description = "Finish mission in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "2", ChallengeRequirement = "1000:120", ChallengeReward = "50:1:10"};
         public static readonly Challenge PartyoforlessCompanionincluded_90020033 = new Challenge { Name = "Party of 5 or less (Companion included)", MissionId = "9002003", ChallengeId = "90020033", Description = "Party of 5 or less", DailyQuestName = "Festival of the Autumn Moon 2017 PRO", CountId = "3", ChallengeRequirement = "35:5", ChallengeReward = "50:1:10"};
         public static readonly Challenge Completethequest_90020040 = new Challenge { Name = "Complete the quest", MissionId = "9002004", ChallengeId = "90020040", Description = "Complete the quest", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000104:1:100:1:0:100000001"};
-        public static readonly Challenge Collectormoreharvestpointsinmins_90020041 = new Challenge { Name = "Collect 5 or more harvest points in 2 mins", MissionId = "9002004", ChallengeId = "90020041", Description = "Collect 5 or more harvest points in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "1", ChallengeRequirement = "1003:120:5", ChallengeReward = "50:1:10"};
-        public static readonly Challenge DefeatMermaidinmins_90020042 = new Challenge { Name = "Defeat Mermaid in 2 mins", MissionId = "9002004", ChallengeId = "90020042", Description = "Find and Defeat Mermaid in 2 min", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "2", ChallengeRequirement = "1002:120:900010592:900010319", ChallengeReward = "50:1:10"};
-        public static readonly Challenge ClearwithoutanallybeingKO_90020043 = new Challenge { Name = "Clear without an ally being KO", MissionId = "9002004", ChallengeId = "90020043", Description = "Clear without an ally being KO", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "3", ChallengeRequirement = "33", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Collectfromormoreharvestpointswithinmins_90020041 = new Challenge { Name = "Collect from 5 or more harvest points within 2 mins", MissionId = "9002004", ChallengeId = "90020041", Description = "Collect 5 or more harvest points in 2 mins", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "1", ChallengeRequirement = "1003:120:5", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Defeatthemermaidwithinmins_90020042 = new Challenge { Name = "Defeat the mermaid within 2 mins", MissionId = "9002004", ChallengeId = "90020042", Description = "Find and Defeat Mermaid in 2 min", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "2", ChallengeRequirement = "1002:120:900010592:900010319", ChallengeReward = "50:1:10"};
+        public static readonly Challenge ClearwithoutanallybeingKOd_90020043 = new Challenge { Name = "Clear without an ally being KO'd", MissionId = "9002004", ChallengeId = "90020043", Description = "Clear without an ally being KO", DailyQuestName = "Festival of the Autumn Moon 2017 ELT", CountId = "3", ChallengeRequirement = "33", ChallengeReward = "50:1:10"};
+        public static readonly Challenge Completethequest_91900010 = new Challenge { Name = "Complete the quest", MissionId = "9190001", ChallengeId = "91900010", Description = "Complete the quest", DailyQuestName = "Castle Dungeon BGN", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Usewhitemagic_91900011 = new Challenge { Name = "Use white magic", MissionId = "9190001", ChallengeId = "91900011", Description = "Use White Magic", DailyQuestName = "Castle Dungeon BGN", CountId = "1", ChallengeRequirement = "13:1", ChallengeReward = "50:1:20"};
+        public static readonly Challenge ClearwithoutanallybeingKOd_91900012 = new Challenge { Name = "Clear without an ally being KO'd", MissionId = "9190001", ChallengeId = "91900012", Description = "Clear without an ally being KO", DailyQuestName = "Castle Dungeon BGN", CountId = "2", ChallengeRequirement = "33", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Nocontinues_91900013 = new Challenge { Name = "No continues", MissionId = "9190001", ChallengeId = "91900013", Description = "No Continues", DailyQuestName = "Castle Dungeon BGN", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Completethequest_91900020 = new Challenge { Name = "Complete the quest", MissionId = "9190002", ChallengeId = "91900020", Description = "Complete the quest", DailyQuestName = "Castle Dungeon ADV", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Useblackmagic_91900021 = new Challenge { Name = "Use black magic", MissionId = "9190002", ChallengeId = "91900021", Description = "Use Black Magic", DailyQuestName = "Castle Dungeon ADV", CountId = "1", ChallengeRequirement = "13:2", ChallengeReward = "50:1:20"};
+        public static readonly Challenge ClearwithoutanallybeingKOd_91900022 = new Challenge { Name = "Clear without an ally being KO'd", MissionId = "9190002", ChallengeId = "91900022", Description = "Clear without an ally being KO", DailyQuestName = "Castle Dungeon ADV", CountId = "2", ChallengeRequirement = "33", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Nocontinues_91900023 = new Challenge { Name = "No continues", MissionId = "9190002", ChallengeId = "91900023", Description = "No Continues", DailyQuestName = "Castle Dungeon ADV", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Completethequest_91900030 = new Challenge { Name = "Complete the quest", MissionId = "9190003", ChallengeId = "91900030", Description = "Complete the quest", DailyQuestName = "Castle Dungeon ELT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Usegreenmagic_91900031 = new Challenge { Name = "Use green magic", MissionId = "9190003", ChallengeId = "91900031", Description = "Use Green Magic", DailyQuestName = "Castle Dungeon ELT", CountId = "1", ChallengeRequirement = "13:3", ChallengeReward = "50:1:20"};
+        public static readonly Challenge ClearwithoutanallybeingKOd_91900032 = new Challenge { Name = "Clear without an ally being KO'd", MissionId = "9190003", ChallengeId = "91900032", Description = "Clear without an ally being KO", DailyQuestName = "Castle Dungeon ELT", CountId = "2", ChallengeRequirement = "33", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Nocontinues_91900033 = new Challenge { Name = "No continues", MissionId = "9190003", ChallengeId = "91900033", Description = "No Continues", DailyQuestName = "Castle Dungeon ELT", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "50:1:20"};
+        public static readonly Challenge Completethequest_92000010 = new Challenge { Name = "Complete the quest", MissionId = "9200001", ChallengeId = "92000010", Description = "Complete the quest", DailyQuestName = "Castle Keep - BGN", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000101:1:100:1:0:100000005"};
+        public static readonly Challenge Useanitem_92000011 = new Challenge { Name = "Use an item", MissionId = "9200001", ChallengeId = "92000011", Description = "Use an item", DailyQuestName = "Castle Keep - BGN", CountId = "1", ChallengeRequirement = "0", ChallengeReward = "22:1500000001:2"};
+        public static readonly Challenge DealEarthDamagetimesormore = new Challenge { Name = "Deal Earth Damage 3 times or more", MissionId = "9200001", ChallengeId = "92000012", Description = "Deal Earth Damage 3 times or more", DailyQuestName = "Castle Keep - BGN", CountId = "2", ChallengeRequirement = "59:6:2", ChallengeReward = "22:1500000002:2"};
+        public static readonly Challenge Nocontinues_92000013 = new Challenge { Name = "No continues", MissionId = "9200001", ChallengeId = "92000013", Description = "No Continues", DailyQuestName = "Castle Keep - BGN", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "10:905000102:2:100:1"};
+        public static readonly Challenge Completethequest_92000020 = new Challenge { Name = "Complete the quest", MissionId = "9200002", ChallengeId = "92000020", Description = "Complete the quest", DailyQuestName = "Castle Keep - ADV", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000101:1:100:1:0:100000005"};
+        public static readonly Challenge Usealimitburst_92000021 = new Challenge { Name = "Use a limit burst", MissionId = "9200002", ChallengeId = "92000021", Description = "Use Limit Burst", DailyQuestName = "Castle Keep - ADV", CountId = "1", ChallengeRequirement = "16", ChallengeReward = "22:1500000001:2"};
+        public static readonly Challenge Dealfiredamagetimesormore = new Challenge { Name = "Deal fire damage 3 times or more", MissionId = "9200002", ChallengeId = "92000022", Description = "Deal Fire Damage 3 times or more", DailyQuestName = "Castle Keep - ADV", CountId = "2", ChallengeRequirement = "59:1:2", ChallengeReward = "22:1500000002:2"};
+        public static readonly Challenge Nocontinues_92000023 = new Challenge { Name = "No continues", MissionId = "9200002", ChallengeId = "92000023", Description = "No Continues", DailyQuestName = "Castle Keep - ADV", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "10:905000102:2:100:1"};
+        public static readonly Challenge Completethequest_92000030 = new Challenge { Name = "Complete the quest", MissionId = "9200003", ChallengeId = "92000030", Description = "Complete the quest", DailyQuestName = "Castle Keep - ELT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000101:1:100:1:0:100000005"};
+        public static readonly Challenge EvokeanEsper = new Challenge { Name = "Evoke an Esper", MissionId = "9200003", ChallengeId = "92000031", Description = "Summon an Esper", DailyQuestName = "Castle Keep - ELT", CountId = "1", ChallengeRequirement = "28", ChallengeReward = "22:1500000001:2"};
+        public static readonly Challenge Dealwinddamagetimesormore = new Challenge { Name = "Deal wind damage 3 times or more", MissionId = "9200003", ChallengeId = "92000032", Description = "Deal Wind Damage 3 times or more", DailyQuestName = "Castle Keep - ELT", CountId = "2", ChallengeRequirement = "59:5:2", ChallengeReward = "22:1500000002:2"};
+        public static readonly Challenge Nocontinues_92000033 = new Challenge { Name = "No continues", MissionId = "9200003", ChallengeId = "92000033", Description = "No Continues", DailyQuestName = "Castle Keep - ELT", CountId = "3", ChallengeRequirement = "38", ChallengeReward = "10:905000102:2:100:1"};
+        public static readonly Challenge Completethequest_92100010 = new Challenge { Name = "Complete the quest", MissionId = "9210001", ChallengeId = "92100010", Description = "Complete the quest", DailyQuestName = "Castle Inner Chamber INT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000101:1:100:1:0:100000005"};
+        public static readonly Challenge Usealightattacks = new Challenge { Name = "Use a light attacks", MissionId = "9210001", ChallengeId = "92100011", Description = "Use Light Attacks", DailyQuestName = "Castle Inner Chamber INT", CountId = "1", ChallengeRequirement = "26:7", ChallengeReward = "21:1100000018:1"};
+        public static readonly Challenge Finainparty = new Challenge { Name = "Fina in party", MissionId = "9210001", ChallengeId = "92100012", Description = "Use Fina", DailyQuestName = "Castle Inner Chamber INT", CountId = "2", ChallengeRequirement = "36:100000302", ChallengeReward = "21:1100000016:1"};
+        public static readonly Challenge ClearwithoutanallybeingKOd_92100013 = new Challenge { Name = "Clear without an ally being KO'd", MissionId = "9210001", ChallengeId = "92100013", Description = "Clear without an ally being KO", DailyQuestName = "Castle Inner Chamber INT", CountId = "3", ChallengeRequirement = "33", ChallengeReward = "22:504101600:1"};
+        public static readonly Challenge Completethequest_92100020 = new Challenge { Name = "Complete the quest", MissionId = "9210002", ChallengeId = "92100020", Description = "Complete the quest", DailyQuestName = "Castle Inner Chamber ELT", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "50:1:100"};
+        public static readonly Challenge Lasswellinparty = new Challenge { Name = "Lasswell in party", MissionId = "9210002", ChallengeId = "92100021", Description = "Use Laswell", DailyQuestName = "Castle Inner Chamber ELT", CountId = "1", ChallengeRequirement = "36:100000202", ChallengeReward = "23:50:2"};
+        public static readonly Challenge Finishthebosswithalimitburst = new Challenge { Name = "Finish the boss with a limit burst", MissionId = "9210002", ChallengeId = "92100022", Description = "Finish Boss in LB", DailyQuestName = "Castle Inner Chamber ELT", CountId = "2", ChallengeRequirement = "18:900010655:900010339:1", ChallengeReward = "21:1100000017:1"};
+        public static readonly Challenge Defeatthebosswithinturns = new Challenge { Name = "Defeat the boss within 10 turns", MissionId = "9210002", ChallengeId = "92100023", Description = "Defeat Boss within 10 turns", DailyQuestName = "Castle Inner Chamber ELT", CountId = "3", ChallengeRequirement = "77:900010655:10", ChallengeReward = "21:1100000104:1"};
+        public static readonly Challenge Completethequest_92100030 = new Challenge { Name = "Complete the quest", MissionId = "9210003", ChallengeId = "92100030", Description = "Complete the quest", DailyQuestName = "Castle Inner Chamber NIGHTMARE", CountId = "0", ChallengeRequirement = "68", ChallengeReward = "10:904000104:1:100:1:0:100000001"};
+        public static readonly Challenge Nowhitemagic_92100031 = new Challenge { Name = "No white magic", MissionId = "9210003", ChallengeId = "92100031", Description = "Do not use White Magic", DailyQuestName = "Castle Inner Chamber NIGHTMARE", CountId = "1", ChallengeRequirement = "14:1", ChallengeReward = "23:50:3"};
+        public static readonly Challenge PartyoforlessCompanionincluded_92100032 = new Challenge { Name = "Party of 5 or less (Companion included)", MissionId = "9210003", ChallengeId = "92100032", Description = "Party 5 or less", DailyQuestName = "Castle Inner Chamber NIGHTMARE", CountId = "2", ChallengeRequirement = "35:5", ChallengeReward = "21:1100000105:1"};
+        public static readonly Challenge EvokeTitanLakshmi = new Challenge { Name = "Evoke Titan & Lakshmi", MissionId = "9210003", ChallengeId = "92100033", Description = "Evoke Titan & Lakshmi", DailyQuestName = "Castle Inner Chamber NIGHTMARE", CountId = "3", ChallengeRequirement = "30:8,30:11", ChallengeReward = "22:504100120:1"};
 
 		public static readonly List<Challenge> Challenges = new List<Challenge>
 		{
@@ -11733,7 +11769,7 @@ namespace BraveHaxvius.Data
            ClearwithoutanallybeingKO_90018023,
            Completethequest_90018030,
            Dealfireandicedamagetoanenemy_90018031,
-           NoItem_90018032,
+           NoItem,
            ClearwithoutanallybeingKO_90018033,
            Completethequest_90018040,
            Usemagicormoretimes_90018041,
@@ -11748,21 +11784,57 @@ namespace BraveHaxvius.Data
            Usealimitburst_90019012,
            PartoforlessCompanionincluded,
            Completethequest_90020010,
-           Completethequestinmins_90020011,
-           FindMermaidinmin,
+           Completethequestwithinmins_90020011,
+           Findthemermaidwithinmin,
            PartyoforlessCompanionincluded_90020013,
            Completethequest_90020020,
-           DefeatMermaidinmins_90020021,
-           Collectormoreharvestpointsinmins_90020022,
-           NoItem_90020023,
+           Defeatthemermaidwithinmins_90020021,
+           Collectfromormoreharvestpointswithinmins_90020022,
+           NoItems,
            Completethequest_90020030,
-           DefeatMermaidwithalimitburst,
-           Completethequestinmins_90020032,
+           Defeatthemermaidwithalimitburst,
+           Completethequestwithinmins_90020032,
            PartyoforlessCompanionincluded_90020033,
            Completethequest_90020040,
-           Collectormoreharvestpointsinmins_90020041,
-           DefeatMermaidinmins_90020042,
-           ClearwithoutanallybeingKO_90020043,
+           Collectfromormoreharvestpointswithinmins_90020041,
+           Defeatthemermaidwithinmins_90020042,
+           ClearwithoutanallybeingKOd_90020043,
+           Completethequest_91900010,
+           Usewhitemagic_91900011,
+           ClearwithoutanallybeingKOd_91900012,
+           Nocontinues_91900013,
+           Completethequest_91900020,
+           Useblackmagic_91900021,
+           ClearwithoutanallybeingKOd_91900022,
+           Nocontinues_91900023,
+           Completethequest_91900030,
+           Usegreenmagic_91900031,
+           ClearwithoutanallybeingKOd_91900032,
+           Nocontinues_91900033,
+           Completethequest_92000010,
+           Useanitem_92000011,
+           DealEarthDamagetimesormore,
+           Nocontinues_92000013,
+           Completethequest_92000020,
+           Usealimitburst_92000021,
+           Dealfiredamagetimesormore,
+           Nocontinues_92000023,
+           Completethequest_92000030,
+           EvokeanEsper,
+           Dealwinddamagetimesormore,
+           Nocontinues_92000033,
+           Completethequest_92100010,
+           Usealightattacks,
+           Finainparty,
+           ClearwithoutanallybeingKOd_92100013,
+           Completethequest_92100020,
+           Lasswellinparty,
+           Finishthebosswithalimitburst,
+           Defeatthebosswithinturns,
+           Completethequest_92100030,
+           Nowhitemagic_92100031,
+           PartyoforlessCompanionincluded_92100032,
+           EvokeTitanLakshmi,
 		};
     }
 }
