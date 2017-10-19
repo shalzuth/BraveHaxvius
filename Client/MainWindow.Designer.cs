@@ -74,6 +74,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.arenaButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
@@ -189,6 +190,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.arenaButton);
             this.tabPage3.Controls.Add(this.rankUpButton);
             this.tabPage3.Controls.Add(this.levelStatus);
             this.tabPage3.Controls.Add(this.levelPartyButton);
@@ -201,7 +203,7 @@
             // 
             // rankUpButton
             // 
-            this.rankUpButton.Location = new System.Drawing.Point(432, 154);
+            this.rankUpButton.Location = new System.Drawing.Point(432, 155);
             this.rankUpButton.Name = "rankUpButton";
             this.rankUpButton.Size = new System.Drawing.Size(75, 23);
             this.rankUpButton.TabIndex = 2;
@@ -566,6 +568,16 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "ProxyPort:";
             // 
+            // arenaButton
+            // 
+            this.arenaButton.Location = new System.Drawing.Point(335, 155);
+            this.arenaButton.Name = "arenaButton";
+            this.arenaButton.Size = new System.Drawing.Size(75, 23);
+            this.arenaButton.TabIndex = 3;
+            this.arenaButton.Text = "do arena";
+            this.arenaButton.UseVisualStyleBackColor = true;
+            this.arenaButton.Click += new System.EventHandler(this.arenaButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -649,6 +661,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button arenaButton;
     }
 }
 
