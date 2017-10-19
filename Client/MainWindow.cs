@@ -304,5 +304,33 @@ namespace Client
             ProxyIP.Text = Settings.Default.ProxyIP;
             ProxyPort.Text = Settings.Default.ProxyPort;
         }
+
+        private void arenaButton_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                Func<string, int> update = i =>
+                {
+                    levelStatus.Text = i;
+                    return 1;
+                };
+                arenaButton.Enabled = false;
+                var b = new BraveExvius
+                {
+                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
+                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
+                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
+                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
+                };
+                b.Login();
+                fbidInput.Text = b.FacebookUserId;
+                fbtokenInput.Text = b.FacebookUserId;
+                b.ClearArena();
+                arenaButton.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+
+        }
     }
 }
