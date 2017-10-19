@@ -236,17 +236,17 @@ namespace BraveHaxvius.Data
         public static readonly Materia SeethingCauldron = new Materia { Name = "Seething Cauldron", MateriaId = "504205460", Description = "あふれる魔力", CountId = "2132100", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205460", ItemStack = "99", ItemBuyPrice = "30000", ItemSellPrice = "3000", ItemIdClone = "700000077", BitNumber = "535"};
         public static readonly Materia SwellingPower = new Materia { Name = "Swelling Power", MateriaId = "504205470", Description = "みなぎる力", CountId = "2131130", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205470", ItemStack = "99", ItemBuyPrice = "30000", ItemSellPrice = "3000", ItemIdClone = "700000077", BitNumber = "536"};
         public static readonly Materia BushidoFreedom = new Materia { Name = "Bushido - Freedom", MateriaId = "504205490", Description = "奥義・天下御免", CountId = "2219510", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205490", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000019", BitNumber = "537"};
-        public static readonly Materia NA_504205650 = new Materia { Name = "NA", MateriaId = "504205650", Description = "覇者の闘気", CountId = "2171990", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205650", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000091", BitNumber = "538"};
-        public static readonly Materia NA_504205980 = new Materia { Name = "NA", MateriaId = "504205980", Description = "しゃくねつ", CountId = "2212710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205980", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000021", BitNumber = "539"};
-        public static readonly Materia NA_504205880 = new Materia { Name = "NA", MateriaId = "504205880", Description = "つねにだいぼうぎょ", CountId = "2134710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205880", ItemStack = "99", ItemBuyPrice = "50000", ItemSellPrice = "5000", ItemIdClone = "700000077", BitNumber = "540"};
-        public static readonly Materia NA_504206070 = new Materia { Name = "NA", MateriaId = "504206070", Description = "ぼうえいほんのう", CountId = "2133710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206070", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000077", BitNumber = "541"};
+        public static readonly Materia ChampionSpirit = new Materia { Name = "Champion Spirit", MateriaId = "504205650", Description = "覇者の闘気", CountId = "2171990", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205650", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000091", BitNumber = "538"};
+        public static readonly Materia Scorch = new Materia { Name = "Scorch", MateriaId = "504205980", Description = "しゃくねつ", CountId = "2212710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205980", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000021", BitNumber = "539"};
+        public static readonly Materia MightyDefense = new Materia { Name = "Mighty Defense", MateriaId = "504205880", Description = "つねにだいぼうぎょ", CountId = "2134710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205880", ItemStack = "99", ItemBuyPrice = "50000", ItemSellPrice = "5000", ItemIdClone = "700000077", BitNumber = "540"};
+        public static readonly Materia InstinctualGuard = new Materia { Name = "Instinctual Guard", MateriaId = "504206070", Description = "ぼうえいほんのう", CountId = "2133710", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206070", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000077", BitNumber = "541"};
         public static readonly Materia ThunderBlade = new Materia { Name = "Thunder Blade", MateriaId = "504200530", Description = "サンダー剣", CountId = "2240210", EquipmentActiveAbility = "", EquipmentPassiveAbility = "200530", ItemStack = "99", ItemBuyPrice = "1000", ItemSellPrice = "100", ItemIdClone = "700000020", BitNumber = "346"};
         public static readonly Materia ArmorBreak = new Materia { Name = "Armor Break", MateriaId = "504201150", Description = "アーマーブレイク", CountId = "2219110", EquipmentActiveAbility = "", EquipmentPassiveAbility = "201150", ItemStack = "99", ItemBuyPrice = "5000", ItemSellPrice = "500", ItemIdClone = "700000054", BitNumber = "542"};
-        public static readonly Materia NA_504205710 = new Materia { Name = "NA", MateriaId = "504205710", Description = "メタル斬り", CountId = "2211020", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205710", ItemStack = "99", ItemBuyPrice = "8000", ItemSellPrice = "800", ItemIdClone = "700000054", BitNumber = "543"};
-        public static readonly Materia NA_504205990 = new Materia { Name = "NA", MateriaId = "504205990", Description = "ハッスルダンス", CountId = "2285020", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205990", ItemStack = "99", ItemBuyPrice = "8000", ItemSellPrice = "800", ItemIdClone = "700000050", BitNumber = "544"};
-        public static readonly Materia NA_504205660 = new Materia { Name = "NA", MateriaId = "504205660", Description = "やみのはどう", CountId = "8000160", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205660", ItemStack = "99", ItemBuyPrice = "50000", ItemSellPrice = "5000", ItemIdClone = "700000039", BitNumber = "545"};
+        public static readonly Materia MetalSlash = new Materia { Name = "Metal Slash", MateriaId = "504205710", Description = "メタル斬り", CountId = "2211020", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205710", ItemStack = "99", ItemBuyPrice = "8000", ItemSellPrice = "800", ItemIdClone = "700000054", BitNumber = "543"};
+        public static readonly Materia HustleDance = new Materia { Name = "Hustle Dance", MateriaId = "504205990", Description = "ハッスルダンス", CountId = "2285020", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205990", ItemStack = "99", ItemBuyPrice = "8000", ItemSellPrice = "800", ItemIdClone = "700000050", BitNumber = "544"};
+        public static readonly Materia WaveofPanic = new Materia { Name = "Wave of Panic", MateriaId = "504205660", Description = "やみのはどう", CountId = "8000160", EquipmentActiveAbility = "", EquipmentPassiveAbility = "205660", ItemStack = "99", ItemBuyPrice = "50000", ItemSellPrice = "5000", ItemIdClone = "700000039", BitNumber = "545"};
         public static readonly Materia UndeadKiller = new Materia { Name = "Undead Killer", MateriaId = "504101060", Description = "アンデッドキラー", CountId = "2152070", EquipmentActiveAbility = "", EquipmentPassiveAbility = "101060", ItemStack = "99", ItemBuyPrice = "8000", ItemSellPrice = "800", ItemIdClone = "700000079", BitNumber = "546"};
-        public static readonly Materia NA_504206080 = new Materia { Name = "NA", MateriaId = "504206080", Description = "属性ダメージ減", CountId = "8000170", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206080", ItemStack = "99", ItemBuyPrice = "30000", ItemSellPrice = "3000", ItemIdClone = "700000018", BitNumber = "547"};
+        public static readonly Materia ElementalDamageDown = new Materia { Name = "Elemental Damage Down", MateriaId = "504206080", Description = "属性ダメージ減", CountId = "8000170", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206080", ItemStack = "99", ItemBuyPrice = "30000", ItemSellPrice = "3000", ItemIdClone = "700000018", BitNumber = "547"};
         public static readonly Materia EmperorsMajesty = new Materia { Name = "Emperor's Majesty", MateriaId = "504206270", Description = "皇帝の威厳", CountId = "2131515", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206270", ItemStack = "99", ItemBuyPrice = "100000", ItemSellPrice = "10000", ItemIdClone = "700000077", BitNumber = "548"};
         public static readonly Materia HereticAbyss = new Materia { Name = "Heretic Abyss", MateriaId = "504206320", Description = "魔道の深淵", CountId = "2132140", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206320", ItemStack = "99", ItemBuyPrice = "15000", ItemSellPrice = "1500", ItemIdClone = "700000077", BitNumber = "549"};
         public static readonly Materia Resuscitate = new Materia { Name = "Resuscitate", MateriaId = "504206390", Description = "起死回生", CountId = "2139010", EquipmentActiveAbility = "", EquipmentPassiveAbility = "206390", ItemStack = "99", ItemBuyPrice = "50000", ItemSellPrice = "5000", ItemIdClone = "700000077", BitNumber = "550"};
@@ -811,17 +811,17 @@ namespace BraveHaxvius.Data
            SeethingCauldron,
            SwellingPower,
            BushidoFreedom,
-           NA_504205650,
-           NA_504205980,
-           NA_504205880,
-           NA_504206070,
+           ChampionSpirit,
+           Scorch,
+           MightyDefense,
+           InstinctualGuard,
            ThunderBlade,
            ArmorBreak,
-           NA_504205710,
-           NA_504205990,
-           NA_504205660,
+           MetalSlash,
+           HustleDance,
+           WaveofPanic,
            UndeadKiller,
-           NA_504206080,
+           ElementalDamageDown,
            EmperorsMajesty,
            HereticAbyss,
            Resuscitate,
