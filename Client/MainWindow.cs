@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using BraveHaxvius;
 using BraveHaxvius.Data;
 using System.Windows.Controls;
+using Client.Properties;
 
 namespace Client
 {
@@ -270,6 +271,38 @@ namespace Client
 
         private void RBOS_CheckedChanged(object sender, EventArgs e)
         {
+        }
+
+        private void FbidInput_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.fbidInput = fbidInput.Text;
+            Settings.Default.Save();
+        }
+
+        private void fbtokenInput_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.fbtokenInput = fbtokenInput.Text;
+            Settings.Default.Save();
+        }
+
+        private void ProxyIP_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.ProxyIP = ProxyIP.Text;
+            Settings.Default.Save();
+        }
+
+        private void ProxyPort_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.ProxyPort = ProxyPort.Text;
+            Settings.Default.Save();
+        }
+
+        private void UserSettings_Load(object sender, EventArgs e)
+        {
+            fbidInput.Text = Settings.Default.fbidInput;
+            fbtokenInput.Text = Settings.Default.fbtokenInput;
+            ProxyIP.Text = Settings.Default.ProxyIP;
+            ProxyPort.Text = Settings.Default.ProxyPort;
         }
     }
 }
