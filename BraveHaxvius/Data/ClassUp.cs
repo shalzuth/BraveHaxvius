@@ -501,6 +501,7 @@ namespace BraveHaxvius.Data
         public static readonly ClassUp Unit_401000405 = new ClassUp { UnitId = "401000405", Items = "20:290060100:20,20:290060000:10,20:290060400:10,20:290060300:5,20:290050500:5"};
         public static readonly ClassUp Unit_401000503 = new ClassUp { UnitId = "401000503", Items = "20:290010200:20,20:290050200:10,20:290020600:8,20:290030000:3,20:290050300:3"};
         public static readonly ClassUp Unit_401000504 = new ClassUp { UnitId = "401000504", Items = "20:290020600:15,20:290030000:8,20:290050300:5,20:290040100:3,20:290050400:3"};
+        public static readonly ClassUp Unit_401000505 = new ClassUp { UnitId = "401000505", Items = "20:290060200:10,20:290060400:10,20:290060300:10,20:290060100:5,20:290050500:15"};
         public static readonly ClassUp Unit_401000704 = new ClassUp { UnitId = "401000704", Items = "20:290020000:15,20:290030100:8,20:290050300:5,20:290040000:3,20:290050400:3"};
         public static readonly ClassUp Unit_401000804 = new ClassUp { UnitId = "401000804", Items = "20:290020400:15,20:290030100:8,20:290050300:5,20:290040400:3,20:290050400:3"};
         public static readonly ClassUp Unit_401001105 = new ClassUp { UnitId = "401001105", Items = "20:290060200:10,20:290060400:10,20:290060300:10,20:290060100:5,20:290050500:15"};
@@ -510,6 +511,11 @@ namespace BraveHaxvius.Data
         public static readonly ClassUp Unit_401001705 = new ClassUp { UnitId = "401001705", Items = "20:290060200:10,20:290060400:10,20:290060100:10,20:290060300:5,20:290050500:15"};
         public static readonly ClassUp Unit_401001804 = new ClassUp { UnitId = "401001804", Items = "20:290020300:25,20:290030700:13,20:290050300:15,20:290030800:8,20:290050400:8"};
         public static readonly ClassUp Unit_401001805 = new ClassUp { UnitId = "401001805", Items = "20:290060400:10,20:290060200:10,20:290060300:10,20:290060000:5,20:290050500:15"};
+        public static readonly ClassUp Unit_401002005 = new ClassUp { UnitId = "401002005", Items = "20:290060100:10,20:290060300:10,20:290060000:10,20:290060400:5,20:290050500:15"};
+        public static readonly ClassUp Unit_401002104 = new ClassUp { UnitId = "401002104", Items = "20:290020200:25,20:290030900:13,20:290050300:15,20:290030600:8,20:290050400:8"};
+        public static readonly ClassUp Unit_401002105 = new ClassUp { UnitId = "401002105", Items = "20:290060300:10,20:290060000:10,20:290060100:10,20:290060200:5,20:290050500:15"};
+        public static readonly ClassUp Unit_401002204 = new ClassUp { UnitId = "401002204", Items = "20:290020100:25,20:290030200:13,20:290050300:15,20:290040000:8,20:290050400:8"};
+        public static readonly ClassUp Unit_401002205 = new ClassUp { UnitId = "401002205", Items = "20:290060100:10,20:290060200:10,20:290060300:10,20:290060000:5,20:290050500:15"};
         public static readonly ClassUp Unit_401002304 = new ClassUp { UnitId = "401002304", Items = "20:1209000835:5"};
         public static readonly ClassUp Unit_401002305 = new ClassUp { UnitId = "401002305", Items = "20:1209000835:10"};
 
@@ -1008,6 +1014,7 @@ namespace BraveHaxvius.Data
            Unit_401000405,
            Unit_401000503,
            Unit_401000504,
+           Unit_401000505,
            Unit_401000704,
            Unit_401000804,
            Unit_401001105,
@@ -1017,6 +1024,11 @@ namespace BraveHaxvius.Data
            Unit_401001705,
            Unit_401001804,
            Unit_401001805,
+           Unit_401002005,
+           Unit_401002104,
+           Unit_401002105,
+           Unit_401002204,
+           Unit_401002205,
            Unit_401002304,
            Unit_401002305,
 		};
