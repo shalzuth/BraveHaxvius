@@ -364,13 +364,13 @@
             // CBTrophies
             // 
             this.CBTrophies.AutoSize = true;
-            this.CBTrophies.Enabled = false;
             this.CBTrophies.Location = new System.Drawing.Point(153, 34);
             this.CBTrophies.Name = "CBTrophies";
             this.CBTrophies.Size = new System.Drawing.Size(114, 17);
             this.CBTrophies.TabIndex = 5;
             this.CBTrophies.Text = "Complete Trophies";
             this.CBTrophies.UseVisualStyleBackColor = true;
+            this.CBTrophies.CheckedChanged += new System.EventHandler(this.CBTrophies_CheckedChanged);
             // 
             // StartMission
             // 
@@ -535,36 +535,36 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(14, 253);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(146, 13);
             this.label1.TabIndex = 7;
-            this.label1.Text = "fbid:";
+            this.label1.Text = "FB ID/Email or Transfer Code";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(194, 253);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(177, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "fbtoken:";
+            this.label2.Text = "FB Token/Password or Transfer Pin";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 292);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 13);
+            this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "ProxyIP:";
+            this.label3.Text = "Proxy IP:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(194, 292);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "ProxyPort:";
+            this.label4.Text = "Proxy Port:";
             // 
             // MainWindow
             // 
