@@ -516,6 +516,7 @@ namespace BraveHaxvius.Data
         public static readonly Item MetalGigantuarCoin_1209000837 = new Item { Name = "Metal Gigantuar Coin", ItemId = "1209000837", Description = "Metal Gigantuar Coin(TW)", EquipmentRarity = "8", CountId = "9073", IsPotUnit = "0", KeyName = "0", ItemStack = "9999", ItemBuyPrice = "10000", ItemSellPrice = "100", ItemIdClone = "1209000832", BitNumber = "9072"};
         public static readonly Item Lantern = new Item { Name = "Lantern", ItemId = "1209000836", Description = "Lantern", EquipmentRarity = "3", CountId = "9072", IsPotUnit = "0", KeyName = "0", ItemStack = "9999", ItemBuyPrice = "500", ItemSellPrice = "10", ItemIdClone = "1100000095", BitNumber = "9071"};
         public static readonly Item MetalGigantuarCoin_1209000839 = new Item { Name = "Metal Gigantuar Coin", ItemId = "1209000839", Description = "Metal Gigantuar Coin(New York)", EquipmentRarity = "8", CountId = "9074", IsPotUnit = "0", KeyName = "0", ItemStack = "9999", ItemBuyPrice = "10000", ItemSellPrice = "0", ItemIdClone = "1209000832", BitNumber = "9074"};
+        public static readonly Item SkeletonKey = new Item { Name = "Skeleton Key", ItemId = "1209000838", Description = "Skeleton Key", EquipmentRarity = "8", CountId = "9075", IsPotUnit = "0", KeyName = "0", ItemStack = "9999", ItemBuyPrice = "10000", ItemSellPrice = "100", ItemIdClone = "1209000838", BitNumber = "9075"};
 
 		public static readonly List<Item> Items = new List<Item>
 		{
@@ -1017,6 +1018,7 @@ namespace BraveHaxvius.Data
            MetalGigantuarCoin_1209000837,
            Lantern,
            MetalGigantuarCoin_1209000839,
+           SkeletonKey,
 		};
     }
 }
