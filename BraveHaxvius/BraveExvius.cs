@@ -830,7 +830,7 @@ namespace BraveHaxvius
 
             var lbTotal = 1;
 
-            if (!String.IsNullOrEmpty(lbIncrease))
+            if (!String.IsNullOrEmpty(lbIncrease) && !getTrophies)
             {
                 var lbVal = Int32.Parse(lbIncrease);
                 var currentParty = int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString());
@@ -867,6 +867,8 @@ namespace BraveHaxvius
                                              new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : lbTotal.ToString())),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_MAGIC_USE"),
                                              new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
+                new JObject(new JProperty(Variable.ArchiveName, "TOTAL_ABILITY_USE"),
+                                             new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_BEAST_USE"),
                                              new JProperty(Variable.ArchiveValue, getTrophies ? "10000" : "1")),
                 new JObject(new JProperty(Variable.ArchiveName, "TOTAL_STEAL"),
@@ -880,107 +882,123 @@ namespace BraveHaxvius
             };
 
             var MissionChallenge = new JObject();
-            var challenges = Challenge.Challenges.FindAll(c => c.MissionId == mission.MissionId);
-            foreach (var challenge in challenges)
+
+            if (getTrophies)
             {
-                //68 complete
-                //33 no deaths
-                //38 no continues
-                //1 no items
-                //6 no magic
-                //12 no recovery magic
-                //14 no magic of type
-                //17 no lb
-                //75::x number of turns
-                //77::x boss number of turns
-                //40::x no more than items
-                //29 no espers
-                //69 exclude rain/lasswell 2001
-                //20 no abilities
-                if (challenge.ChallengeRequirement.StartsWith("34:"))
+                var currentParty = int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString());
+                var party = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][currentParty];
+                var partyUnits = party[Variable.PartyUnits].ToString().Split(new char[1] { ',' });
+                var lbUnit = partyUnits.Select(u => Units.FirstOrDefault(unit => unit.UniqueUnitId == u.Split(new char[1] { ':' }).Last())).ToList().First();
+                MissionChallenge.Add(Variable.LimitBreaks, lbUnit.UnitId + ":10000");
+                MissionChallenge.Add(Variable.Espers, "1:10000");
+                MissionChallenge.Add(Variable.Magics, "20060:10000");
+                MissionChallenge.Add(Variable.Specials, "200010:10000");
+                MissionChallenge.Add(Variable.Items_4p6CrcGt, "101000100:10000");
+            }
+            else
+            {
+                var challenges = Challenge.Challenges.FindAll(c => c.MissionId == mission.MissionId);
+                foreach (var challenge in challenges)
                 {
-                    var partyOfAtleast = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("35:"))
-                {
-                    var partyOfLessThan = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("36:"))
-                {
-                    var requiresUnit = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("18:") || challenge.ChallengeRequirement.StartsWith("16:") || challenge.ChallengeRequirement.StartsWith("49:"))
-                {
-                    //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
-                    //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
-                    //MissionChallenge.Add(Variable.LimitBreaks, "100000102:6");
-                    // MissionChallenge.Add(Variable.KnockOuts, "");
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("15:")) // magic
-                {
-                    //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
-                    //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("32:") || challenge.ChallengeRequirement.StartsWith("28")) // esper
-                {
-                    //MissionChallenge.Add(Variable.Espers, "100000102:6");
-                    //MissionChallenge.Add(Variable.KnockOuts, "100000102:6");
-                    //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
-                    //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("30:"))
-                {
-                    var esper = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("45:"))
-                {
-                    var espers = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("26:"))
-                {
-                    var damageType = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("7:"))
-                {
-                    var cast = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("21:"))
-                {
-                    var ability = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("2:"))
-                {
-                    var item = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("0"))
-                {
-                    // any item
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("5"))
-                {
-                    // magic
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("41:"))
-                {
-                    var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("59:"))
-                {
-                    var type = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                    var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("47:"))
-                {
-                    var type = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
-                    var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("13:"))
-                {
-                    var magicType = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; //2 bm, 1 wm
-                }
-                else if (challenge.ChallengeRequirement.StartsWith("76:"))
-                {
-                    var atleastTurns = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
+                    //68 complete
+                    //33 no deaths
+                    //38 no continues
+                    //1 no items
+                    //6 no magic
+                    //12 no recovery magic
+                    //14 no magic of type
+                    //17 no lb
+                    //75::x number of turns
+                    //77::x boss number of turns
+                    //40::x no more than items
+                    //29 no espers
+                    //69 exclude rain/lasswell 2001
+                    //20 no abilities
+                    if (challenge.ChallengeRequirement.StartsWith("34:"))
+                    {
+                        var partyOfAtleast = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("35:"))
+                    {
+                        var partyOfLessThan = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("36:"))
+                    {
+                        var requiresUnit = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("18:") || challenge.ChallengeRequirement.StartsWith("16:") || challenge.ChallengeRequirement.StartsWith("49:"))
+                    {
+                        //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
+                        //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
+                        //MissionChallenge.Add(Variable.LimitBreaks, "100000102:6");
+                        // MissionChallenge.Add(Variable.KnockOuts, "");
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("15:")) // magic
+                    {
+                        //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
+                        //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("32:") || challenge.ChallengeRequirement.StartsWith("28")) // esper
+                    {
+                        //MissionChallenge.Add(Variable.Espers, "100000102:6");
+                        //MissionChallenge.Add(Variable.KnockOuts, "100000102:6");
+                        //var KillBossWithLbObj = BattleGroupMst.OrderByDescending(b => b[Variable.MissionWaveId].ToString()).First();
+                        //var KillBossWithLb = KillBossWithLbObj[Variable.MissionWaveId].ToString() + "@" + KillBossWithLbObj[Variable.MonsterPartId].ToString() + ":1@5:" + "100000102";
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("30:"))
+                    {
+                        var esper = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("45:"))
+                    {
+                        var espers = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("26:"))
+                    {
+                        var damageType = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("7:"))
+                    {
+                        var cast = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("21:"))
+                    {
+                        var ability = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("2:"))
+                    {
+                        var item = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("0"))
+                    {
+                        // any item
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("5"))
+                    {
+                        // magic
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("41:"))
+                    {
+                        var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; // +1
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("59:"))
+                    {
+                        var type = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                        var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("47:"))
+                    {
+                        var type = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1];
+                        var magics = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("13:"))
+                    {
+                        var magicType = challenge.ChallengeRequirement.Split(new char[1] { ':' })[1]; //2 bm, 1 wm
+                    }
+                    else if (challenge.ChallengeRequirement.StartsWith("76:"))
+                    {
+                        var atleastTurns = challenge.ChallengeRequirement.Split(new char[1] { ':' })[2]; // +1
+                    }
                 }
             }
 

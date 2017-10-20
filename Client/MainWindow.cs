@@ -304,7 +304,22 @@ namespace Client
             ProxyIP.Text = Settings.Default.ProxyIP;
             ProxyPort.Text = Settings.Default.ProxyPort;
         }
+        private void CBTrophies_CheckedChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
 
+            if (cb.Checked)
+            {
+                LBLevel.Text = "";
+                LBLevel.Enabled = false;
+                CBChallenge.Checked = false;
+                CBChallenge.Enabled = false;
+            }
+            else
+            {
+                LBLevel.Enabled = true;
+            }
+        }
         private void arenaButton_Click(object sender, EventArgs e)
         {
             var t = new Thread(() =>
