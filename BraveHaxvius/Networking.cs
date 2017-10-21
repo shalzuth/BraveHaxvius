@@ -169,7 +169,7 @@ namespace BraveHaxvius
             webRequest.Headers[HttpRequestHeader.AcceptLanguage] = "en-us";
             webRequest.KeepAlive = true;
             webRequest.ProtocolVersion = HttpVersion.Version10;
-            if (client.ProxyIpAddr != "shalzuthproxy")
+            if (!String.IsNullOrWhiteSpace(client.ProxyIpAddr))
                 webRequest.Proxy = new WebProxy(client.ProxyIpAddr, client.ProxyPort);
             var content = Encoding.UTF8.GetBytes(data);
             using (Stream stream = webRequest.GetRequestStream())

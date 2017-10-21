@@ -10,24 +10,28 @@ using System.Threading;
 using System.Windows.Forms;
 using BraveHaxvius;
 using BraveHaxvius.Data;
-using System.Windows.Controls;
 using Client.Properties;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Client
 {
     public partial class MainWindow : Form
     {
+        BraveExvius client = new BraveExvius();
         DataTable injectDataTable = new DataTable();
-        DataTable unitDataTable = new DataTable();
-        Newtonsoft.Json.Linq.JToken Gachas;
-        BraveExvius JP = new BraveExvius();
+        JToken Gachas;
 
         public MainWindow()
         {
+            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            InitDatagrid();
-            InitMissions();
-            System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = false;
+            InitStaticItems();
+            client.FacebookUserId = fbidInput.Text;
+            client.FacebookToken = fbtokenInput.Text;
+            client.ProxyIpAddr = ProxyIP.Text;
+            if (!String.IsNullOrWhiteSpace(ProxyIP.Text))
+                client.ProxyPort = int.Parse(ProxyPort.Text);
             Logger.LogHook = Hook;
         }
         public void Hook(String s)
@@ -35,7 +39,7 @@ namespace Client
             consoleLog.Focus();
             consoleLog.AppendText(s+ "\r\n");
         }
-        private void InitDatagrid()
+        private void InitStaticItems()
         {
             injectDataTable.Columns.Add("Count");
             injectDataTable.Columns.Add("Type");
@@ -46,9 +50,15 @@ namespace Client
             Materia.Materias.FindAll(i => i.Description != null).ForEach(i => injectDataTable.Rows.Add(0, "materia", i.Name, i.MateriaId));
             injectDataGrid.DataSource = injectDataTable;
             
-            unitDataTable.Columns.Add("Name");
-            Unit.Units.FindAll(u => u.Description != null && u.IsSummonable == "1" && u.UnitId == u.BaseUnitId).ForEach(u => unitDataTable.Rows.Add(u.Name));
-            unitDataGrid.DataSource = unitDataTable;
+            Unit.Units.FindAll(u => u.Description != null && u.IsSummonable == "1" && u.UnitId == u.BaseUnitId);
+            List<Mission> list = new List<Mission>();
+            Mission.Missions.FindAll(i => i.Description != null).ForEach(i => list.Add(i));
+
+            unitSelect.DataSource = Unit.Units.FindAll(u => u.Description != null && u.IsSummonable == "1" && u.UnitId == u.BaseUnitId);
+            unitSelect.DisplayMember = "Name";
+            
+            missionSelect.DataSource = Mission.Missions.FindAll(i => i.Description != null);
+            missionSelect.DisplayMember = "Name";
         }
         private void InitGacha(BraveExvius b)
         {
@@ -64,22 +74,9 @@ namespace Client
 
             JPGachaTicket.SelectedIndex = 0;
         }
-        private void InitMissions()
-        {
-            List<Mission> list = new List<Mission>();
-            Mission.Missions.FindAll(i => i.Description != null).ForEach(i => list.Add(i));
-            
-            MissionSelect.DataSource = list;
-            MissionSelect.DisplayMember = "Name";
-            MissionSelect.ValueMember = "MissionId";
-        }
         private void InjectSearchInput_TextChanged(object sender, EventArgs e)
         {
             injectDataTable.DefaultView.RowFilter = string.Format("Name LIKE '%{0}%'", injectSearchInput.Text);
-        }
-        private void UnitSearchInput_TextChanged(object sender, EventArgs e)
-        {
-            unitDataTable.DefaultView.RowFilter = string.Format("name LIKE '%{0}%'", unitSearchInput.Text);
         }
         private void InjectButton_Click(object sender, EventArgs e)
         {
@@ -89,15 +86,8 @@ namespace Client
                 var itemHax = String.Join(",", injectDataTable.Rows.Cast<DataRow>().ToList().FindAll(i => i.ItemArray[1].ToString() == "item" && i.ItemArray[0].ToString() != "0").Select(i => "20:" + i.ItemArray[3] + ":" + i.ItemArray[0]));
                 var equipmentHax = String.Join(",", injectDataTable.Rows.Cast<DataRow>().ToList().FindAll(i => i.ItemArray[1].ToString() == "equip" && i.ItemArray[0].ToString() != "0").Select(i => "21:" + i.ItemArray[3] + ":" + i.ItemArray[0]));
                 var materiaHax = String.Join(",", injectDataTable.Rows.Cast<DataRow>().ToList().FindAll(i => i.ItemArray[1].ToString() == "materia" && i.ItemArray[0].ToString() != "0").Select(i => "22:" + i.ItemArray[3] + ":" + i.ItemArray[0]));
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                b.DoMission(Mission.AirshipDeck, false, itemHax, equipmentHax, materiaHax);
+                client.Login();
+                client.DoMission(Mission.AirshipDeck, false, itemHax, equipmentHax, materiaHax);
                 injectButton.Enabled = true;
             });
             t.IsBackground = true;
@@ -113,28 +103,23 @@ namespace Client
                     return 1;
                 };
                 summonButton.Enabled = false;
-                var unit = Unit.Units.First(u => u.Name == unitDataGrid.Rows[unitDataGrid.CurrentRow.Index].Cells[0].Value.ToString() && u.UnitId == u.BaseUnitId);
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                b.UnitHunter(unit, iteration);
-                summonButton.Text = "summon highlighted";
+                var unit = unitSelect.SelectedItem as Unit;
+                client.Login();
+                client.UnitHunter(unit, iteration);
+                summonButton.Text = "summon";
                 summonButton.Enabled = true;
             });
             t.IsBackground = true;
             t.Start();
         }
-
+        private void GitHubButton_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/shalzuth/BraveHaxvius");
+        }
         private void DonateButton_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=shal.zuth@gmail.com&lc=US&currency_code=USD&bn=PP%2dDonationsBF");
         }
-
         private void LevelPartyButton_Click(object sender, EventArgs e)
         {
             var t = new Thread(() =>
@@ -145,15 +130,8 @@ namespace Client
                     return 1;
                 };
                 levelPartyButton.Enabled = false;
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                b.LevelParty(update);
+                client.Login();
+                client.LevelParty(update);
                 levelPartyButton.Enabled = true;
             });
             t.IsBackground = true;
@@ -169,19 +147,10 @@ namespace Client
                     return 1;
                 };
                 rankUpButton.Enabled = false;
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                fbidInput.Text = b.FacebookUserId;
-                fbtokenInput.Text = b.FacebookUserId;
+                client.Login();
                 while (true)
                 {
-                    var result = b.DoMission(Mission.PortCityLodin, false, null, null, null, false, false, false, false, false, null, 15000);
+                    var result = client.DoMission(Mission.PortCityLodin, false, null, null, null, false, false, false, false, false, null, 15000);
                     var level = result[GameObject.UserTeamInfo].First()[Variable.Level].ToString();
                     var experience = result[GameObject.UserTeamInfo].First()[Variable.Experience].ToString();
                     levelStatus.Text = "Rank " + level + " : experience = " + experience;
@@ -200,15 +169,8 @@ namespace Client
             var t = new Thread(() =>
             {
                 JPLogin.Enabled = false;
-                JP = new BraveExvius
-                {
-                    TransferCode = fbidInput.Text.Replace(" ", ""),
-                    TransferPin = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                JP.LoginJapan(JP.TransferCode, JP.TransferPin);
-                InitGacha(JP);
+                client.LoginJapan(client.TransferCode, client.TransferPin);
+                InitGacha(client);
                 JPLogin.Enabled = true;
                 GachaSummon.Enabled = true;
             });
@@ -226,7 +188,7 @@ namespace Client
                 var Gacha = Gachas.First(g => g[Variable.GachaId].ToString() == GachaId);
                 var GachaTicket = Ticket.Tickets.First(x => x.Name == JPGachaTicket.Text).Id;
                 var GachaSubId = Gacha[Variable.Options].ToString().Split(',').Last();
-                JP.Summon(Gacha[Variable.GachaId].ToString(), GachaSubId, "1", GachaTicket);
+                client.Summon(Gacha[Variable.GachaId].ToString(), GachaSubId, "1", GachaTicket);
 
                 GachaSummon.Enabled = true;
             });
@@ -239,22 +201,15 @@ namespace Client
             var t = new Thread(() =>
             {
                 StartMission.Enabled = false;
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    Device = RBiOS.Checked ? "iPhone9,3" : "XT890",
-                    OperatingSystem = RBiOS.Checked ? "ios10.2.1" : RBAndroid.Checked ? "android4.4.2" : "amazon",
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyPort.Text.Replace(" ", "")) ? Int32.Parse(ProxyPort.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                var mission = Mission.Missions.First(i => i.MissionId == MissionSelect.SelectedValue.ToString());
-                b.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
+                client.Device = RBiOS.Checked ? "iPhone9,3" : "XT890";
+                client.OperatingSystem = RBiOS.Checked ? "ios10.2.1" : RBAndroid.Checked ? "android4.4.2" : "amazon";
+                client.Login();
+                var mission = missionSelect.SelectedItem as Mission;
+                client.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
                 var count = 1;
                 while (!String.IsNullOrEmpty(RepeatMission.Text.Replace(" ", "")) && count < Int32.Parse(RepeatMission.Text.Replace(" ", "")))
                 {
-                    b.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
+                    client.DoMission(mission, CBFriends.Checked, null, null, null, CBTrophies.Checked, CBChallenge.Checked, CBLoot.Checked, CBUnits.Checked, CBExplore.Checked, LBLevel.Text, 3000);
                     count++;
                     Thread.Sleep(3000);
                 }
@@ -270,12 +225,16 @@ namespace Client
 
         private void FbidInput_TextChanged(object sender, EventArgs e)
         {
+            fbidInput.Text = fbidInput.Text.Replace(" ", "");
+            client.FacebookUserId = fbidInput.Text;
             Settings.Default.fbidInput = fbidInput.Text;
             Settings.Default.Save();
         }
 
         private void fbtokenInput_TextChanged(object sender, EventArgs e)
         {
+            fbtokenInput.Text = fbtokenInput.Text.Replace(" ", "");
+            client.FacebookToken = fbtokenInput.Text;
             Settings.Default.fbtokenInput = fbtokenInput.Text;
             Settings.Default.Save();
         }
@@ -291,17 +250,9 @@ namespace Client
             Settings.Default.ProxyPort = ProxyPort.Text;
             Settings.Default.Save();
         }
-
-        private void UserSettings_Load(object sender, EventArgs e)
-        {
-            fbidInput.Text = Settings.Default.fbidInput;
-            fbtokenInput.Text = Settings.Default.fbtokenInput;
-            ProxyIP.Text = Settings.Default.ProxyIP;
-            ProxyPort.Text = Settings.Default.ProxyPort;
-        }
         private void CBTrophies_CheckedChanged(object sender, EventArgs e)
         {
-            System.Windows.Forms.CheckBox cb = sender as System.Windows.Forms.CheckBox;
+            CheckBox cb = sender as CheckBox;
 
             if (cb.Checked)
             {
@@ -325,18 +276,72 @@ namespace Client
                     return 1;
                 };
                 arenaButton.Enabled = false;
-                var b = new BraveExvius
-                {
-                    FacebookUserId = fbidInput.Text.Replace(" ", ""),
-                    FacebookToken = fbtokenInput.Text.Replace(" ", ""),
-                    ProxyIpAddr = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? ProxyIP.Text.Replace(" ", "") : "shalzuthproxy",
-                    ProxyPort = !String.IsNullOrEmpty(ProxyIP.Text.Replace(" ", "")) ? Int32.Parse(ProxyIP.Text.Replace(" ", "")) : 0
-                };
-                b.Login();
-                fbidInput.Text = b.FacebookUserId;
-                fbtokenInput.Text = b.FacebookUserId;
-                b.ClearArena();
+                client.Login();
+                client.ClearArena();
                 arenaButton.Enabled = true;
+            });
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        public class Sell
+        {
+            public String ItemName;
+            public String SellString;
+            public int count;
+            public int price;
+            public override string ToString()
+            {
+                return ItemName + " : " + count;
+            }
+        }
+        private void sellButton_Click(object sender, EventArgs e)
+        {
+            var t = new Thread(() =>
+            {
+                if (sellButton.Text == "login")
+                {
+                    sellButton.Enabled = false;
+                    client.Login();
+                    var items = client.GetUserInfo[GameObject.UserItemInfo_4rC0aLkA].First()[Variable.ItemList].ToString().Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    var equips = client.GetUserInfo[GameObject.UserEquipItemInfo_w83oV9uP].First()[Variable.ItemList].ToString().Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                    var materias = client.GetUserInfo[GameObject.UserMateriaInfo_aS39Eshy].First()[Variable.ItemList].ToString().Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                    List<Sell> sellable = new List<Sell>();
+                    foreach (var itemInfo in items)
+                    {
+                        var id = itemInfo.Split(new char[1] { ':' })[0];
+                        var count = itemInfo.Split(new char[1] { ':' })[1];
+                        var item = Item.Items.First(i => i.ItemId == id);
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "20:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                    }
+                    foreach (var itemInfo in equips)
+                    {
+                        var id = itemInfo.Split(new char[1] { ':' })[0];
+                        var count = itemInfo.Split(new char[1] { ':' })[1];
+                        var item = Equipment.Equipments.First(i => i.EquipId == id);
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "21:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                    }
+                    foreach (var itemInfo in materias)
+                    {
+                        var id = itemInfo.Split(new char[1] { ':' })[0];
+                        var count = itemInfo.Split(new char[1] { ':' })[1];
+                        var item = Materia.Materias.First(i => i.MateriaId == id);
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "22:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                    }
+                    sellable = sellable.OrderByDescending(s => s.count).ToList();
+                    sellButton.Text = "sell";
+                    sellItemSelect.DataSource = sellable;
+                    sellButton.Enabled = true;
+                }
+                else if (sellButton.Text == "sell")
+                {
+                    sellButton.Enabled = false;
+                    client.Network.SendPacket(Request.ItemSell, new JProperty(Variable.ItemSell, new JArray(new JObject(
+                        new JProperty(Variable.StoreItemSellId, (sellItemSelect.SelectedItem as Sell).SellString),
+                        new JProperty(Variable.StoreItemSellPrice, ((sellItemSelect.SelectedItem as Sell).price * (sellItemSelect.SelectedItem as Sell).count).ToString())))));
+                    sellButton.Enabled = true;
+                }
             });
             t.IsBackground = true;
             t.Start();

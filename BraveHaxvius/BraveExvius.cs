@@ -15,7 +15,7 @@ namespace BraveHaxvius
     {
         public String AppVersion { get; set; } = "1028";
         public String RscVersion { get; set; } = "0";
-        public String MstVersion { get; set; } = "992";
+        public String MstVersion { get; set; } = "1004";
         public String Device { get; set; } = "iPhone9,3";
         //public String Device { get; set; } = "XT890";
         //public String Device { get; set; } = "SM-E7000";
@@ -43,7 +43,7 @@ namespace BraveHaxvius
 
         public Networking Network { get; set; }
 
-        public String ProxyIpAddr { get; set; } = "shalzuthproxy";
+        public String ProxyIpAddr { get; set; } = "";
         public Int32 ProxyPort { get; set; } = 0;
         public BraveExvius()
         {
@@ -136,7 +136,7 @@ namespace BraveHaxvius
                 UpdateNews();
                 UpdateExpeditions();
             }
-            UpdateMail();
+            //UpdateMail();
             UpdateGachaList();
         }
         public void LoginFacebook(String fbId, String fbToken)

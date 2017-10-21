@@ -29,20 +29,18 @@
         private void InitializeComponent()
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.injectionTab = new System.Windows.Forms.TabPage();
             this.injectDataGrid = new System.Windows.Forms.DataGridView();
             this.injectSearchInput = new System.Windows.Forms.TextBox();
             this.injectButton = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.unitHunterTab = new System.Windows.Forms.TabPage();
+            this.sell4Star = new System.Windows.Forms.CheckBox();
+            this.sell5Star = new System.Windows.Forms.CheckBox();
+            this.sell3Star = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.unitSelect = new System.Windows.Forms.ComboBox();
             this.summonButton = new System.Windows.Forms.Button();
-            this.unitSearchInput = new System.Windows.Forms.TextBox();
-            this.unitDataGrid = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.arenaButton = new System.Windows.Forms.Button();
-            this.rankUpButton = new System.Windows.Forms.Button();
-            this.levelStatus = new System.Windows.Forms.RichTextBox();
-            this.levelPartyButton = new System.Windows.Forms.Button();
-            this.Missions = new System.Windows.Forms.TabPage();
+            this.missionsTab = new System.Windows.Forms.TabPage();
             this.RepeatMission = new System.Windows.Forms.TextBox();
             this.RepeatLabel = new System.Windows.Forms.Label();
             this.RBAmazon = new System.Windows.Forms.RadioButton();
@@ -58,8 +56,17 @@
             this.StartMission = new System.Windows.Forms.Button();
             this.CBFriends = new System.Windows.Forms.CheckBox();
             this.MissionIdLabel = new System.Windows.Forms.Label();
-            this.MissionSelect = new System.Windows.Forms.ComboBox();
-            this.JPSummon = new System.Windows.Forms.TabPage();
+            this.missionSelect = new System.Windows.Forms.ComboBox();
+            this.levelingTab = new System.Windows.Forms.TabPage();
+            this.arenaButton = new System.Windows.Forms.Button();
+            this.rankUpButton = new System.Windows.Forms.Button();
+            this.levelStatus = new System.Windows.Forms.RichTextBox();
+            this.levelPartyButton = new System.Windows.Forms.Button();
+            this.sellTab = new System.Windows.Forms.TabPage();
+            this.sellItemSelect = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.sellButton = new System.Windows.Forms.Button();
+            this.jpSummonTab = new System.Windows.Forms.TabPage();
             this.JPGachaTicket = new System.Windows.Forms.ComboBox();
             this.JPLogin = new System.Windows.Forms.Button();
             this.GachaSummon = new System.Windows.Forms.Button();
@@ -74,41 +81,43 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.gitHubLink = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.injectionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.Missions.SuspendLayout();
-            this.JPSummon.SuspendLayout();
+            this.unitHunterTab.SuspendLayout();
+            this.missionsTab.SuspendLayout();
+            this.levelingTab.SuspendLayout();
+            this.sellTab.SuspendLayout();
+            this.jpSummonTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.Missions);
-            this.tabControl1.Controls.Add(this.JPSummon);
+            this.tabControl1.Controls.Add(this.injectionTab);
+            this.tabControl1.Controls.Add(this.unitHunterTab);
+            this.tabControl1.Controls.Add(this.missionsTab);
+            this.tabControl1.Controls.Add(this.levelingTab);
+            this.tabControl1.Controls.Add(this.sellTab);
+            this.tabControl1.Controls.Add(this.jpSummonTab);
             this.tabControl1.Location = new System.Drawing.Point(13, 13);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(789, 231);
             this.tabControl1.TabIndex = 2;
             // 
-            // tabPage1
+            // injectionTab
             // 
-            this.tabPage1.Controls.Add(this.injectDataGrid);
-            this.tabPage1.Controls.Add(this.injectSearchInput);
-            this.tabPage1.Controls.Add(this.injectButton);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(781, 205);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Injection";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.injectionTab.Controls.Add(this.injectDataGrid);
+            this.injectionTab.Controls.Add(this.injectSearchInput);
+            this.injectionTab.Controls.Add(this.injectButton);
+            this.injectionTab.Location = new System.Drawing.Point(4, 22);
+            this.injectionTab.Name = "injectionTab";
+            this.injectionTab.Padding = new System.Windows.Forms.Padding(3);
+            this.injectionTab.Size = new System.Drawing.Size(781, 205);
+            this.injectionTab.TabIndex = 0;
+            this.injectionTab.Text = "Injection";
+            this.injectionTab.UseVisualStyleBackColor = true;
             // 
             // injectDataGrid
             // 
@@ -117,7 +126,7 @@
             this.injectDataGrid.AllowUserToResizeRows = false;
             this.injectDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.injectDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.injectDataGrid.Location = new System.Drawing.Point(3, 6);
+            this.injectDataGrid.Location = new System.Drawing.Point(3, 3);
             this.injectDataGrid.Name = "injectDataGrid";
             this.injectDataGrid.RowHeadersVisible = false;
             this.injectDataGrid.Size = new System.Drawing.Size(772, 165);
@@ -125,7 +134,7 @@
             // 
             // injectSearchInput
             // 
-            this.injectSearchInput.Location = new System.Drawing.Point(6, 178);
+            this.injectSearchInput.Location = new System.Drawing.Point(3, 182);
             this.injectSearchInput.Name = "injectSearchInput";
             this.injectSearchInput.Size = new System.Drawing.Size(253, 20);
             this.injectSearchInput.TabIndex = 2;
@@ -134,135 +143,116 @@
             // 
             // injectButton
             // 
-            this.injectButton.Location = new System.Drawing.Point(700, 176);
+            this.injectButton.Location = new System.Drawing.Point(698, 176);
             this.injectButton.Name = "injectButton";
-            this.injectButton.Size = new System.Drawing.Size(75, 23);
+            this.injectButton.Size = new System.Drawing.Size(77, 23);
             this.injectButton.TabIndex = 1;
             this.injectButton.Text = "inject";
             this.injectButton.UseVisualStyleBackColor = true;
             this.injectButton.Click += new System.EventHandler(this.InjectButton_Click);
             // 
-            // tabPage2
+            // unitHunterTab
             // 
-            this.tabPage2.Controls.Add(this.summonButton);
-            this.tabPage2.Controls.Add(this.unitSearchInput);
-            this.tabPage2.Controls.Add(this.unitDataGrid);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(781, 205);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Unit Hunter";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.unitHunterTab.Controls.Add(this.sell4Star);
+            this.unitHunterTab.Controls.Add(this.sell5Star);
+            this.unitHunterTab.Controls.Add(this.sell3Star);
+            this.unitHunterTab.Controls.Add(this.label5);
+            this.unitHunterTab.Controls.Add(this.unitSelect);
+            this.unitHunterTab.Controls.Add(this.summonButton);
+            this.unitHunterTab.Location = new System.Drawing.Point(4, 22);
+            this.unitHunterTab.Name = "unitHunterTab";
+            this.unitHunterTab.Padding = new System.Windows.Forms.Padding(3);
+            this.unitHunterTab.Size = new System.Drawing.Size(781, 205);
+            this.unitHunterTab.TabIndex = 1;
+            this.unitHunterTab.Text = "Unit Hunter";
+            this.unitHunterTab.UseVisualStyleBackColor = true;
+            // 
+            // sell4Star
+            // 
+            this.sell4Star.AutoSize = true;
+            this.sell4Star.Location = new System.Drawing.Point(56, 57);
+            this.sell4Star.Name = "sell4Star";
+            this.sell4Star.Size = new System.Drawing.Size(56, 17);
+            this.sell4Star.TabIndex = 7;
+            this.sell4Star.Text = "Sell 4*";
+            this.sell4Star.UseVisualStyleBackColor = true;
+            this.sell4Star.Visible = false;
+            // 
+            // sell5Star
+            // 
+            this.sell5Star.AutoSize = true;
+            this.sell5Star.Location = new System.Drawing.Point(56, 80);
+            this.sell5Star.Name = "sell5Star";
+            this.sell5Star.Size = new System.Drawing.Size(56, 17);
+            this.sell5Star.TabIndex = 6;
+            this.sell5Star.Text = "Sell 5*";
+            this.sell5Star.UseVisualStyleBackColor = true;
+            this.sell5Star.Visible = false;
+            // 
+            // sell3Star
+            // 
+            this.sell3Star.AutoSize = true;
+            this.sell3Star.Location = new System.Drawing.Point(56, 34);
+            this.sell3Star.Name = "sell3Star";
+            this.sell3Star.Size = new System.Drawing.Size(56, 17);
+            this.sell3Star.TabIndex = 5;
+            this.sell3Star.Text = "Sell 3*";
+            this.sell3Star.UseVisualStyleBackColor = true;
+            this.sell3Star.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(26, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Unit";
+            // 
+            // unitSelect
+            // 
+            this.unitSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.unitSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.unitSelect.FormattingEnabled = true;
+            this.unitSelect.Location = new System.Drawing.Point(56, 6);
+            this.unitSelect.Name = "unitSelect";
+            this.unitSelect.Size = new System.Drawing.Size(169, 21);
+            this.unitSelect.TabIndex = 3;
             // 
             // summonButton
             // 
-            this.summonButton.Location = new System.Drawing.Point(648, 176);
+            this.summonButton.Location = new System.Drawing.Point(696, 176);
             this.summonButton.Name = "summonButton";
-            this.summonButton.Size = new System.Drawing.Size(127, 23);
+            this.summonButton.Size = new System.Drawing.Size(79, 23);
             this.summonButton.TabIndex = 2;
-            this.summonButton.Text = "summon highlighted";
+            this.summonButton.Text = "summon";
             this.summonButton.UseVisualStyleBackColor = true;
             this.summonButton.Click += new System.EventHandler(this.SummonButton_Click);
             // 
-            // unitSearchInput
+            // missionsTab
             // 
-            this.unitSearchInput.Location = new System.Drawing.Point(7, 179);
-            this.unitSearchInput.Name = "unitSearchInput";
-            this.unitSearchInput.Size = new System.Drawing.Size(237, 20);
-            this.unitSearchInput.TabIndex = 1;
-            this.unitSearchInput.Text = "search";
-            this.unitSearchInput.TextChanged += new System.EventHandler(this.UnitSearchInput_TextChanged);
-            // 
-            // unitDataGrid
-            // 
-            this.unitDataGrid.AllowUserToAddRows = false;
-            this.unitDataGrid.AllowUserToDeleteRows = false;
-            this.unitDataGrid.AllowUserToResizeRows = false;
-            this.unitDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.unitDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.unitDataGrid.Location = new System.Drawing.Point(7, 7);
-            this.unitDataGrid.Name = "unitDataGrid";
-            this.unitDataGrid.RowHeadersVisible = false;
-            this.unitDataGrid.Size = new System.Drawing.Size(768, 166);
-            this.unitDataGrid.TabIndex = 0;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.arenaButton);
-            this.tabPage3.Controls.Add(this.rankUpButton);
-            this.tabPage3.Controls.Add(this.levelStatus);
-            this.tabPage3.Controls.Add(this.levelPartyButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(781, 205);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Leveling";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // arenaButton
-            // 
-            this.arenaButton.Location = new System.Drawing.Point(335, 155);
-            this.arenaButton.Name = "arenaButton";
-            this.arenaButton.Size = new System.Drawing.Size(75, 23);
-            this.arenaButton.TabIndex = 3;
-            this.arenaButton.Text = "do arena";
-            this.arenaButton.UseVisualStyleBackColor = true;
-            this.arenaButton.Click += new System.EventHandler(this.arenaButton_Click);
-            // 
-            // rankUpButton
-            // 
-            this.rankUpButton.Location = new System.Drawing.Point(432, 155);
-            this.rankUpButton.Name = "rankUpButton";
-            this.rankUpButton.Size = new System.Drawing.Size(75, 23);
-            this.rankUpButton.TabIndex = 2;
-            this.rankUpButton.Text = "rank up";
-            this.rankUpButton.UseVisualStyleBackColor = true;
-            this.rankUpButton.Click += new System.EventHandler(this.RankUpButton_Click);
-            // 
-            // levelStatus
-            // 
-            this.levelStatus.Location = new System.Drawing.Point(4, 4);
-            this.levelStatus.Name = "levelStatus";
-            this.levelStatus.ReadOnly = true;
-            this.levelStatus.Size = new System.Drawing.Size(774, 124);
-            this.levelStatus.TabIndex = 1;
-            this.levelStatus.Text = "status...";
-            // 
-            // levelPartyButton
-            // 
-            this.levelPartyButton.Location = new System.Drawing.Point(238, 155);
-            this.levelPartyButton.Name = "levelPartyButton";
-            this.levelPartyButton.Size = new System.Drawing.Size(75, 23);
-            this.levelPartyButton.TabIndex = 0;
-            this.levelPartyButton.Text = "level party";
-            this.levelPartyButton.UseVisualStyleBackColor = true;
-            this.levelPartyButton.Click += new System.EventHandler(this.LevelPartyButton_Click);
-            // 
-            // Missions
-            // 
-            this.Missions.Controls.Add(this.RepeatMission);
-            this.Missions.Controls.Add(this.RepeatLabel);
-            this.Missions.Controls.Add(this.RBAmazon);
-            this.Missions.Controls.Add(this.RBAndroid);
-            this.Missions.Controls.Add(this.RBiOS);
-            this.Missions.Controls.Add(this.LBLevel);
-            this.Missions.Controls.Add(this.LBLabel);
-            this.Missions.Controls.Add(this.CBExplore);
-            this.Missions.Controls.Add(this.CBUnits);
-            this.Missions.Controls.Add(this.CBLoot);
-            this.Missions.Controls.Add(this.CBChallenge);
-            this.Missions.Controls.Add(this.CBTrophies);
-            this.Missions.Controls.Add(this.StartMission);
-            this.Missions.Controls.Add(this.CBFriends);
-            this.Missions.Controls.Add(this.MissionIdLabel);
-            this.Missions.Controls.Add(this.MissionSelect);
-            this.Missions.Location = new System.Drawing.Point(4, 22);
-            this.Missions.Name = "Missions";
-            this.Missions.Size = new System.Drawing.Size(781, 205);
-            this.Missions.TabIndex = 4;
-            this.Missions.Text = "Missions";
-            this.Missions.UseVisualStyleBackColor = true;
+            this.missionsTab.Controls.Add(this.RepeatMission);
+            this.missionsTab.Controls.Add(this.RepeatLabel);
+            this.missionsTab.Controls.Add(this.RBAmazon);
+            this.missionsTab.Controls.Add(this.RBAndroid);
+            this.missionsTab.Controls.Add(this.RBiOS);
+            this.missionsTab.Controls.Add(this.LBLevel);
+            this.missionsTab.Controls.Add(this.LBLabel);
+            this.missionsTab.Controls.Add(this.CBExplore);
+            this.missionsTab.Controls.Add(this.CBUnits);
+            this.missionsTab.Controls.Add(this.CBLoot);
+            this.missionsTab.Controls.Add(this.CBChallenge);
+            this.missionsTab.Controls.Add(this.CBTrophies);
+            this.missionsTab.Controls.Add(this.StartMission);
+            this.missionsTab.Controls.Add(this.CBFriends);
+            this.missionsTab.Controls.Add(this.MissionIdLabel);
+            this.missionsTab.Controls.Add(this.missionSelect);
+            this.missionsTab.Location = new System.Drawing.Point(4, 22);
+            this.missionsTab.Name = "missionsTab";
+            this.missionsTab.Size = new System.Drawing.Size(781, 205);
+            this.missionsTab.TabIndex = 4;
+            this.missionsTab.Text = "Missions";
+            this.missionsTab.UseVisualStyleBackColor = true;
             // 
             // RepeatMission
             // 
@@ -385,7 +375,7 @@
             // 
             // StartMission
             // 
-            this.StartMission.Location = new System.Drawing.Point(703, 170);
+            this.StartMission.Location = new System.Drawing.Point(703, 179);
             this.StartMission.Name = "StartMission";
             this.StartMission.Size = new System.Drawing.Size(75, 23);
             this.StartMission.TabIndex = 4;
@@ -412,28 +402,119 @@
             this.MissionIdLabel.TabIndex = 2;
             this.MissionIdLabel.Text = "Mission ID";
             // 
-            // MissionSelect
+            // missionSelect
             // 
-            this.MissionSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.MissionSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.MissionSelect.FormattingEnabled = true;
-            this.MissionSelect.Location = new System.Drawing.Point(65, 7);
-            this.MissionSelect.Name = "MissionSelect";
-            this.MissionSelect.Size = new System.Drawing.Size(380, 21);
-            this.MissionSelect.TabIndex = 1;
+            this.missionSelect.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.missionSelect.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.missionSelect.FormattingEnabled = true;
+            this.missionSelect.Location = new System.Drawing.Point(65, 7);
+            this.missionSelect.Name = "missionSelect";
+            this.missionSelect.Size = new System.Drawing.Size(380, 21);
+            this.missionSelect.TabIndex = 1;
             // 
-            // JPSummon
+            // levelingTab
             // 
-            this.JPSummon.Controls.Add(this.JPGachaTicket);
-            this.JPSummon.Controls.Add(this.JPLogin);
-            this.JPSummon.Controls.Add(this.GachaSummon);
-            this.JPSummon.Controls.Add(this.JPGacha);
-            this.JPSummon.Location = new System.Drawing.Point(4, 22);
-            this.JPSummon.Name = "JPSummon";
-            this.JPSummon.Size = new System.Drawing.Size(781, 205);
-            this.JPSummon.TabIndex = 3;
-            this.JPSummon.Text = "JP Summon";
-            this.JPSummon.UseVisualStyleBackColor = true;
+            this.levelingTab.Controls.Add(this.arenaButton);
+            this.levelingTab.Controls.Add(this.rankUpButton);
+            this.levelingTab.Controls.Add(this.levelStatus);
+            this.levelingTab.Controls.Add(this.levelPartyButton);
+            this.levelingTab.Location = new System.Drawing.Point(4, 22);
+            this.levelingTab.Name = "levelingTab";
+            this.levelingTab.Size = new System.Drawing.Size(781, 205);
+            this.levelingTab.TabIndex = 2;
+            this.levelingTab.Text = "Leveling";
+            this.levelingTab.UseVisualStyleBackColor = true;
+            // 
+            // arenaButton
+            // 
+            this.arenaButton.Location = new System.Drawing.Point(335, 155);
+            this.arenaButton.Name = "arenaButton";
+            this.arenaButton.Size = new System.Drawing.Size(75, 23);
+            this.arenaButton.TabIndex = 3;
+            this.arenaButton.Text = "do arena";
+            this.arenaButton.UseVisualStyleBackColor = true;
+            this.arenaButton.Click += new System.EventHandler(this.arenaButton_Click);
+            // 
+            // rankUpButton
+            // 
+            this.rankUpButton.Location = new System.Drawing.Point(432, 155);
+            this.rankUpButton.Name = "rankUpButton";
+            this.rankUpButton.Size = new System.Drawing.Size(75, 23);
+            this.rankUpButton.TabIndex = 2;
+            this.rankUpButton.Text = "rank up";
+            this.rankUpButton.UseVisualStyleBackColor = true;
+            this.rankUpButton.Click += new System.EventHandler(this.RankUpButton_Click);
+            // 
+            // levelStatus
+            // 
+            this.levelStatus.Location = new System.Drawing.Point(4, 4);
+            this.levelStatus.Name = "levelStatus";
+            this.levelStatus.ReadOnly = true;
+            this.levelStatus.Size = new System.Drawing.Size(774, 124);
+            this.levelStatus.TabIndex = 1;
+            this.levelStatus.Text = "status...";
+            // 
+            // levelPartyButton
+            // 
+            this.levelPartyButton.Location = new System.Drawing.Point(238, 155);
+            this.levelPartyButton.Name = "levelPartyButton";
+            this.levelPartyButton.Size = new System.Drawing.Size(75, 23);
+            this.levelPartyButton.TabIndex = 0;
+            this.levelPartyButton.Text = "level party";
+            this.levelPartyButton.UseVisualStyleBackColor = true;
+            this.levelPartyButton.Click += new System.EventHandler(this.LevelPartyButton_Click);
+            // 
+            // sellTab
+            // 
+            this.sellTab.Controls.Add(this.sellItemSelect);
+            this.sellTab.Controls.Add(this.label6);
+            this.sellTab.Controls.Add(this.sellButton);
+            this.sellTab.Location = new System.Drawing.Point(4, 22);
+            this.sellTab.Name = "sellTab";
+            this.sellTab.Size = new System.Drawing.Size(781, 205);
+            this.sellTab.TabIndex = 5;
+            this.sellTab.Text = "Sell";
+            this.sellTab.UseVisualStyleBackColor = true;
+            // 
+            // sellItemSelect
+            // 
+            this.sellItemSelect.FormattingEnabled = true;
+            this.sellItemSelect.Location = new System.Drawing.Point(53, 12);
+            this.sellItemSelect.Name = "sellItemSelect";
+            this.sellItemSelect.Size = new System.Drawing.Size(317, 21);
+            this.sellItemSelect.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(17, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(27, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Item";
+            // 
+            // sellButton
+            // 
+            this.sellButton.Location = new System.Drawing.Point(699, 178);
+            this.sellButton.Name = "sellButton";
+            this.sellButton.Size = new System.Drawing.Size(75, 23);
+            this.sellButton.TabIndex = 6;
+            this.sellButton.Text = "login";
+            this.sellButton.UseVisualStyleBackColor = true;
+            this.sellButton.Click += new System.EventHandler(this.sellButton_Click);
+            // 
+            // jpSummonTab
+            // 
+            this.jpSummonTab.Controls.Add(this.JPGachaTicket);
+            this.jpSummonTab.Controls.Add(this.JPLogin);
+            this.jpSummonTab.Controls.Add(this.GachaSummon);
+            this.jpSummonTab.Controls.Add(this.JPGacha);
+            this.jpSummonTab.Location = new System.Drawing.Point(4, 22);
+            this.jpSummonTab.Name = "jpSummonTab";
+            this.jpSummonTab.Size = new System.Drawing.Size(781, 205);
+            this.jpSummonTab.TabIndex = 3;
+            this.jpSummonTab.Text = "JP Summon";
+            this.jpSummonTab.UseVisualStyleBackColor = true;
             // 
             // JPGachaTicket
             // 
@@ -445,7 +526,7 @@
             // 
             // JPLogin
             // 
-            this.JPLogin.Location = new System.Drawing.Point(703, 171);
+            this.JPLogin.Location = new System.Drawing.Point(703, 179);
             this.JPLogin.Name = "JPLogin";
             this.JPLogin.Size = new System.Drawing.Size(75, 23);
             this.JPLogin.TabIndex = 4;
@@ -478,7 +559,7 @@
             this.donateButton.Name = "donateButton";
             this.donateButton.Size = new System.Drawing.Size(106, 23);
             this.donateButton.TabIndex = 3;
-            this.donateButton.Text = "Donate to Shalzuth";
+            this.donateButton.Text = "Donate";
             this.donateButton.UseVisualStyleBackColor = true;
             this.donateButton.Click += new System.EventHandler(this.DonateButton_Click);
             // 
@@ -567,11 +648,22 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Proxy Port:";
             // 
+            // gitHubLink
+            // 
+            this.gitHubLink.Location = new System.Drawing.Point(594, 247);
+            this.gitHubLink.Name = "gitHubLink";
+            this.gitHubLink.Size = new System.Drawing.Size(75, 23);
+            this.gitHubLink.TabIndex = 11;
+            this.gitHubLink.Text = "GitHub";
+            this.gitHubLink.UseVisualStyleBackColor = true;
+            this.gitHubLink.Click += new System.EventHandler(this.GitHubButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 565);
+            this.Controls.Add(this.gitHubLink);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -586,16 +678,17 @@
             this.Name = "MainWindow";
             this.Text = "Shalzuth\'s Brave Haxvius";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.injectionTab.ResumeLayout(false);
+            this.injectionTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.unitDataGrid)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.Missions.ResumeLayout(false);
-            this.Missions.PerformLayout();
-            this.JPSummon.ResumeLayout(false);
+            this.unitHunterTab.ResumeLayout(false);
+            this.unitHunterTab.PerformLayout();
+            this.missionsTab.ResumeLayout(false);
+            this.missionsTab.PerformLayout();
+            this.levelingTab.ResumeLayout(false);
+            this.sellTab.ResumeLayout(false);
+            this.sellTab.PerformLayout();
+            this.jpSummonTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -606,27 +699,25 @@
         private System.Windows.Forms.TextBox fbidInput;
         private System.Windows.Forms.TextBox fbtokenInput;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage injectionTab;
         private System.Windows.Forms.DataGridView injectDataGrid;
         private System.Windows.Forms.TextBox injectSearchInput;
         private System.Windows.Forms.Button injectButton;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage unitHunterTab;
         private System.Windows.Forms.Button donateButton;
-        private System.Windows.Forms.DataGridView unitDataGrid;
         private System.Windows.Forms.Button summonButton;
-        private System.Windows.Forms.TextBox unitSearchInput;
         private System.Windows.Forms.RichTextBox consoleLog;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage levelingTab;
         private System.Windows.Forms.Button levelPartyButton;
         private System.Windows.Forms.RichTextBox levelStatus;
-        private System.Windows.Forms.TabPage JPSummon;
+        private System.Windows.Forms.TabPage jpSummonTab;
         private System.Windows.Forms.Button GachaSummon;
         private System.Windows.Forms.ComboBox JPGacha;
         private System.Windows.Forms.Button JPLogin;
         private System.Windows.Forms.ComboBox JPGachaTicket;
         private System.Windows.Forms.Button rankUpButton;
-        private System.Windows.Forms.TabPage Missions;
-        private System.Windows.Forms.ComboBox MissionSelect;
+        private System.Windows.Forms.TabPage missionsTab;
+        private System.Windows.Forms.ComboBox missionSelect;
         private System.Windows.Forms.CheckBox CBFriends;
         private System.Windows.Forms.Label MissionIdLabel;
         private System.Windows.Forms.Button StartMission;
@@ -649,6 +740,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button arenaButton;
+        private System.Windows.Forms.CheckBox sell4Star;
+        private System.Windows.Forms.CheckBox sell5Star;
+        private System.Windows.Forms.CheckBox sell3Star;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox unitSelect;
+        private System.Windows.Forms.Button gitHubLink;
+        private System.Windows.Forms.TabPage sellTab;
+        private System.Windows.Forms.Button sellButton;
+        private System.Windows.Forms.ComboBox sellItemSelect;
+        private System.Windows.Forms.Label label6;
     }
 }
 
