@@ -241,12 +241,14 @@ namespace Client
 
         private void ProxyIP_TextChanged(object sender, EventArgs e)
         {
+            client.ProxyIpAddr = ProxyIP.Text;
             Settings.Default.ProxyIP = ProxyIP.Text;
             Settings.Default.Save();
         }
 
         private void ProxyPort_TextChanged(object sender, EventArgs e)
         {
+            client.ProxyPort = int.Parse(ProxyPort.Text);
             Settings.Default.ProxyPort = ProxyPort.Text;
             Settings.Default.Save();
         }
