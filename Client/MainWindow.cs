@@ -234,11 +234,6 @@ namespace Client
             t.Start();
         }
 
-        private void SereDonate_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=serenitygrant@gmail.com&lc=US&currency_code=USD&bn=PP%2dDonationsBF");
-        }
-
         private void StartMission_Click(object sender, EventArgs e)
         {
             var t = new Thread(() =>
