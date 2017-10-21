@@ -38,6 +38,7 @@
             this.unitSearchInput = new System.Windows.Forms.TextBox();
             this.unitDataGrid = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.arenaButton = new System.Windows.Forms.Button();
             this.rankUpButton = new System.Windows.Forms.Button();
             this.levelStatus = new System.Windows.Forms.RichTextBox();
             this.levelPartyButton = new System.Windows.Forms.Button();
@@ -65,7 +66,6 @@
             this.JPGacha = new System.Windows.Forms.ComboBox();
             this.donateButton = new System.Windows.Forms.Button();
             this.consoleLog = new System.Windows.Forms.RichTextBox();
-            this.SereDonate = new System.Windows.Forms.Button();
             this.ProxyPort = new System.Windows.Forms.TextBox();
             this.ProxyIP = new System.Windows.Forms.TextBox();
             this.fbtokenInput = new System.Windows.Forms.TextBox();
@@ -74,7 +74,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.arenaButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.injectDataGrid)).BeginInit();
@@ -200,6 +199,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Leveling";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // arenaButton
+            // 
+            this.arenaButton.Location = new System.Drawing.Point(335, 155);
+            this.arenaButton.Name = "arenaButton";
+            this.arenaButton.Size = new System.Drawing.Size(75, 23);
+            this.arenaButton.TabIndex = 3;
+            this.arenaButton.Text = "do arena";
+            this.arenaButton.UseVisualStyleBackColor = true;
+            this.arenaButton.Click += new System.EventHandler(this.arenaButton_Click);
             // 
             // rankUpButton
             // 
@@ -482,16 +491,6 @@
             this.consoleLog.TabIndex = 3;
             this.consoleLog.Text = "";
             // 
-            // SereDonate
-            // 
-            this.SereDonate.Location = new System.Drawing.Point(577, 248);
-            this.SereDonate.Name = "SereDonate";
-            this.SereDonate.Size = new System.Drawing.Size(106, 23);
-            this.SereDonate.TabIndex = 4;
-            this.SereDonate.Text = "Donate to Serenity";
-            this.SereDonate.UseVisualStyleBackColor = true;
-            this.SereDonate.Click += new System.EventHandler(this.SereDonate_Click);
-            // 
             // ProxyPort
             // 
             this.ProxyPort.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Client.Properties.Settings.Default, "ProxyPort", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -568,16 +567,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Proxy Port:";
             // 
-            // arenaButton
-            // 
-            this.arenaButton.Location = new System.Drawing.Point(335, 155);
-            this.arenaButton.Name = "arenaButton";
-            this.arenaButton.Size = new System.Drawing.Size(75, 23);
-            this.arenaButton.TabIndex = 3;
-            this.arenaButton.Text = "do arena";
-            this.arenaButton.UseVisualStyleBackColor = true;
-            this.arenaButton.Click += new System.EventHandler(this.arenaButton_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,7 +578,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ProxyPort);
             this.Controls.Add(this.ProxyIP);
-            this.Controls.Add(this.SereDonate);
             this.Controls.Add(this.consoleLog);
             this.Controls.Add(this.donateButton);
             this.Controls.Add(this.tabControl1);
@@ -637,7 +625,6 @@
         private System.Windows.Forms.Button JPLogin;
         private System.Windows.Forms.ComboBox JPGachaTicket;
         private System.Windows.Forms.Button rankUpButton;
-        private System.Windows.Forms.Button SereDonate;
         private System.Windows.Forms.TabPage Missions;
         private System.Windows.Forms.ComboBox MissionSelect;
         private System.Windows.Forms.CheckBox CBFriends;
