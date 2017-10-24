@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="BraveExvius.cs" />
     <Compile Include="Data\Challenge.cs" />
+    <Compile Include="Data\ImportantItem.cs" />
+    <Compile Include="Data\Sublimation.cs" />
     <Compile Include="Data\Ticket.cs" />
     <Compile Include="Data\ClassUp.cs" />
     <Compile Include="Data\Equipment.cs" />

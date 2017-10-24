@@ -105,7 +105,7 @@ namespace Client
                 summonButton.Enabled = false;
                 var unit = unitSelect.SelectedItem as Unit;
                 client.Login();
-                client.UnitHunter(unit, iteration);
+                client.UnitHunter(unit, sell3Star.Checked, sell4Star.Checked, sell5Star.Checked, iteration);
                 summonButton.Text = "summon";
                 summonButton.Enabled = true;
             });
@@ -169,7 +169,7 @@ namespace Client
             var t = new Thread(() =>
             {
                 JPLogin.Enabled = false;
-                client.LoginJapan(client.TransferCode, client.TransferPin);
+                client.LoginJapan();
                 InitGacha(client);
                 JPLogin.Enabled = true;
                 GachaSummon.Enabled = true;
@@ -289,7 +289,8 @@ namespace Client
         public class Sell
         {
             public String ItemName;
-            public String SellString;
+            public String id;
+            public String type;
             public int count;
             public int price;
             public override string ToString()
@@ -315,21 +316,21 @@ namespace Client
                         var id = itemInfo.Split(new char[1] { ':' })[0];
                         var count = itemInfo.Split(new char[1] { ':' })[1];
                         var item = Item.Items.First(i => i.ItemId == id);
-                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "20:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), id = id, price = int.Parse(item.ItemSellPrice), type = "20:" });//, ItemNameAndCount = item.Name + " : " + count });
                     }
                     foreach (var itemInfo in equips)
                     {
                         var id = itemInfo.Split(new char[1] { ':' })[0];
                         var count = itemInfo.Split(new char[1] { ':' })[1];
                         var item = Equipment.Equipments.First(i => i.EquipId == id);
-                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "21:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), id = id, price = int.Parse(item.ItemSellPrice), type = "21:" });//, ItemNameAndCount = item.Name + " : " + count });
                     }
                     foreach (var itemInfo in materias)
                     {
                         var id = itemInfo.Split(new char[1] { ':' })[0];
                         var count = itemInfo.Split(new char[1] { ':' })[1];
                         var item = Materia.Materias.First(i => i.MateriaId == id);
-                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), SellString = "22:" + itemInfo, price = int.Parse(item.ItemSellPrice) });//, ItemNameAndCount = item.Name + " : " + count });
+                        sellable.Add(new Sell { ItemName = item.Name, count = int.Parse(count), id = id, price = int.Parse(item.ItemSellPrice), type = "22:" });//, ItemNameAndCount = item.Name + " : " + count });
                     }
                     sellable = sellable.OrderByDescending(s => s.count).ToList();
                     sellButton.Text = "sell";
@@ -339,9 +340,19 @@ namespace Client
                 else if (sellButton.Text == "sell")
                 {
                     sellButton.Enabled = false;
+                    var item = (sellItemSelect.SelectedItem as Sell);
+                    while ((UInt64)item.count * (UInt64)item.price > 999999999)
+                    {
+                        var maxSell = 999999999 / item.price;
+                        client.Network.SendPacket(Request.ItemSell, new JProperty(Variable.ItemSell, new JArray(new JObject(
+                            new JProperty(Variable.StoreItemSellId, item.type + item.id + ":" + maxSell),
+                            new JProperty(Variable.StoreItemSellPrice, ((UInt64)item.price * (UInt64)maxSell).ToString())))));
+                        item.count -= maxSell;
+                        Thread.Sleep(3000);
+                    }
                     client.Network.SendPacket(Request.ItemSell, new JProperty(Variable.ItemSell, new JArray(new JObject(
-                        new JProperty(Variable.StoreItemSellId, (sellItemSelect.SelectedItem as Sell).SellString),
-                        new JProperty(Variable.StoreItemSellPrice, ((sellItemSelect.SelectedItem as Sell).price * (sellItemSelect.SelectedItem as Sell).count).ToString())))));
+                        new JProperty(Variable.StoreItemSellId, item.type + item.id + ":" + item.count),
+                        new JProperty(Variable.StoreItemSellPrice, (item.price * item.count).ToString())))));
                     sellButton.Enabled = true;
                 }
             });

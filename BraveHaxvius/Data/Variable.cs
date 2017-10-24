@@ -312,7 +312,7 @@ namespace BraveHaxvius.Data
         public static readonly String EventSubId = "42B7MGIU";
         public static readonly String EventId = "pvS5A4kE";
         public static readonly String EventType = "89EvGKHx";
-        public static readonly String EventMissionId = "6uIYE15X";
+        public static readonly String ObjectId = "6uIYE15X";
         public static readonly String EventBonusUnitId = "86JmXL41";
         public static readonly String EventBonutType = "1G6xjYvf";
         public static readonly String BundleId = "EzXXHtTY";
@@ -371,6 +371,10 @@ namespace BraveHaxvius.Data
         public static readonly String ItemIdClone = "0HUPxDf1";
         public static readonly String ItemBuyPrice = "E61qF5Lp";
         public static readonly String ItemSellPrice = "bz6RS3pI";
+        public static readonly String SublimationId = "SJ56uhz2";
+        public static readonly String SublimationItems = "HS7V6Ww1";
+        public static readonly String SublimationUnitId = "25oxcKwN";
+        public static readonly String ClassUpItems = "KCk8u0am";
         public static readonly String LBExperience = "A90DrNfp";
 
 		public static readonly Dictionary<String, String> Variables = new Dictionary<String, String>
@@ -682,7 +686,7 @@ namespace BraveHaxvius.Data
             {EventSubId, "EventSubId"},
             {EventId, "EventId"},
             {EventType, "EventType"},
-            {EventMissionId, "EventMissionId"},
+            {ObjectId, "ObjectId"},
             {EventBonusUnitId, "EventBonusUnitId"},
             {EventBonutType, "EventBonutType"},
             {BundleId, "BundleId"},
@@ -741,6 +745,10 @@ namespace BraveHaxvius.Data
             {ItemIdClone, "ItemIdClone"},
             {ItemBuyPrice, "ItemBuyPrice"},
             {ItemSellPrice, "ItemSellPrice"},
+            {SublimationId, "SublimationId"},
+            {SublimationItems, "SublimationItems"},
+            {SublimationUnitId, "SublimationUnitId"},
+            {ClassUpItems, "ClassUpItems"},
             {LBExperience, "LBExperience"},
 		};
     }

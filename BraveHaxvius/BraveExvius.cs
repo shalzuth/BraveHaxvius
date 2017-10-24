@@ -139,12 +139,6 @@ namespace BraveHaxvius
             //UpdateMail();
             UpdateGachaList();
         }
-        public void LoginFacebook(String fbId, String fbToken)
-        {
-            FacebookUserId = fbId;
-            FacebookToken = fbToken;
-            Login();
-        }
         public void LoginUnlinkedAccount(String userId, String pw, String gumiId, String gumiToken)
         {
             UserId = userId;
@@ -155,14 +149,16 @@ namespace BraveHaxvius
             ModelChangeCnt = "0";
             Login();
         }
-        public void LoginJapan(String transferCode, String transferPin)
+        public void LoginJapan()
         {
             Locale = "JP";
             AppVersion = "1029";
             RscVersion = "596";
             MstVersion = "1764";
-            TransferCode = transferCode;
-            TransferPin = transferPin;
+            TransferCode = FacebookUserId;
+            TransferPin = FacebookToken;
+            FacebookUserId = null;
+            FacebookToken = null;
             var TransferCodeCheck = Network.SendPacket(Request.TransferCodeCheck);
             var userInfo = TransferCodeCheck[GameObject.UserInfo][0];
             TransferCode = "";
@@ -370,12 +366,30 @@ namespace BraveHaxvius
                                 new JProperty(Variable.UnitSellPrice, totalSell),
                                 new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
         }
-        public void UnitHunter(Unit unit, Func<int, int> status = null)
+        public void UnitHunter(Unit unit, Boolean sell3Star, Boolean sell4Star, Boolean sell5Star, Func<int, int> status = null)
         {
             var Gachas = GetUserInfo[GameObject.GachaScheduleMst];
             var Gacha10_1 = Gachas.First(g => g[Variable.Description].ToString().Contains("10+1"));
-            var sell3Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("3");
-            var sell4Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("4");
+            List<int> locks = new List<int> { 3, 4, 5 };
+            if (sell3Star)
+                locks.Remove(3);
+            if (sell4Star)
+                locks.Remove(4);
+            if (sell5Star)
+                locks.Remove(5);
+            if (locks.Count == 0)
+                locks.Add(-1);
+            var optionLock = String.Join(",", locks);
+            var oldOptionLock = GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString();
+            if (optionLock != oldOptionLock)
+                Network.SendPacket(Request.OptionUpdate,
+                    new JProperty(GameObject.UserOptionInfo,
+                        new JArray(
+                            new JObject(
+                                new JProperty(Variable.UnitId, UserId),
+                                new JProperty(Variable.OptionName, "UNIT_LOCK_RANK"),
+                                new JProperty(Variable.OptionValue, optionLock)))));       
+            //var sell3Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("3");
             var newUnits = new List<Unit>();
             int iteration = 0;
             while (newUnits.Count(u => u.UnitId == unit.BaseUnitId) == 0)
@@ -392,11 +406,17 @@ namespace BraveHaxvius
                 }
                 var unitSellList = new List<String>();
                 var totalSell = 0;
-                if (!sell3Star)
-                    continue;
                 newUnits.ForEach(u =>
                 {
+                    if (u.UnitId == unit.BaseUnitId)
+                        return;
                     var sellCost = 800;
+                    if (u.Rarity == "3")
+                    {
+                        sellCost = 800;
+                        if (!sell3Star)
+                            return;
+                    }
                     if (u.Rarity == "4")
                     {
                         sellCost = 1500;
@@ -404,18 +424,31 @@ namespace BraveHaxvius
                             return;
                     }
                     if (u.Rarity == "5")
-                        return;
+                    {
+                        sellCost = 3000;
+                        if (!sell5Star)
+                            return;
+                    }
                     totalSell += sellCost;
                     unitSellList.Add(u.UniqueUnitId);
                 });
-                Network.SendPacket(Request.UnitSell,
-                    new JProperty(GameObject.UnitSell,
-                        new JArray(
-                            new JObject(
-                                new JProperty(Variable.UnitSellPrice, totalSell),
-                                new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
+                if (locks.Count != 3)
+                    Network.SendPacket(Request.UnitSell,
+                        new JProperty(GameObject.UnitSell,
+                            new JArray(
+                                new JObject(
+                                    new JProperty(Variable.UnitSellPrice, totalSell),
+                                    new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
                 Thread.Sleep(3000);
             }
+            if (optionLock != oldOptionLock)
+                Network.SendPacket(Request.OptionUpdate,
+                    new JProperty(GameObject.UserOptionInfo,
+                        new JArray(
+                            new JObject(
+                                new JProperty(Variable.UnitId, UserId),
+                                new JProperty(Variable.OptionName, "UNIT_LOCK_RANK"),
+                                new JProperty(Variable.OptionValue, oldOptionLock)))));
         }
         public void FuseUnits()
         {
@@ -1089,7 +1122,7 @@ namespace BraveHaxvius
                 var classup = ClassUp.ClassUps.FirstOrDefault(c => c.UnitId == unit.UnitId);
                 if (classup != default(ClassUp))
                 {
-                    var itemList = ClassUp.ClassUps.First(c => c.UnitId == unit.UnitId).Items.Split(new char[1] { ',' }).Select(i => new KeyValuePair<Item, int>(Item.Items.First(item => item.ItemId == i.Split(new char[1] { ':' })[1]), int.Parse(i.Split(new char[1] { ':' }).Last()))).ToList();
+                    var itemList = classup.Items.Split(new char[1] { ',' }).Select(i => new KeyValuePair<Item, int>(Item.Items.First(item => item.ItemId == i.Split(new char[1] { ':' })[1]), int.Parse(i.Split(new char[1] { ':' }).Last()))).ToList();
                     itemList.ForEach(item =>
                     {
                         if (awakenItems.ContainsKey(item.Key))
@@ -1104,7 +1137,7 @@ namespace BraveHaxvius
             {
                 update(String.Join("\r\n", units.Select(u => u.Name + " " + u.Rarity + "*" + " level " + u.Level)));
                 var itemHax = String.Join(",", awakenItems.Select(i => "20:" + i.Key.ItemId + ":" + i.Value));
-                var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, false, false, false, false, false, null, 3000);
+                var missionResults = DoMission(Mission.TheFarplane_2000201, false, itemHax, null, null, false, false, false, false, false, null, 15000);
                 awakenItems.Clear();
                 units.ForEach(unit =>
                 {
@@ -1135,7 +1168,7 @@ namespace BraveHaxvius
                         var classup = ClassUp.ClassUps.FirstOrDefault(c => c.UnitId == unit.UnitId);
                         if (classup != default(ClassUp))
                         {
-                            var itemList = ClassUp.ClassUps.First(c => c.UnitId == unit.UnitId).Items.Split(new char[1] { ',' }).Select(i => new KeyValuePair<Item, int>(Item.Items.First(item => item.ItemId == i.Split(new char[1] { ':' })[1]), int.Parse(i.Split(new char[1] { ':' }).Last()))).ToList();
+                            var itemList = classup.Items.Split(new char[1] { ',' }).Select(i => new KeyValuePair<Item, int>(Item.Items.First(item => item.ItemId == i.Split(new char[1] { ':' })[1]), int.Parse(i.Split(new char[1] { ':' }).Last()))).ToList();
                             itemList.ForEach(item =>
                             {
                                 if (awakenItems.ContainsKey(item.Key))
@@ -1160,6 +1193,25 @@ namespace BraveHaxvius
                 new JProperty(Variable.StoreItemSellId, "21:" + Equipment.GrowthEgg.EquipId + ":10,22:" + Materia.Action.MateriaId + ":20"),
                 new JProperty(Variable.StoreItemSellPrice, (int.Parse(Equipment.GrowthEgg.ItemSellPrice) * 10 + int.Parse(Materia.Action.ItemSellPrice) * 20).ToString())))));
             Thread.Sleep(3000);
+
+            awakenItems = new Dictionary<Item, int>();
+            units.ForEach(unit =>
+            {
+                var sublimations = Sublimation.Sublimations.FindAll(s => s.UnitId.Contains(unit.BaseUnitId));
+                var classup = ClassUp.ClassUps.FirstOrDefault(c => c.UnitId == unit.UnitId);
+                if (classup != default(ClassUp))
+                {
+                    var itemList = classup.Items.Split(new char[1] { ',' }).Select(i => new KeyValuePair<Item, int>(Item.Items.First(item => item.ItemId == i.Split(new char[1] { ':' })[1]), int.Parse(i.Split(new char[1] { ':' }).Last()))).ToList();
+                    itemList.ForEach(item =>
+                    {
+                        if (awakenItems.ContainsKey(item.Key))
+                            awakenItems[item.Key] += item.Value;
+                        else
+                            awakenItems.Add(item.Key, item.Value);
+                    });
+                }
+            });
+
         }
         public JObject SetParty(String unitId, Int32 partyId)
         {

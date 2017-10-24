@@ -336,7 +336,7 @@ namespace BraveHaxvius.Data
             { try { DecodeOne("F_MATERIA_MST", i.ToString()); } catch { } }
             for (int i = 80; i < 150; i++)
             { try { DecodeOne("F_TEXT_MATERIA_NAME", i.ToString()); } catch { } }*/
-            DecodeAll();
+            //DecodeAll();
             DumpHardcoded("Request", networkJson, new List<String> { "Url", "EncodeKey", "RequestID" });
             DumpHardcoded("GameObject", responseJson);
             DumpHardcoded("Variable", variableJson);
@@ -346,6 +346,35 @@ namespace BraveHaxvius.Data
             };
             var init = bot.Network.SendPacket(Request.Initialize);
             var newMsts = init[GameObject.VersionInfo];
+            {
+                var switchJson = DecodeFile(newMsts.First(m => m[Variable.KeyName].ToString() == "F_SUBLIMATION_RECIPE_MST"));
+                var switchMst = switchJson.Select(m => (JObject)JsonConvert.DeserializeObject(m)).ToList();
+                var definitions = new StringBuilder();
+                var definitionsList = new StringBuilder();
+                var className = "Sublimation";
+                var classVars = @"
+        public String SublimationId { get; set; }
+        public String UnitId { get; set; }
+        public String Items { get; set; }
+";
+                foreach (var switchObj in switchMst)
+                {
+                    var id = switchObj[Variable.SublimationId].ToString();
+                    var unitId = switchObj[Variable.SublimationUnitId].ToString();
+                    var items = switchObj[Variable.SublimationItems].ToString();
+                    var varName = "Sublimation_" + id;
+                    definitions.AppendLine($"        public static readonly {className} {varName} = new {className} {{ SublimationId = \"{id}\", UnitId = \"{unitId}\", Items = \"{items}\"}};");
+                    definitionsList.AppendLine($"           {varName},");
+                }
+                var file = new StringBuilder();
+                file.Append(fileHeader.Replace("CLASSNAME", className));
+                file.AppendLine(classVars);
+                file.Append(definitions.ToString());
+                file.AppendLine(fileMiddle.Replace("CLASSNAME", className));
+                file.Append(definitionsList.ToString());
+                file.Append(fileFooter);
+                File.WriteAllText(@"..\BraveHaxvius\Data\" + className + ".cs", file.ToString());
+            }
             DumpTranslation(newMsts, "F_TEXT_ITEM_EQUIP_NAME", "F_EQUIP_ITEM_MST", "Equipment");
             DumpTranslation(newMsts, "F_TEXT_UNITS_NAME", "F_UNIT_MST", "Unit", new Dictionary<String, String>  {
                 { "UniqueUnitId", "" },
@@ -353,6 +382,7 @@ namespace BraveHaxvius.Data
                 { "Tmr", "" },
                 { "Equip", "" } });
             DumpTranslation(newMsts, "F_TEXT_MISSION", "F_MISSION_MST", "Mission");
+            DumpTranslation(newMsts, "F_TEXT_IMPORTANT_ITEM_NAME", "F_IMPORTANT_ITEM_MST", "ImportantItem");
             DumpTranslation(newMsts, "F_TEXT_ITEM_NAME", "F_ITEM_MST", "Item");
             DumpTranslation(newMsts, "F_TEXT_RECIPE_BOOK_NAME", "F_RECIPE_BOOK_MST", "Recipe");
             DumpTranslation(newMsts, "F_TEXT_MATERIA_NAME", "F_MATERIA_MST", "Materia");
@@ -423,7 +453,7 @@ namespace BraveHaxvius.Data
                 foreach (var switchObj in switchMst)
                 {
                     var id = switchObj[Variable.UnitId].ToString();
-                    var items = switchObj["KCk8u0am"].ToString();
+                    var items = switchObj[Variable.ClassUpItems].ToString();
                     var varName = "Unit_" + id;
                     definitions.AppendLine($"        public static readonly {className} {varName} = new {className} {{ UnitId = \"{id}\", Items = \"{items}\"}};");
                     definitionsList.AppendLine($"           {varName},");

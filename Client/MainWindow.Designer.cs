@@ -170,13 +170,14 @@
             // sell4Star
             // 
             this.sell4Star.AutoSize = true;
+            this.sell4Star.Checked = true;
+            this.sell4Star.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sell4Star.Location = new System.Drawing.Point(56, 57);
             this.sell4Star.Name = "sell4Star";
             this.sell4Star.Size = new System.Drawing.Size(56, 17);
             this.sell4Star.TabIndex = 7;
             this.sell4Star.Text = "Sell 4*";
             this.sell4Star.UseVisualStyleBackColor = true;
-            this.sell4Star.Visible = false;
             // 
             // sell5Star
             // 
@@ -187,18 +188,18 @@
             this.sell5Star.TabIndex = 6;
             this.sell5Star.Text = "Sell 5*";
             this.sell5Star.UseVisualStyleBackColor = true;
-            this.sell5Star.Visible = false;
             // 
             // sell3Star
             // 
             this.sell3Star.AutoSize = true;
+            this.sell3Star.Checked = true;
+            this.sell3Star.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sell3Star.Location = new System.Drawing.Point(56, 34);
             this.sell3Star.Name = "sell3Star";
             this.sell3Star.Size = new System.Drawing.Size(56, 17);
             this.sell3Star.TabIndex = 5;
             this.sell3Star.Text = "Sell 3*";
             this.sell3Star.UseVisualStyleBackColor = true;
-            this.sell3Star.Visible = false;
             // 
             // label5
             // 
