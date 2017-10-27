@@ -105,7 +105,7 @@ namespace Client
                 summonButton.Enabled = false;
                 var unit = unitSelect.SelectedItem as Unit;
                 client.Login();
-                client.UnitHunter(unit, sell3Star.Checked, sell4Star.Checked, sell5Star.Checked, iteration);
+                client.UnitHunterNew(unit, sell3Star.Checked, sell4Star.Checked, sell5Star.Checked, iteration);
                 summonButton.Text = "summon";
                 summonButton.Enabled = true;
             });
