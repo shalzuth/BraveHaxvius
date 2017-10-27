@@ -10,6 +10,7 @@ namespace BraveHaxvius.Data
         public String CountId { get; set; }
         public String ItemStack { get; set; }
         public String ItemIdClone { get; set; }
+        public String SublimationUnitId { get; set; }
 
         public static readonly ImportantItem Crest = new ImportantItem { Name = "Crest"};
         public static readonly ImportantItem EXPKey = new ImportantItem { Name = "EXP Key"};
