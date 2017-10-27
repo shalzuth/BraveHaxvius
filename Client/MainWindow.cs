@@ -131,7 +131,7 @@ namespace Client
                 };
                 levelPartyButton.Enabled = false;
                 client.Login();
-                client.LevelParty(update);
+                client.LevelPartyNew(update);
                 levelPartyButton.Enabled = true;
             });
             t.IsBackground = true;

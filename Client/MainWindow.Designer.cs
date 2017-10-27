@@ -651,7 +651,7 @@
             // 
             // gitHubLink
             // 
-            this.gitHubLink.Location = new System.Drawing.Point(594, 247);
+            this.gitHubLink.Location = new System.Drawing.Point(594, 248);
             this.gitHubLink.Name = "gitHubLink";
             this.gitHubLink.Size = new System.Drawing.Size(75, 23);
             this.gitHubLink.TabIndex = 11;
