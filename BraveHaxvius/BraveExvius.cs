@@ -1100,6 +1100,32 @@ namespace BraveHaxvius
             var oldMateria = oldUnit?[Variable.Materia].ToString();
             SetEquipment(unit.UniqueUnitId, oldEquipment, oldMateria);
         }
+        public void LevelPartyNew(Func<string, int> update)
+        {
+            var currentParty = int.Parse(GetUserInfo[GameObject.UserActualInfo].First()[Variable.CurrentParty].ToString());
+            var party = GetUserInfo[GameObject.UserPartyDeckInfo_5Eb0Rig6][currentParty];
+            var partyUnits = party[Variable.PartyUnits].ToString().Split(new char[1] { ',' });
+            var units = partyUnits.Select(u => Units.FirstOrDefault(unit => unit.UniqueUnitId == u.Split(new char[1] { ':' }).Last())).ToList();
+
+            var needsLeveling = !units.All(u => u.Level == u.UnitMaxLevel && u.Rarity == Unit.Units.FindAll(u2 => u.BaseUnitId == u2.BaseUnitId).Max(u2 => int.Parse(u2.Rarity)).ToString());
+            while (needsLeveling)
+            {
+                update(String.Join("\r\n", units.Select(u => u.Name + " " + u.Rarity + "*" + " level " + u.Level)));
+                var missionResults = DoMission(Mission.TheFarplane_2000201, false, null, null, null, false, false, false, false, false, null, 15000);
+                units.ForEach(unit =>
+                {
+                    unit.Level = missionResults[GameObject.UserUnitInfo_8gSkPD6b].First(r => r[Variable.UniqueUnitId].ToString() == unit.UniqueUnitId)[Variable.Level].ToString();
+                    if (unit.Level == unit.UnitMaxLevel)
+                    {
+        
+                    }
+                });
+                needsLeveling = !units.All(u => u.Level == u.UnitMaxLevel);
+                Thread.Sleep(3000);
+            }
+        }
+
+        
         public void LevelParty(Func<string, int> update)
         {
             var growtheggs = "21:" + Equipment.GrowthEgg.EquipId + ":10";
