@@ -1282,7 +1282,7 @@ namespace BraveHaxvius.Data
            {"RB_RULE_INFO_TITLE", "Rules"},
            {"RB_RULE_INFO_BAN_ABILITY", "Forbidden abilities: "},
            {"RB_RULE_INFO_SERIES", "Series bonus: "},
-           {"RB_RULE_INFO_WIN_REWARD", "Victory Rewards"},
+           {"RB_RULE_INFO_WIN_REWARD", "Daily Participation Rewards"},
            {"RB_RULE_INFO_LOSE_REWARD", "Failure Rewards"},
            {"RB_RULE_INFO_RANK_RANGE", "%d to $d place"},
            {"RB_SELECT_RIVAL_TITLE", "Select Opponent"},
@@ -2015,6 +2015,8 @@ namespace BraveHaxvius.Data
            {"TAB_DAILY_QUEST", "Daily Quest"},
            {"TAB_ROOKIE_QUEST", "Rookie Quest"},
            {"DAILY_QUEST_CLAIM_ALL_PROMPT", "Claim all completed quest rewards?"},
+           {"SG_UNIT_SORT_UNITEXP", "Unit Exp"},
+           {"UNIT_SORT_TYPE_EXPD_BONUS", "Success rate"},
 		};
     }
 }
