@@ -366,6 +366,92 @@ namespace BraveHaxvius
                                 new JProperty(Variable.UnitSellPrice, totalSell),
                                 new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
         }
+
+        public void UnitHunterNew(Unit unit, Boolean sell3Star, Boolean sell4Star, Boolean sell5Star, Func<int, int> status = null)
+        {
+            var Gachas = GetUserInfo[GameObject.GachaScheduleMst];
+            var Gacha10_1 = Gachas.First(g => g[Variable.Description].ToString().Contains("10+1"));
+            List<int> locks = new List<int> { 3, 4, 5 };
+            if (sell3Star)
+                locks.Remove(3);
+            if (sell4Star)
+                locks.Remove(4);
+            if (sell5Star)
+                locks.Remove(5);
+            if (locks.Count == 0)
+                locks.Add(-1);
+            var optionLock = String.Join(",", locks);
+            var oldOptionLock = GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString();
+            if (optionLock != oldOptionLock)
+                Network.SendPacket(Request.OptionUpdate,
+                    new JProperty(GameObject.UserOptionInfo,
+                        new JArray(
+                            new JObject(
+                                new JProperty(Variable.UnitId, UserId),
+                                new JProperty(Variable.OptionName, "UNIT_LOCK_RANK"),
+                                new JProperty(Variable.OptionValue, optionLock)))));
+            //var sell3Star = !GetUserInfo[GameObject.UserOptionInfo].First()[Variable.OptionValue].ToString().Contains("3");
+            var newUnits = new List<Unit>();
+            int iteration = 0;
+            while (newUnits.Count(u => u.UnitId == unit.BaseUnitId) == 0)
+            {
+                newUnits.Clear();
+                //DoMission(Mission.AirshipDeck, false, "20:" + Item.SummonTicket.ItemId + ":9");
+                for (int j = 0; j < 9; j++)
+                {
+                    status?.Invoke(iteration++);
+                    newUnits.AddRange(Summon(Gacha10_1[Variable.GachaId].ToString(), Gacha10_1[Variable.Options].ToString(), "1", "0"));
+                    Thread.Sleep(5000);
+                    if (newUnits.Count(u => u.UnitId == unit.BaseUnitId) > 0)
+                        break;
+                }
+                var unitSellList = new List<String>();
+                var totalSell = 0;
+                newUnits.ForEach(u =>
+                {
+                    if (u.UnitId == unit.BaseUnitId)
+                        return;
+                    var sellCost = 800;
+                    if (u.Rarity == "3")
+                    {
+                        sellCost = 800;
+                        if (!sell3Star)
+                            return;
+                    }
+                    if (u.Rarity == "4")
+                    {
+                        sellCost = 1500;
+                        if (!sell4Star)
+                            return;
+                    }
+                    if (u.Rarity == "5")
+                    {
+                        sellCost = 3000;
+                        if (!sell5Star)
+                            return;
+                    }
+                    totalSell += sellCost;
+                    unitSellList.Add(u.UniqueUnitId);
+                });
+                if (locks.Count != 3)
+                    Network.SendPacket(Request.UnitSell,
+                        new JProperty(GameObject.UnitSell,
+                            new JArray(
+                                new JObject(
+                                    new JProperty(Variable.UnitSellPrice, totalSell),
+                                    new JProperty(Variable.UnitSellIds, string.Join(",", unitSellList))))));
+                Thread.Sleep(3000);
+            }
+            if (optionLock != oldOptionLock)
+                Network.SendPacket(Request.OptionUpdate,
+                    new JProperty(GameObject.UserOptionInfo,
+                        new JArray(
+                            new JObject(
+                                new JProperty(Variable.UnitId, UserId),
+                                new JProperty(Variable.OptionName, "UNIT_LOCK_RANK"),
+                                new JProperty(Variable.OptionValue, oldOptionLock)))));
+        }
+
         public void UnitHunter(Unit unit, Boolean sell3Star, Boolean sell4Star, Boolean sell5Star, Func<int, int> status = null)
         {
             var Gachas = GetUserInfo[GameObject.GachaScheduleMst];
