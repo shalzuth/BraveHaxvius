@@ -154,7 +154,7 @@ namespace Client
                     var level = result[GameObject.UserTeamInfo].First()[Variable.Level].ToString();
                     var experience = result[GameObject.UserTeamInfo].First()[Variable.Experience].ToString();
                     levelStatus.Text = "Rank " + level + " : experience = " + experience;
-                    if (level == "150")
+                    if (level == "200")
                         break;
                     Thread.Sleep(3000);
                 }
