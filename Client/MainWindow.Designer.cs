@@ -126,6 +126,7 @@
             this.injectDataGrid.AllowUserToResizeRows = false;
             this.injectDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.injectDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.injectDataGrid.Enabled = false;
             this.injectDataGrid.Location = new System.Drawing.Point(3, 3);
             this.injectDataGrid.Name = "injectDataGrid";
             this.injectDataGrid.RowHeadersVisible = false;
@@ -134,6 +135,7 @@
             // 
             // injectSearchInput
             // 
+            this.injectSearchInput.Enabled = false;
             this.injectSearchInput.Location = new System.Drawing.Point(3, 182);
             this.injectSearchInput.Name = "injectSearchInput";
             this.injectSearchInput.Size = new System.Drawing.Size(253, 20);
@@ -143,6 +145,7 @@
             // 
             // injectButton
             // 
+            this.injectButton.Enabled = false;
             this.injectButton.Location = new System.Drawing.Point(698, 176);
             this.injectButton.Name = "injectButton";
             this.injectButton.Size = new System.Drawing.Size(77, 23);
