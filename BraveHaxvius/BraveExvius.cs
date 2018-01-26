@@ -8,6 +8,7 @@ using System.Threading;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using BraveHaxvius.Data;
+using System.Configuration;
 
 namespace BraveHaxvius
 {
@@ -48,7 +49,26 @@ namespace BraveHaxvius
         public BraveExvius()
         {
             Network = new Networking { client = this };
+            
+            string readAppVersion = ConfigurationManager.AppSettings["AppVersion"];
+            if (readAppVersion.Length > 0)
+            {
+                AppVersion = readAppVersion;
+            }
+
+            string readRscVersion = ConfigurationManager.AppSettings["RscVersion"];
+            if (readRscVersion.Length > 0)
+            {
+                RscVersion = readRscVersion;
+            }
+
+            string readMstVersion = ConfigurationManager.AppSettings["MstVersion"];
+            if (readMstVersion.Length > 0)
+            {
+                MstVersion = readMstVersion;
+            }
         }
+        
         public JProperty UserInfo
         {
             get
@@ -106,6 +126,16 @@ namespace BraveHaxvius
         public List<String> GachaId { get; set; } = new List<String>();
         public List<String> GachaDetailId { get; set; } = new List<String>();
         public JObject GetUserInfo;
+        
+        public void UpdateConfig(string key, string value)
+        {
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[key].Value = value;
+
+            // Save the configuration file.
+            config.Save(ConfigurationSaveMode.Modified);
+        }
+        
         public void Login()
         {
             if (Locale != "JP" && FacebookUserId.Contains("@"))
@@ -1361,18 +1391,21 @@ namespace BraveHaxvius
                     AppVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString().Contains("F_APP_VERSION")))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
                     Logger.Out("New AppVersion = " + AppVersion);
+                    UpdateConfig("AppVersion", AppVersion);                    
                 }
                 if (Initialize[GameObject.VersionInfo].Count(f => f[Variable.KeyName].ToString() == "F_MST_VERSION") > 0)
                 {
                     MstVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString() == "F_MST_VERSION"))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
                     Logger.Out("New MstVersion = " + MstVersion);
+                    UpdateConfig("MstVersion", MstVersion);                    
                 }
                 if (Locale == "JP" && Initialize[GameObject.VersionInfo].Count(f => f[Variable.KeyName].ToString() == "F_RSC_VERSION") > 0)
                 {
                     RscVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString() == "F_RSC_VERSION"))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
                     Logger.Out("New RscVersion = " + RscVersion);
+                    UpdateConfig("RscVersion", RscVersion);                    
                 }
             }
             if (String.IsNullOrEmpty(Initialize[GameObject.UserInfo][0][Variable.UserId].ToString()))
