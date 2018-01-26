@@ -1360,16 +1360,19 @@ namespace BraveHaxvius
                 {
                     AppVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString().Contains("F_APP_VERSION")))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
+                    Logger.Out("New AppVersion = " + AppVersion);
                 }
                 if (Initialize[GameObject.VersionInfo].Count(f => f[Variable.KeyName].ToString() == "F_MST_VERSION") > 0)
                 {
                     MstVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString() == "F_MST_VERSION"))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
+                    Logger.Out("New MstVersion = " + MstVersion);
                 }
                 if (Locale == "JP" && Initialize[GameObject.VersionInfo].Count(f => f[Variable.KeyName].ToString() == "F_RSC_VERSION") > 0)
                 {
                     RscVersion = (Initialize[GameObject.VersionInfo].First(f => f[Variable.KeyName].ToString() == "F_RSC_VERSION"))[Variable.Value].ToString();
                     Initialize = Network.SendPacket(Request.Initialize);
+                    Logger.Out("New RscVersion = " + RscVersion);
                 }
             }
             if (String.IsNullOrEmpty(Initialize[GameObject.UserInfo][0][Variable.UserId].ToString()))
