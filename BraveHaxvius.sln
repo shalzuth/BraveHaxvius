@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{512497B1-E79C-4DED-9B30-A9525F047B9B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BraveHaxvius", "BraveHaxvius\BraveHaxvius.csproj", "{BDCF492D-5BAD-43F0-9056-A24647CBE948}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IDAScripts", "IDAScripts", "{8F77CCB5-DF0D-485C-B2E5-88E726F9F094}"
@@ -17,8 +19,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketDecoder", "PacketDecoder\PacketDecoder.csproj", "{9B176963-698E-451F-821D-908620E17702}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{9FB9B59B-47FE-4BB6-994D-2B3D12AEED48}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{512497B1-E79C-4DED-9B30-A9525F047B9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
