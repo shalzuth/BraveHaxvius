@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -45,7 +45,7 @@ namespace BraveHaxvius.Data
             var version = rawFile[Variable.Value].ToString();
             var loc = "mst";
             if (name.Contains("F_TEXT"))
-                loc = "localized_texts";
+                loc = "localized_texts/en";
             var nameKey = (JToken)fileJson.FirstOrDefault(r => r.Key == name).Value;
             var datContent = Downloader.DownloadString("http://lapis-dlc.gumi.sg/dlc_assets_prod/" + loc + "/Ver" + version + "_" + nameKey["Name"] + ".dat");
             var datLines = datContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -62,7 +62,7 @@ namespace BraveHaxvius.Data
         {
             var loc = "mst";
             if (name.Contains("F_TEXT"))
-                loc = "localized_texts";
+                loc = "localized_texts/en";
             var nameKey = (JToken)fileJson.FirstOrDefault(r => r.Key == name).Value;
             var datContent = "";
             try { datContent = Downloader.DownloadString("http://lapis-dlc.gumi.sg/dlc_assets_prod/" + loc + "/Ver" + version + "_" + nameKey["Name"] + ".dat"); }
@@ -82,7 +82,7 @@ namespace BraveHaxvius.Data
             version = (int.Parse(version) + 1).ToString();
             var loc = "mst";
             if (name.Contains("F_TEXT"))
-                loc = "localized_texts";
+                loc = "localized_texts/en";
             var nameKey = (JToken)fileJson.FirstOrDefault(r => r.Key == name).Value;
             var datContent = Downloader.DownloadString("http://lapis-dlc.gumi.sg/dlc_assets_prod/" + loc + "/Ver" + version + "_" + nameKey["Name"] + ".dat");
             var datLines = datContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -131,6 +131,12 @@ namespace BraveHaxvius.Data
             };
             var init = bot.Network.SendPacket(Request.Initialize);
             var newMsts = init[GameObject.VersionInfo];
+	    var F_LOCALIZED_TEXT_MST = DecodeFile(newMsts.First(m => m[Variable.KeyName].ToString() == "F_LOCALIZED_TEXT_MST"));
+            F_LOCALIZED_TEXT_MST.ForEach(l => {
+                newMsts.Last.AddAfterSelf(new JObject(
+                new JProperty(Variable.KeyName, ((JObject)JsonConvert.DeserializeObject(l))[Variable.KeyName].ToString()),
+                new JProperty(Variable.Value, ((JObject)JsonConvert.DeserializeObject(l))["00zAYGYS"].ToString())));
+            });
             foreach (var mst in newMsts)
             {
                 var name = mst[Variable.KeyName].ToString();
@@ -138,7 +144,7 @@ namespace BraveHaxvius.Data
                 //version = (int.Parse(version) + 1).ToString();
                 var loc = "mst";
                 if (name.Contains("F_TEXT"))
-                    loc = "localized_texts";
+                    loc = "localized_texts/en";
                 var nameKey = (JToken)fileJson.FirstOrDefault(r => r.Key == name).Value;
                 try
                 {
@@ -346,6 +352,12 @@ namespace BraveHaxvius.Data
             };
             var init = bot.Network.SendPacket(Request.Initialize);
             var newMsts = init[GameObject.VersionInfo];
+            var F_LOCALIZED_TEXT_MST = DecodeFile(newMsts.First(m => m[Variable.KeyName].ToString() == "F_LOCALIZED_TEXT_MST"));
+            F_LOCALIZED_TEXT_MST.ForEach(l => {
+                newMsts.Last.AddAfterSelf(new JObject(
+                new JProperty(Variable.KeyName, ((JObject)JsonConvert.DeserializeObject(l))[Variable.KeyName].ToString()),
+                new JProperty(Variable.Value, ((JObject)JsonConvert.DeserializeObject(l))["00zAYGYS"].ToString())));
+            });
             {
                 var switchJson = DecodeFile(newMsts.First(m => m[Variable.KeyName].ToString() == "F_SUBLIMATION_RECIPE_MST"));
                 var switchMst = switchJson.Select(m => (JObject)JsonConvert.DeserializeObject(m)).ToList();
